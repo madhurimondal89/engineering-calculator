@@ -11,6 +11,14 @@ import Home from "@/pages/Home";
 import OhmsLaw from "@/pages/calculators/OhmsLaw";
 import Power from "@/pages/calculators/Power";
 import Resistor from "@/pages/calculators/Resistor";
+import VoltageDivider from "@/pages/calculators/VoltageDivider";
+import CurrentDivider from "@/pages/calculators/CurrentDivider";
+import SeriesParallelResistance from "@/pages/calculators/SeriesParallelResistance";
+import SeriesParallelCapacitor from "@/pages/calculators/SeriesParallelCapacitor";
+import SeriesParallelInductor from "@/pages/calculators/SeriesParallelInductor";
+import Conductance from "@/pages/calculators/Conductance";
+import Impedance from "@/pages/calculators/Impedance";
+import Reactance from "@/pages/calculators/Reactance";
 
 // Mechanical Calculators
 import Force from "@/pages/calculators/Force";
@@ -35,6 +43,14 @@ function Router() {
       <Route path="/calculators/ohms-law" component={OhmsLaw} />
       <Route path="/calculators/power" component={Power} />
       <Route path="/calculators/resistor" component={Resistor} />
+      <Route path="/calculators/voltage-divider" component={VoltageDivider} />
+      <Route path="/calculators/current-divider" component={CurrentDivider} />
+      <Route path="/calculators/series-parallel-resistance" component={SeriesParallelResistance} />
+      <Route path="/calculators/series-parallel-capacitor" component={SeriesParallelCapacitor} />
+      <Route path="/calculators/series-parallel-inductor" component={SeriesParallelInductor} />
+      <Route path="/calculators/conductance" component={Conductance} />
+      <Route path="/calculators/impedance" component={Impedance} />
+      <Route path="/calculators/reactance" component={Reactance} />
       
       {/* Mechanical Calculators */}
       <Route path="/calculators/force" component={Force} />
