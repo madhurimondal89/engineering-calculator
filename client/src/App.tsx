@@ -32,23 +32,23 @@ function Router() {
       <Route path="/" component={Home} />
       
       {/* Electrical Calculators */}
-      <Route path="/calculator/ohms-law" component={OhmsLaw} />
-      <Route path="/calculator/power" component={Power} />
-      <Route path="/calculator/resistor" component={Resistor} />
+      <Route path="/calculators/ohms-law" component={OhmsLaw} />
+      <Route path="/calculators/power" component={Power} />
+      <Route path="/calculators/resistor" component={Resistor} />
       
       {/* Mechanical Calculators */}
-      <Route path="/calculator/force" component={Force} />
-      <Route path="/calculator/torque" component={Torque} />
-      <Route path="/calculator/pressure" component={Pressure} />
+      <Route path="/calculators/force" component={Force} />
+      <Route path="/calculators/torque" component={Torque} />
+      <Route path="/calculators/pressure" component={Pressure} />
       
       {/* Civil Calculators */}
-      <Route path="/calculator/beam" component={Beam} />
-      <Route path="/calculator/concrete" component={Concrete} />
+      <Route path="/calculators/beam" component={Beam} />
+      <Route path="/calculators/concrete" component={Concrete} />
       
       {/* General Science Calculators */}
-      <Route path="/calculator/velocity" component={Velocity} />
-      <Route path="/calculator/density" component={Density} />
-      <Route path="/calculator/acceleration" component={Acceleration} />
+      <Route path="/calculators/velocity" component={Velocity} />
+      <Route path="/calculators/density" component={Density} />
+      <Route path="/calculators/acceleration" component={Acceleration} />
       
       {/* Fallback to 404 */}
       <Route component={NotFound} />

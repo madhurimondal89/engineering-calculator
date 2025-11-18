@@ -40,7 +40,7 @@ export function Header() {
                 Civil
               </Link>
               <Link 
-                href="/#science"
+                href="/#general-science"
                 className="px-3 py-2 text-sm font-medium hover-elevate active-elevate-2 rounded-md" 
                 data-testid="link-science"
               >

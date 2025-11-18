@@ -91,7 +91,7 @@ export const calculators: Calculator[] = [
     title: "Ohm's Law Calculator",
     description: "Calculate voltage, current, or resistance using Ohm's Law (V = I × R)",
     category: "Electrical",
-    path: "/calculator/ohms-law",
+    path: "/calculators/ohms-law",
     icon: "Zap"
   },
   {
@@ -99,7 +99,7 @@ export const calculators: Calculator[] = [
     title: "Electrical Power Calculator",
     description: "Calculate electrical power using voltage, current, or resistance",
     category: "Electrical",
-    path: "/calculator/power",
+    path: "/calculators/power",
     icon: "Battery"
   },
   {
@@ -107,7 +107,7 @@ export const calculators: Calculator[] = [
     title: "Resistor Calculator",
     description: "Calculate total resistance for series and parallel resistor combinations",
     category: "Electrical",
-    path: "/calculator/resistor",
+    path: "/calculators/resistor",
     icon: "Component"
   },
   
@@ -117,7 +117,7 @@ export const calculators: Calculator[] = [
     title: "Force Calculator",
     description: "Calculate force using Newton's second law (F = m × a)",
     category: "Mechanical",
-    path: "/calculator/force",
+    path: "/calculators/force",
     icon: "MoveHorizontal"
   },
   {
@@ -125,7 +125,7 @@ export const calculators: Calculator[] = [
     title: "Torque Calculator",
     description: "Calculate torque from force and distance (τ = F × d)",
     category: "Mechanical",
-    path: "/calculator/torque",
+    path: "/calculators/torque",
     icon: "RotateCw"
   },
   {
@@ -133,7 +133,7 @@ export const calculators: Calculator[] = [
     title: "Pressure Calculator",
     description: "Calculate pressure from force and area (P = F / A)",
     category: "Mechanical",
-    path: "/calculator/pressure",
+    path: "/calculators/pressure",
     icon: "Gauge"
   },
   
@@ -143,7 +143,7 @@ export const calculators: Calculator[] = [
     title: "Beam Deflection Calculator",
     description: "Calculate beam deflection under uniform distributed load",
     category: "Civil",
-    path: "/calculator/beam",
+    path: "/calculators/beam",
     icon: "Minus"
   },
   {
@@ -151,7 +151,7 @@ export const calculators: Calculator[] = [
     title: "Concrete Volume Calculator",
     description: "Calculate concrete volume needed for slabs and foundations",
     category: "Civil",
-    path: "/calculator/concrete",
+    path: "/calculators/concrete",
     icon: "Box"
   },
   
@@ -161,7 +161,7 @@ export const calculators: Calculator[] = [
     title: "Velocity Calculator",
     description: "Calculate velocity from distance and time (v = d / t)",
     category: "General Science",
-    path: "/calculator/velocity",
+    path: "/calculators/velocity",
     icon: "Gauge"
   },
   {
@@ -169,7 +169,7 @@ export const calculators: Calculator[] = [
     title: "Density Calculator",
     description: "Calculate density from mass and volume (ρ = m / V)",
     category: "General Science",
-    path: "/calculator/density",
+    path: "/calculators/density",
     icon: "Weight"
   },
   {
@@ -177,7 +177,7 @@ export const calculators: Calculator[] = [
     title: "Acceleration Calculator",
     description: "Calculate acceleration from velocity change and time",
     category: "General Science",
-    path: "/calculator/acceleration",
+    path: "/calculators/acceleration",
     icon: "TrendingUp"
   }
 ];

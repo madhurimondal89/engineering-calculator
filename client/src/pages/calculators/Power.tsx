@@ -43,14 +43,14 @@ export default function Power() {
 
     // P = V × I, P = V²/R, P = I²R
     if (v !== null && i !== null && !isNaN(v) && !isNaN(i)) {
-      if (i === 0 && v === 0) {
-        setError("Both voltage and current cannot be zero.");
+      if (i === 0) {
+        setError("Current cannot be zero.");
         return;
       }
       newResults.power = v * i;
       newResults.voltage = v;
       newResults.current = i;
-      newResults.resistance = i !== 0 ? v / i : 0;
+      newResults.resistance = v / i;
     } else if (v !== null && r !== null && !isNaN(v) && !isNaN(r)) {
       if (r === 0) {
         setError("Resistance cannot be zero.");
@@ -65,6 +65,14 @@ export default function Power() {
       newResults.resistance = r;
       newResults.current = v / r;
     } else if (i !== null && r !== null && !isNaN(i) && !isNaN(r)) {
+      if (i === 0) {
+        setError("Current cannot be zero.");
+        return;
+      }
+      if (r === 0) {
+        setError("Resistance cannot be zero.");
+        return;
+      }
       if (r < 0) {
         setError("Resistance must be positive.");
         return;
