@@ -4,14 +4,27 @@ A professional web application providing engineering and science calculators org
 
 ## Overview
 
-This is a full-stack calculator hub built with React, TypeScript, Express, and Tailwind CSS. It provides 11 specialized calculators across four engineering/science categories:
+This is a full-stack calculator hub built with React, TypeScript, Express, and Tailwind CSS. It provides 19 specialized calculators across four engineering/science categories:
 
-- **Electrical**: Ohm's Law, Power Calculator, Resistor Calculator
+- **Electrical** (11 calculators): Ohm's Law, Power Calculator, Resistor Calculator, Voltage Divider, Current Divider, Series & Parallel Resistance, Series & Parallel Capacitor, Series & Parallel Inductor, Conductance, Impedance, Reactance
 - **Mechanical**: Force, Torque, Pressure Calculators  
 - **Civil**: Beam Deflection, Concrete Volume Calculators
 - **General Science**: Velocity, Density, Acceleration Calculators
 
 ## Recent Changes
+
+**November 18, 2025 - Batch 1: Basic Electrical Calculators**
+- Added 8 new Basic Electrical calculators to complete the category
+- Voltage Divider Calculator (Vout = Vin × R2/(R1+R2))
+- Current Divider Calculator (I1 = Itotal × R2/(R1+R2))
+- Series & Parallel Resistance Calculator (multiple resistors)
+- Series & Parallel Capacitor Calculator (multiple capacitors)
+- Series & Parallel Inductor Calculator (multiple inductors)
+- Conductance Calculator (G = 1/R conversion)
+- Impedance Calculator (complex impedance Z = R + jX)
+- Reactance Calculator (inductive XL and capacitive XC)
+- Updated footer with calculatorfree.in branding and policy links
+- Total calculators expanded from 11 to 19
 
 **November 18, 2024**
 - Initial implementation of calculator hub with 11 calculators
