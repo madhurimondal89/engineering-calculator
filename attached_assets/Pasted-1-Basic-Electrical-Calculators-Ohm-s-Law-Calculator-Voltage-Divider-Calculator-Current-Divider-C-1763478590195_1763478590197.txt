@@ -1,0 +1,205 @@
+1. Basic Electrical Calculators
+
+Ohm’s Law Calculator
+
+Voltage Divider Calculator
+
+Current Divider Calculator
+
+Power Calculator (P = VI, P = I²R, P = V²/R)
+
+Resistance Calculator
+
+Series & Parallel Resistance Calculator
+
+Series & Parallel Capacitor Calculator
+
+Series & Parallel Inductor Calculator
+
+Conductance Calculator
+
+Impedance Calculator (R + jX)
+
+Reactance Calculator (Inductive & Capacitive)
+
+RMS Voltage/Current Calculator
+
+2. AC Circuit Calculators
+
+AC Voltage/Current Calculator
+
+Apparent, Real & Reactive Power Calculator (S, P, Q)
+
+Power Factor Calculator
+
+Frequency Calculator
+
+Angular Frequency Calculator (ω)
+
+Phase Angle Calculator
+
+LC Resonant Frequency Calculator
+
+RLC Circuit Calculator (Series/Parallel)
+
+Transformer Turns Ratio Calculator
+
+Transformer Efficiency Calculator
+
+3. Electronics Calculators
+
+LED Resistor Calculator
+
+Transistor Biasing Calculator
+
+Voltage Regulator Calculator (LM317, 7805, etc.)
+
+Diode Forward Voltage Calculator
+
+Zener Diode Resistor Calculator
+
+RC Low-Pass/High-Pass Filter Calculator
+
+RL Filter Calculator
+
+LC Filter Calculator
+
+Op-Amp Gain Calculator (Inverting / Non-inverting)
+
+Op-Amp Comparator Threshold Calculator
+
+Amplifier Gain Calculator
+
+Decibel (dB) Calculator
+
+4. Wire & Cable Calculators
+
+Wire Size Calculator (AWG to mm)
+
+Cable Ampacity Calculator
+
+Voltage Drop Calculator
+
+Cable Resistance per Meter Calculator
+
+Conductor Temperature Rise Calculator
+
+5. Power System Calculators
+
+Load Current Calculator
+
+Three-Phase Power Calculator
+
+Single-Phase Power Calculator
+
+Power Factor Correction Calculator
+
+Short Circuit Current Calculator
+
+Per-Unit System Calculator
+
+Load Balance Calculator
+
+Demand Factor Calculator
+
+Diversity Factor Calculator
+
+Maximum Demand Calculator
+
+6. Motor Calculators
+
+Motor Efficiency Calculator
+
+Motor Full Load Current Calculator
+
+Motor Slip Calculator
+
+Motor Horsepower Calculator
+
+Motor Torque Calculator
+
+Synchronous Speed Calculator
+
+Motor Starting Current Calculator
+
+7. Battery & Energy Calculators
+
+Battery Capacity Calculator (Ah)
+
+Battery Runtime Calculator
+
+Battery Charge Time Calculator
+
+Inverter Load Calculator
+
+UPS Backup Time Calculator
+
+Solar Battery Calculator
+
+Energy Consumption Calculator (kWh)
+
+Electricity Bill Calculator
+
+8. Renewable Energy Calculators
+
+Solar Panel Efficiency Calculator
+
+Solar Power Output Calculator
+
+Solar Charge Controller Calculator
+
+MPPT Calculator
+
+Wind Power Calculator
+
+9. PCB & Component Calculators
+
+PCB Trace Width Calculator
+
+PCB Impedance Calculator
+
+RC Time Constant Calculator
+
+RL Time Constant Calculator
+
+Thermal Resistance Calculator
+
+SMD Resistor Code Calculator
+
+SMD Capacitor Code Calculator
+
+Color Code Resistor Calculator
+
+10. RF & Communication Calculators
+
+Antenna Gain Calculator
+
+Wavelength Calculator
+
+SWR (Standing Wave Ratio) Calculator
+
+Link Budget Calculator
+
+Noise Figure Calculator
+
+Signal-to-Noise Ratio (SNR) Calculator
+
+dBm to Watt Converter
+
+Path Loss Calculator
+
+11. Converter Tools
+
+Voltage Converter Calculator
+
+Frequency Converter
+
+AC to DC Conversion Calculator
+
+DC to AC Inverter Calculator
+
+Joules to Watts Calculator
+
+Watts to Amps / Amps to Watts Calculator
+
+VA to Watts Calculator
