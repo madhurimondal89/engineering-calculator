@@ -110,6 +110,70 @@ export const calculators: Calculator[] = [
     path: "/calculators/resistor",
     icon: "Component"
   },
+  {
+    id: "voltage-divider",
+    title: "Voltage Divider Calculator",
+    description: "Calculate output voltage in a voltage divider circuit (Vout = Vin × R2/(R1+R2))",
+    category: "Electrical",
+    path: "/calculators/voltage-divider",
+    icon: "GitBranch"
+  },
+  {
+    id: "current-divider",
+    title: "Current Divider Calculator",
+    description: "Calculate current distribution in parallel branches (I1 = Itotal × R2/(R1+R2))",
+    category: "Electrical",
+    path: "/calculators/current-divider",
+    icon: "Split"
+  },
+  {
+    id: "series-parallel-resistance",
+    title: "Series & Parallel Resistance Calculator",
+    description: "Calculate total resistance for multiple resistors in series or parallel configuration",
+    category: "Electrical",
+    path: "/calculators/series-parallel-resistance",
+    icon: "Network"
+  },
+  {
+    id: "series-parallel-capacitor",
+    title: "Series & Parallel Capacitor Calculator",
+    description: "Calculate total capacitance for multiple capacitors in series or parallel",
+    category: "Electrical",
+    path: "/calculators/series-parallel-capacitor",
+    icon: "Boxes"
+  },
+  {
+    id: "series-parallel-inductor",
+    title: "Series & Parallel Inductor Calculator",
+    description: "Calculate total inductance for multiple inductors in series or parallel",
+    category: "Electrical",
+    path: "/calculators/series-parallel-inductor",
+    icon: "Codesandbox"
+  },
+  {
+    id: "conductance",
+    title: "Conductance Calculator",
+    description: "Convert between resistance and conductance (G = 1/R, R = 1/G)",
+    category: "Electrical",
+    path: "/calculators/conductance",
+    icon: "Activity"
+  },
+  {
+    id: "impedance",
+    title: "Impedance Calculator",
+    description: "Calculate complex impedance from resistance and reactance (Z = R + jX)",
+    category: "Electrical",
+    path: "/calculators/impedance",
+    icon: "Workflow"
+  },
+  {
+    id: "reactance",
+    title: "Reactance Calculator",
+    description: "Calculate inductive (XL = 2πfL) and capacitive reactance (XC = 1/(2πfC))",
+    category: "Electrical",
+    path: "/calculators/reactance",
+    icon: "Radio"
+  },
   
   // Mechanical
   {
