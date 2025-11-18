@@ -106,7 +106,68 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-            <p>© 2024 Engineering & Science Calculator Hub. All rights reserved.</p>
+            <p className="mb-4">© 2025 calculatorfree.in All Rights Reserved.</p>
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-2">
+              <a 
+                href="https://www.calculatorfree.in/about-us/" 
+                className="hover:text-foreground"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="link-about"
+              >
+                About Us
+              </a>
+              <span className="text-muted-foreground/50">|</span>
+              <a 
+                href="https://www.calculatorfree.in/contact-us/" 
+                className="hover:text-foreground"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="link-contact"
+              >
+                Contact Us
+              </a>
+              <span className="text-muted-foreground/50">|</span>
+              <a 
+                href="https://www.calculatorfree.in/privacy-policy/" 
+                className="hover:text-foreground"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="link-privacy"
+              >
+                Privacy Policy
+              </a>
+              <span className="text-muted-foreground/50">|</span>
+              <a 
+                href="https://www.calculatorfree.in/disclaimer/" 
+                className="hover:text-foreground"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="link-disclaimer"
+              >
+                Disclaimer
+              </a>
+              <span className="text-muted-foreground/50">|</span>
+              <a 
+                href="https://www.calculatorfree.in/terms-conditions/" 
+                className="hover:text-foreground"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="link-terms"
+              >
+                Terms & Conditions
+              </a>
+              <span className="text-muted-foreground/50">|</span>
+              <a 
+                href="https://www.calculatorfree.in/dmca-policy/" 
+                className="hover:text-foreground"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="link-dmca"
+              >
+                DMCA
+              </a>
+            </div>
           </div>
         </div>
       </footer>
