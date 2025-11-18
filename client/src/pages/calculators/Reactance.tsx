@@ -89,6 +89,28 @@ export default function Reactance() {
               <CardDescription>Choose reactance type</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="frequency">Frequency (f)</Label>
+                <div className="relative">
+                  <Input
+                    id="frequency"
+                    type="number"
+                    step="any"
+                    placeholder="Enter frequency"
+                    value={frequency}
+                    onChange={(e) => setFrequency(e.target.value)}
+                    className="pr-12"
+                    data-testid="input-frequency"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
+                    Hz
+                  </span>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Used for both inductive and capacitive reactance
+                </p>
+              </div>
+
               <Tabs value={activeTab} onValueChange={setActiveTab}>
                 <TabsList className="grid w-full grid-cols-2">
                   <TabsTrigger value="inductive" data-testid="tab-inductive">Inductive (XL)</TabsTrigger>
@@ -96,25 +118,6 @@ export default function Reactance() {
                 </TabsList>
                 
                 <TabsContent value="inductive" className="space-y-4 mt-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="frequency-l">Frequency (f)</Label>
-                    <div className="relative">
-                      <Input
-                        id="frequency-l"
-                        type="number"
-                        step="any"
-                        placeholder="Enter frequency"
-                        value={frequency}
-                        onChange={(e) => setFrequency(e.target.value)}
-                        className="pr-12"
-                        data-testid="input-frequency-l"
-                      />
-                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
-                        Hz
-                      </span>
-                    </div>
-                  </div>
-
                   <div className="space-y-2">
                     <Label htmlFor="inductance">Inductance (L)</Label>
                     <div className="relative">
@@ -140,25 +143,6 @@ export default function Reactance() {
                 </TabsContent>
 
                 <TabsContent value="capacitive" className="space-y-4 mt-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="frequency-c">Frequency (f)</Label>
-                    <div className="relative">
-                      <Input
-                        id="frequency-c"
-                        type="number"
-                        step="any"
-                        placeholder="Enter frequency"
-                        value={frequency}
-                        onChange={(e) => setFrequency(e.target.value)}
-                        className="pr-12"
-                        data-testid="input-frequency-c"
-                      />
-                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
-                        Hz
-                      </span>
-                    </div>
-                  </div>
-
                   <div className="space-y-2">
                     <Label htmlFor="capacitance">Capacitance (C)</Label>
                     <div className="relative">
@@ -203,16 +187,18 @@ export default function Reactance() {
               <CardDescription>Reactance value</CardDescription>
             </CardHeader>
             <CardContent>
-              {(xlResult !== null || xcResult !== null) ? (
+              {(activeTab === "inductive" && xlResult !== null) || (activeTab === "capacitive" && xcResult !== null) ? (
                 <div className="space-y-6">
                   <div className="p-6 bg-primary/5 rounded-lg border border-primary/20">
                     <div className="text-sm text-muted-foreground mb-2">
                       {activeTab === "inductive" ? "Inductive Reactance (XL)" : "Capacitive Reactance (XC)"}
                     </div>
                     <div className="text-3xl font-bold font-mono" data-testid="text-result-reactance">
-                      {activeTab === "inductive" 
-                        ? `${xlResult?.toFixed(4)} Ω` 
-                        : `${xcResult?.toFixed(4)} Ω`}
+                      {activeTab === "inductive" && xlResult !== null
+                        ? `${xlResult.toFixed(4)} Ω` 
+                        : activeTab === "capacitive" && xcResult !== null
+                        ? `${xcResult.toFixed(4)} Ω`
+                        : "No result"}
                     </div>
                   </div>
 
