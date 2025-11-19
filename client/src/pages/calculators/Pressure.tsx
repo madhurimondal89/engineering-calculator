@@ -5,6 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 export default function Pressure() {
   const [force, setForce] = useState("");
@@ -110,6 +112,13 @@ export default function Pressure() {
             </CardContent>
           </Card>
         </div>
+
+        {getCalculatorAccordion("pressure-calculator") && (
+          <CalculatorAccordion
+            content={getCalculatorAccordion("pressure-calculator")!}
+            calculatorId="pressure-calculator"
+          />
+        )}
       </main>
     </div>
   );

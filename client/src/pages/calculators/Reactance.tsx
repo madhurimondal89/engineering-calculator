@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 export default function Reactance() {
   const [frequency, setFrequency] = useState("");
@@ -229,6 +231,13 @@ export default function Reactance() {
             </CardContent>
           </Card>
         </div>
+
+        {getCalculatorAccordion("reactance") && (
+          <CalculatorAccordion
+            content={getCalculatorAccordion("reactance")!}
+            calculatorId="reactance"
+          />
+        )}
       </main>
     </div>
   );

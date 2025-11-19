@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle, Plus, X } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 export default function SeriesParallelCapacitor() {
   const [capacitors, setCapacitors] = useState<string[]>(["", ""]);
@@ -187,6 +189,13 @@ export default function SeriesParallelCapacitor() {
             </CardContent>
           </Card>
         </div>
+
+        {getCalculatorAccordion("series-parallel-capacitor") && (
+          <CalculatorAccordion
+            content={getCalculatorAccordion("series-parallel-capacitor")!}
+            calculatorId="series-parallel-capacitor"
+          />
+        )}
       </main>
     </div>
   );

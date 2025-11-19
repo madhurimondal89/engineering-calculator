@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle, Plus, X } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 export default function SeriesParallelResistance() {
   const [resistors, setResistors] = useState<string[]>(["", ""]);
@@ -187,6 +189,13 @@ export default function SeriesParallelResistance() {
             </CardContent>
           </Card>
         </div>
+
+        {getCalculatorAccordion("series-parallel-resistance") && (
+          <CalculatorAccordion
+            content={getCalculatorAccordion("series-parallel-resistance")!}
+            calculatorId="series-parallel-resistance"
+          />
+        )}
       </main>
     </div>
   );

@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 interface Results {
   power?: number;
@@ -304,6 +306,13 @@ export default function Power() {
             </CardContent>
           </Card>
         </div>
+
+        {getCalculatorAccordion("power-calculator") && (
+          <CalculatorAccordion
+            content={getCalculatorAccordion("power-calculator")!}
+            calculatorId="power-calculator"
+          />
+        )}
       </main>
     </div>
   );

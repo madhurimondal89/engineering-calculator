@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 interface Results {
   voltage?: number;
@@ -244,6 +246,13 @@ export default function OhmsLaw() {
             </CardContent>
           </Card>
         </div>
+
+        {getCalculatorAccordion("ohms-law") && (
+          <CalculatorAccordion
+            content={getCalculatorAccordion("ohms-law")!}
+            calculatorId="ohms-law"
+          />
+        )}
       </main>
     </div>
   );

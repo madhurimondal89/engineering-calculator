@@ -5,6 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 export default function Beam() {
   const [load, setLoad] = useState("");
@@ -153,6 +155,13 @@ export default function Beam() {
             </CardContent>
           </Card>
         </div>
+
+        {getCalculatorAccordion("beam-calculator") && (
+          <CalculatorAccordion
+            content={getCalculatorAccordion("beam-calculator")!}
+            calculatorId="beam-calculator"
+          />
+        )}
       </main>
     </div>
   );

@@ -5,6 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 export default function Force() {
   const [mass, setMass] = useState("");
@@ -109,6 +111,13 @@ export default function Force() {
             </CardContent>
           </Card>
         </div>
+
+        {getCalculatorAccordion("force-calculator") && (
+          <CalculatorAccordion
+            content={getCalculatorAccordion("force-calculator")!}
+            calculatorId="force-calculator"
+          />
+        )}
       </main>
     </div>
   );

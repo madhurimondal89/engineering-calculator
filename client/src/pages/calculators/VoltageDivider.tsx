@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 export default function VoltageDivider() {
   const [vin, setVin] = useState("");
@@ -184,6 +186,13 @@ export default function VoltageDivider() {
             </CardContent>
           </Card>
         </div>
+
+        {getCalculatorAccordion("voltage-divider") && (
+          <CalculatorAccordion
+            content={getCalculatorAccordion("voltage-divider")!}
+            calculatorId="voltage-divider"
+          />
+        )}
       </main>
     </div>
   );

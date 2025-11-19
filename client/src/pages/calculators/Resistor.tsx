@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 export default function Resistor() {
   const [seriesR1, setSeriesR1] = useState("");
@@ -211,6 +213,13 @@ export default function Resistor() {
             </div>
           </TabsContent>
         </Tabs>
+
+        {getCalculatorAccordion("resistor-calculator") && (
+          <CalculatorAccordion
+            content={getCalculatorAccordion("resistor-calculator")!}
+            calculatorId="resistor-calculator"
+          />
+        )}
       </main>
     </div>
   );

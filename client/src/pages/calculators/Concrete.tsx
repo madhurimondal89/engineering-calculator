@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 export default function Concrete() {
   const [length, setLength] = useState("");
@@ -196,6 +198,13 @@ export default function Concrete() {
             </CardContent>
           </Card>
         </div>
+
+        {getCalculatorAccordion("concrete-volume") && (
+          <CalculatorAccordion
+            content={getCalculatorAccordion("concrete-volume")!}
+            calculatorId="concrete-volume"
+          />
+        )}
       </main>
     </div>
   );

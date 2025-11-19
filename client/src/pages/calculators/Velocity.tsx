@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 export default function Velocity() {
   const [distance, setDistance] = useState("");
@@ -148,6 +150,13 @@ export default function Velocity() {
             </CardContent>
           </Card>
         </div>
+
+        {getCalculatorAccordion("velocity-calculator") && (
+          <CalculatorAccordion
+            content={getCalculatorAccordion("velocity-calculator")!}
+            calculatorId="velocity-calculator"
+          />
+        )}
       </main>
     </div>
   );

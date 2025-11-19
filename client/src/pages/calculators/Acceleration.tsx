@@ -5,6 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 export default function Acceleration() {
   const [initialVelocity, setInitialVelocity] = useState("");
@@ -137,6 +139,13 @@ export default function Acceleration() {
             </CardContent>
           </Card>
         </div>
+
+        {getCalculatorAccordion("acceleration-calculator") && (
+          <CalculatorAccordion
+            content={getCalculatorAccordion("acceleration-calculator")!}
+            calculatorId="acceleration-calculator"
+          />
+        )}
       </main>
     </div>
   );

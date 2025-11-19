@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 export default function CurrentDivider() {
   const [itotal, setItotal] = useState("");
@@ -198,6 +200,13 @@ export default function CurrentDivider() {
             </CardContent>
           </Card>
         </div>
+
+        {getCalculatorAccordion("current-divider") && (
+          <CalculatorAccordion
+            content={getCalculatorAccordion("current-divider")!}
+            calculatorId="current-divider"
+          />
+        )}
       </main>
     </div>
   );

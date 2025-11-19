@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 interface ImpedanceResults {
   magnitude: number;
@@ -194,6 +196,13 @@ export default function Impedance() {
             </CardContent>
           </Card>
         </div>
+
+        {getCalculatorAccordion("impedance") && (
+          <CalculatorAccordion
+            content={getCalculatorAccordion("impedance")!}
+            calculatorId="impedance"
+          />
+        )}
       </main>
     </div>
   );

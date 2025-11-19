@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 export default function Conductance() {
   const [resistance, setResistance] = useState("");
@@ -183,6 +185,13 @@ export default function Conductance() {
             </CardContent>
           </Card>
         </div>
+
+        {getCalculatorAccordion("conductance") && (
+          <CalculatorAccordion
+            content={getCalculatorAccordion("conductance")!}
+            calculatorId="conductance"
+          />
+        )}
       </main>
     </div>
   );
