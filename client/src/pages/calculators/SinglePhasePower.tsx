@@ -219,7 +219,7 @@ export default function SinglePhasePower() {
           </CardContent>
         </Card>
 
-        <CalculatorAccordion items={getCalculatorAccordion("single-phase-power")} />
+        "<CalculatorAccordion content={getCalculatorAccordion("single-phase-power")} />
       </div>
     </div>
   );

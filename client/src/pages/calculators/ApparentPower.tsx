@@ -183,7 +183,7 @@ export default function ApparentPower() {
           </CardContent>
         </Card>
 
-        <CalculatorAccordion items={getCalculatorAccordion("apparent-power")} />
+        "<CalculatorAccordion content={getCalculatorAccordion("apparent-power")} />
       </div>
     </div>
   );

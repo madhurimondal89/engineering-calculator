@@ -295,7 +295,7 @@ export default function EnergyCost() {
           </CardContent>
         </Card>
 
-        <CalculatorAccordion items={getCalculatorAccordion("energy-cost")} />
+        "<CalculatorAccordion content={getCalculatorAccordion("energy-cost")} />
       </div>
     </div>
   );

@@ -186,7 +186,7 @@ export default function KVAtoKW() {
           </CardContent>
         </Card>
 
-        <CalculatorAccordion items={getCalculatorAccordion("kva-to-kw")} />
+        "<CalculatorAccordion content={getCalculatorAccordion("kva-to-kw")} />
       </div>
     </div>
   );

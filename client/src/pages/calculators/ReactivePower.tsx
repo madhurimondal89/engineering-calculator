@@ -187,7 +187,7 @@ export default function ReactivePower() {
           </CardContent>
         </Card>
 
-        <CalculatorAccordion items={getCalculatorAccordion("reactive-power")} />
+        "<CalculatorAccordion content={getCalculatorAccordion("reactive-power")} />
       </div>
     </div>
   );

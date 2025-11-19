@@ -285,7 +285,7 @@ export default function PowerFactorCorrection() {
           </CardContent>
         </Card>
 
-        <CalculatorAccordion items={getCalculatorAccordion("power-factor-correction")} />
+        "<CalculatorAccordion content={getCalculatorAccordion("power-factor-correction")} />
       </div>
     </div>
   );

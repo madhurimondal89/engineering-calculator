@@ -105,126 +105,126 @@ export default function ElectricalLoad() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="space-y-4">
-              {fields.map((field, index) => (
-                <div key={field.id} className="grid grid-cols-12 gap-2 items-end">
-                  <div className="col-span-12 sm:col-span-3">
-                    <FormField
-                      control={form.control}
-                      name={`loads.${index}.name`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Load Name</FormLabel>
-                          <FormControl>
-                            <Input
-                              {...field}
-                              placeholder="e.g., Light"
-                              data-testid={`input-name-${index}`}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  <div className="col-span-4 sm:col-span-2">
-                    <FormField
-                      control={form.control}
-                      name={`loads.${index}.power`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Power (W)</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="number"
-                              placeholder="60"
-                              data-testid={`input-power-${index}`}
-                              step="any"
-                              value={field.value ?? ""}
-                              onChange={(e) => field.onChange(e.target.value === "" ? undefined : e.target.value)}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  <div className="col-span-4 sm:col-span-2">
-                    <FormField
-                      control={form.control}
-                      name={`loads.${index}.quantity`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Qty</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="number"
-                              placeholder="1"
-                              data-testid={`input-quantity-${index}`}
-                              min="1"
-                              step="any"
-                              value={field.value ?? ""}
-                              onChange={(e) => field.onChange(e.target.value === "" ? undefined : e.target.value)}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  <div className="col-span-4 sm:col-span-2">
-                    <FormField
-                      control={form.control}
-                      name={`loads.${index}.hours`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Hours/day</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="number"
-                              placeholder="5"
-                              data-testid={`input-hours-${index}`}
-                              step="any"
-                              max="24"
-                              value={field.value ?? ""}
-                              onChange={(e) => field.onChange(e.target.value === "" ? undefined : e.target.value)}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  <div className="col-span-12 sm:col-span-2 flex items-end gap-2">
-                    <p className="text-sm font-mono text-muted-foreground flex-1">
-                      {(form.watch(`loads.${index}.power`) * form.watch(`loads.${index}.quantity`)).toFixed(0)}W
-                    </p>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => remove(index)}
-                      disabled={fields.length === 1}
-                      data-testid={`button-remove-${index}`}
-                    >
-                      <X className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <Button onClick={addLoad} variant="outline" className="w-full" data-testid="button-add-load">
-              <Plus className="mr-2 h-4 w-4" />
-              Add Load
-            </Button>
-
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <div className="space-y-4">
+                  {fields.map((field, index) => (
+                    <div key={field.id} className="grid grid-cols-12 gap-2 items-end">
+                      <div className="col-span-12 sm:col-span-3">
+                        <FormField
+                          control={form.control}
+                          name={`loads.${index}.name`}
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Load Name</FormLabel>
+                              <FormControl>
+                                <Input
+                                  {...field}
+                                  placeholder="e.g., Light"
+                                  data-testid={`input-name-${index}`}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      <div className="col-span-4 sm:col-span-2">
+                        <FormField
+                          control={form.control}
+                          name={`loads.${index}.power`}
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Power (W)</FormLabel>
+                              <FormControl>
+                                <Input
+                                  type="number"
+                                  placeholder="60"
+                                  data-testid={`input-power-${index}`}
+                                  step="any"
+                                  value={field.value ?? ""}
+                                  onChange={(e) => field.onChange(e.target.value === "" ? undefined : e.target.value)}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      <div className="col-span-4 sm:col-span-2">
+                        <FormField
+                          control={form.control}
+                          name={`loads.${index}.quantity`}
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Qty</FormLabel>
+                              <FormControl>
+                                <Input
+                                  type="number"
+                                  placeholder="1"
+                                  data-testid={`input-quantity-${index}`}
+                                  min="1"
+                                  step="any"
+                                  value={field.value ?? ""}
+                                  onChange={(e) => field.onChange(e.target.value === "" ? undefined : e.target.value)}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      <div className="col-span-4 sm:col-span-2">
+                        <FormField
+                          control={form.control}
+                          name={`loads.${index}.hours`}
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Hours/day</FormLabel>
+                              <FormControl>
+                                <Input
+                                  type="number"
+                                  placeholder="5"
+                                  data-testid={`input-hours-${index}`}
+                                  step="any"
+                                  max="24"
+                                  value={field.value ?? ""}
+                                  onChange={(e) => field.onChange(e.target.value === "" ? undefined : e.target.value)}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      <div className="col-span-12 sm:col-span-2 flex items-end gap-2">
+                        <p className="text-sm font-mono text-muted-foreground flex-1">
+                          {(form.watch(`loads.${index}.power`) * form.watch(`loads.${index}.quantity`)).toFixed(0)}W
+                        </p>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => remove(index)}
+                          disabled={fields.length === 1}
+                          data-testid={`button-remove-${index}`}
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <Button type="button" onClick={addLoad} variant="outline" className="w-full" data-testid="button-add-load">
+                  <Plus className="mr-2 h-4 w-4" />
+                  Add Load
+                </Button>
+
                 <div className="grid md:grid-cols-2 gap-6 pt-4 border-t">
                   <FormField
                     control={form.control}
@@ -324,7 +324,7 @@ export default function ElectricalLoad() {
           </CardContent>
         </Card>
 
-        <CalculatorAccordion items={getCalculatorAccordion("electrical-load")} />
+        "<CalculatorAccordion content={getCalculatorAccordion("electrical-load")} />
       </div>
     </div>
   );

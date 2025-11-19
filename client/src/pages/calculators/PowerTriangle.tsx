@@ -390,7 +390,7 @@ export default function PowerTriangle() {
           </CardContent>
         </Card>
 
-        <CalculatorAccordion items={getCalculatorAccordion("power-triangle")} />
+        "<CalculatorAccordion content={getCalculatorAccordion("power-triangle")} />
       </div>
     </div>
   );
