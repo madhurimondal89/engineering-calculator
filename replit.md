@@ -13,6 +13,18 @@ This is a full-stack calculator hub built with React, TypeScript, Express, and T
 
 ## Recent Changes
 
+**November 19, 2025 - Informational Accordion Sections ✅ COMPLETE**
+- Added educational accordion sections to ALL 19 calculators
+- Three sections per calculator: "How to Use", "Understanding the Metrics", "Detailed Guide"
+- 1,242 lines of SEO-optimized educational content
+- Data-driven architecture with centralized content management
+- Reusable CalculatorAccordion component using Shadcn Accordion
+- Single collapsible mode for better UX
+- Responsive design and dark mode compatible
+- Content includes: formulas, practical applications, real-world examples, common mistakes
+- Architect approved as production-ready
+- All E2E tests passed (21 steps)
+
 **November 18, 2025 - Batch 1: Basic Electrical Calculators ✅ COMPLETE**
 - Added 8 new Basic Electrical calculators to complete the category
 - Voltage Divider Calculator (Vout = Vin × R2/(R1+R2))
