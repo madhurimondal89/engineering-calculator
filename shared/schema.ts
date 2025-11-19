@@ -176,6 +176,14 @@ export const calculators: Calculator[] = [
     path: "/calculators/reactance",
     icon: "Radio"
   },
+  {
+    id: "resistor-color-code",
+    title: "Resistor Color Code Calculator",
+    description: "Decode resistor color bands to resistance value or encode resistance to color bands",
+    category: "Electrical",
+    path: "/calculators/resistor-color-code",
+    icon: "Palette"
+  },
   
   // AC Circuits
   {
