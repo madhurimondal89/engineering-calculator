@@ -12,9 +12,12 @@ import { CalculatorAccordion } from "@/components/CalculatorAccordion";
 import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 // AWG to diameter conversion (in inches)
-// Using -4 for 0000 AWG (4/0)
+// Using -4, -3, -2, -1 for 0000, 000, 00, 0 AWG (4/0, 3/0, 2/0, 1/0)
 const awgData: { [key: number]: { diameter: number, area: number, resistance: number } } = {
   "-4": { diameter: 0.4600, area: 107.22, resistance: 0.1608 }, // 0000 AWG (4/0)
+  "-3": { diameter: 0.4096, area: 85.01, resistance: 0.2028 }, // 000 AWG (3/0)
+  "-2": { diameter: 0.3648, area: 67.43, resistance: 0.2557 }, // 00 AWG (2/0)
+  "-1": { diameter: 0.3249, area: 53.48, resistance: 0.3224 }, // 0 AWG (1/0)
   0: { diameter: 0.3249, area: 53.48, resistance: 0.3224 },
   1: { diameter: 0.2893, area: 42.41, resistance: 0.4066 },
   2: { diameter: 0.2576, area: 33.62, resistance: 0.5127 },
@@ -40,10 +43,52 @@ const awgData: { [key: number]: { diameter: number, area: number, resistance: nu
   22: { diameter: 0.0253, area: 0.3255, resistance: 52.96 },
   23: { diameter: 0.0226, area: 0.2582, resistance: 66.79 },
   24: { diameter: 0.0201, area: 0.2047, resistance: 84.22 },
+  25: { diameter: 0.0179, area: 0.1624, resistance: 106.2 },
   26: { diameter: 0.0159, area: 0.1288, resistance: 133.9 },
+  27: { diameter: 0.0142, area: 0.1022, resistance: 168.6 },
   28: { diameter: 0.0126, area: 0.0810, resistance: 212.9 },
+  29: { diameter: 0.0113, area: 0.0642, resistance: 268.5 },
   30: { diameter: 0.0100, area: 0.0509, resistance: 338.6 },
+  31: { diameter: 0.0089, area: 0.0404, resistance: 426.9 },
+  32: { diameter: 0.0080, area: 0.0320, resistance: 538.3 },
+  33: { diameter: 0.0071, area: 0.0254, resistance: 678.8 },
+  34: { diameter: 0.0063, area: 0.0201, resistance: 856.0 },
+  35: { diameter: 0.0056, area: 0.0159, resistance: 1079 },
+  36: { diameter: 0.0050, area: 0.0126, resistance: 1361 },
+  37: { diameter: 0.0045, area: 0.0100, resistance: 1716 },
+  38: { diameter: 0.0040, area: 0.0079, resistance: 2164 },
+  39: { diameter: 0.0035, area: 0.0063, resistance: 2728 },
+  40: { diameter: 0.0031, area: 0.0050, resistance: 3441 },
 };
+
+// Parse AWG input, handling both numeric and "X/0" format (e.g., "4/0", "3/0", "2/0", "1/0")
+function parseAWGInput(input: string): number | null {
+  const trimmed = input.trim();
+  
+  // Handle "X/0" format (e.g., "4/0", "3/0", "2/0", "1/0")
+  const oughtMatch = trimmed.match(/^([1-4])\/0$/);
+  if (oughtMatch) {
+    const oughtCount = parseInt(oughtMatch[1]);
+    return -oughtCount; // 4/0 → -4, 3/0 → -3, 2/0 → -2, 1/0 → -1
+  }
+  
+  // Handle numeric input
+  const numeric = parseInt(trimmed);
+  if (!isNaN(numeric)) {
+    return numeric;
+  }
+  
+  return null;
+}
+
+// Format AWG number for display (convert -4 to "4/0", -3 to "3/0", etc.)
+function formatAWGDisplay(awg: number): string {
+  if (awg === -4) return "0000 (4/0)";
+  if (awg === -3) return "000 (3/0)";
+  if (awg === -2) return "00 (2/0)";
+  if (awg === -1) return "0 (1/0)";
+  return awg.toString();
+}
 
 export default function WireGauge() {
   const [awgInput, setAwgInput] = useState("");
@@ -61,16 +106,16 @@ export default function WireGauge() {
     setError("");
     setResult(null);
 
-    const awg = parseInt(awgInput);
+    const awg = parseAWGInput(awgInput);
 
-    if (isNaN(awg)) {
-      setError("Please enter a valid AWG number.");
+    if (awg === null) {
+      setError("Please enter a valid AWG number (e.g., 12, 4/0, 3/0, 2/0, 1/0).");
       return;
     }
 
     const wireData = awgData[awg];
     if (!wireData) {
-      setError("AWG value not found. Common values: 0000-30.");
+      setError("AWG value not found. Supported range: 4/0 (0000) through 40 AWG.");
       return;
     }
 
@@ -154,13 +199,13 @@ export default function WireGauge() {
                     <Label htmlFor="awg">AWG Number</Label>
                     <Input
                       id="awg"
-                      type="number"
-                      placeholder="e.g., 12, 14, 18"
+                      type="text"
+                      placeholder="e.g., 12, 4/0, 3/0"
                       value={awgInput}
                       onChange={(e) => setAwgInput(e.target.value)}
                       data-testid="input-awg"
                     />
-                    <p className="text-xs text-muted-foreground">Common values: 0000, 0, 4, 10, 12, 14, 16, 18, 20, 22, 24</p>
+                    <p className="text-xs text-muted-foreground">Enter AWG: 4/0 through 40 (e.g., 4/0, 12, 18, 24)</p>
                   </div>
 
                   <div className="flex gap-2">
@@ -220,7 +265,7 @@ export default function WireGauge() {
                     <div className="flex justify-between items-baseline">
                       <span className="text-sm text-muted-foreground">AWG:</span>
                       <span className="text-2xl font-mono font-semibold" data-testid="text-result-awg">
-                        {result.awg === -4 ? "0000" : result.awg}
+                        {formatAWGDisplay(result.awg)}
                       </span>
                     </div>
                     <div className="flex justify-between items-baseline">
