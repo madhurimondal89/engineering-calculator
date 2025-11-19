@@ -71,6 +71,17 @@ import VoltageDrop from "@/pages/calculators/VoltageDrop";
 import WireResistance from "@/pages/calculators/WireResistance";
 import ConduitFill from "@/pages/calculators/ConduitFill";
 
+// Power System Calculators
+import PowerFactorCorrection from "@/pages/calculators/PowerFactorCorrection";
+import KVAtoKW from "@/pages/calculators/KVAtoKW";
+import KWtoKVA from "@/pages/calculators/KWtoKVA";
+import SinglePhasePower from "@/pages/calculators/SinglePhasePower";
+import ApparentPower from "@/pages/calculators/ApparentPower";
+import ReactivePower from "@/pages/calculators/ReactivePower";
+import PowerTriangle from "@/pages/calculators/PowerTriangle";
+import ElectricalLoad from "@/pages/calculators/ElectricalLoad";
+import EnergyCost from "@/pages/calculators/EnergyCost";
+
 function Router() {
   return (
     <Switch>
@@ -139,6 +150,17 @@ function Router() {
       <Route path="/calculators/voltage-drop" component={VoltageDrop} />
       <Route path="/calculators/wire-resistance" component={WireResistance} />
       <Route path="/calculators/conduit-fill" component={ConduitFill} />
+      
+      {/* Power System Calculators */}
+      <Route path="/calculators/power-factor-correction" component={PowerFactorCorrection} />
+      <Route path="/calculators/kva-to-kw" component={KVAtoKW} />
+      <Route path="/calculators/kw-to-kva" component={KWtoKVA} />
+      <Route path="/calculators/single-phase-power" component={SinglePhasePower} />
+      <Route path="/calculators/apparent-power" component={ApparentPower} />
+      <Route path="/calculators/reactive-power" component={ReactivePower} />
+      <Route path="/calculators/power-triangle" component={PowerTriangle} />
+      <Route path="/calculators/electrical-load" component={ElectricalLoad} />
+      <Route path="/calculators/energy-cost" component={EnergyCost} />
       
       {/* Fallback to 404 */}
       <Route component={NotFound} />

@@ -6,6 +6,7 @@ export const calculatorCategories = [
   "AC Circuits",
   "Electronics",
   "Wire & Cable",
+  "Power System",
   "Mechanical", 
   "Civil",
   "General Science"
@@ -430,6 +431,80 @@ export const calculators: Calculator[] = [
     category: "Wire & Cable",
     path: "/calculators/conduit-fill",
     icon: "Cylinder"
+  },
+  
+  // Power System
+  {
+    id: "power-factor-correction",
+    title: "Power Factor Correction Calculator",
+    description: "Calculate capacitor size required to improve power factor and reduce reactive power",
+    category: "Power System",
+    path: "/calculators/power-factor-correction",
+    icon: "Zap"
+  },
+  {
+    id: "kva-to-kw",
+    title: "kVA to kW Calculator",
+    description: "Convert apparent power (kVA) to real power (kW) using power factor",
+    category: "Power System",
+    path: "/calculators/kva-to-kw",
+    icon: "ArrowRight"
+  },
+  {
+    id: "kw-to-kva",
+    title: "kW to kVA Calculator",
+    description: "Convert real power (kW) to apparent power (kVA) using power factor",
+    category: "Power System",
+    path: "/calculators/kw-to-kva",
+    icon: "ArrowLeft"
+  },
+  {
+    id: "single-phase-power",
+    title: "Single Phase Power Calculator",
+    description: "Calculate real, reactive, and apparent power for single-phase AC systems",
+    category: "Power System",
+    path: "/calculators/single-phase-power",
+    icon: "Minus"
+  },
+  {
+    id: "apparent-power",
+    title: "Apparent Power Calculator",
+    description: "Calculate apparent power (S) from real power (P) and reactive power (Q)",
+    category: "Power System",
+    path: "/calculators/apparent-power",
+    icon: "Triangle"
+  },
+  {
+    id: "reactive-power",
+    title: "Reactive Power Calculator",
+    description: "Calculate reactive power (Q) from apparent power (S) and real power (P)",
+    category: "Power System",
+    path: "/calculators/reactive-power",
+    icon: "Activity"
+  },
+  {
+    id: "power-triangle",
+    title: "Power Triangle Calculator",
+    description: "Visualize and calculate relationships between real, reactive, and apparent power",
+    category: "Power System",
+    path: "/calculators/power-triangle",
+    icon: "Triangle"
+  },
+  {
+    id: "electrical-load",
+    title: "Electrical Load Calculator",
+    description: "Calculate total electrical load, current, and power requirements for installations",
+    category: "Power System",
+    path: "/calculators/electrical-load",
+    icon: "Plug"
+  },
+  {
+    id: "energy-cost",
+    title: "Energy Cost Calculator",
+    description: "Calculate electricity cost based on power consumption, usage time, and rate",
+    category: "Power System",
+    path: "/calculators/energy-cost",
+    icon: "DollarSign"
   },
   
   // Mechanical

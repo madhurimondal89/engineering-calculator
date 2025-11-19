@@ -3644,6 +3644,646 @@ const accordionContent: Record<string, CalculatorAccordionContent> = {
         }
       ]
     }
+  },
+  
+  // Power System Calculators
+  "power-factor-correction": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter the real power (kW) of your electrical load.",
+        "Input the current power factor (typically 0.6-0.9 for uncorrected systems).",
+        "Enter the target power factor you want to achieve (typically 0.95 or higher).",
+        "Specify the line voltage and frequency of your system.",
+        "Click 'Calculate Capacitor Size' to determine the required capacitor bank rating."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Required Capacitance (µF)",
+          definition: "The capacitance value needed for power factor correction. This is the actual capacitor size you need to install, measured in microfarads."
+        },
+        {
+          term: "Capacitor kVAR Rating",
+          definition: "The reactive power rating of the capacitor bank, measured in kilovolt-amperes reactive (kVAR). This is how capacitors are typically rated and purchased."
+        },
+        {
+          term: "Reactive Power Reduction",
+          definition: "The amount of reactive power that will be eliminated from the system by the capacitor. This reduces current draw and improves system efficiency."
+        },
+        {
+          term: "Power Factor",
+          definition: "The ratio of real power to apparent power (cos φ). A power factor of 1.0 (unity) is ideal, meaning all power is doing useful work. Lower values indicate wasted energy."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Power Factor Correction",
+      sections: [
+        {
+          title: "Why Power Factor Correction Matters",
+          content: "Poor power factor forces electrical systems to draw more current to deliver the same real power. This excess current: 1) Increases I²R losses in wiring, transformers, and switchgear, wasting energy as heat. 2) Requires larger conductors, transformers, and protection devices, increasing installation costs. 3) Often triggers utility penalty charges - many utilities bill extra for power factor below 0.90-0.95. 4) Reduces system capacity - low power factor means less available capacity for productive loads. Power factor correction using capacitors eliminates these issues by supplying reactive power locally instead of drawing it from the utility."
+        },
+        {
+          title: "How Capacitors Improve Power Factor",
+          content: "Inductive loads (motors, transformers, fluorescent lights) require reactive power to create magnetic fields. This reactive power oscillates back and forth between source and load, doing no useful work but increasing current. Capacitors store energy in electric fields and naturally produce reactive power opposite to inductors. When installed in parallel with inductive loads, capacitors: 1) Supply the reactive power locally, so it doesn't flow through the distribution system. 2) Cancel the inductive reactive power (lagging) with capacitive reactive power (leading). 3) Reduce total current while maintaining the same real power. The result: improved power factor (approaching 1.0), reduced current, lower losses, and often lower utility bills."
+        },
+        {
+          title: "Calculating Required Capacitor Size",
+          content: "The calculation involves: 1) Determine current reactive power: Q₁ = P × tan(cos⁻¹(PF_current)). 2) Determine target reactive power: Q₂ = P × tan(cos⁻¹(PF_target)). 3) Calculate reactive power to be supplied by capacitor: Qc = Q₁ - Q₂. 4) Convert to capacitance: C = Qc / (2πfV²). Where P is real power (kW), PF is power factor, f is frequency (Hz), V is line voltage (V). The capacitor kVAR rating equals Qc. For example, improving a 100kW load from 0.70 to 0.95 PF at 480V, 60Hz requires approximately 71 kVAR capacitance."
+        },
+        {
+          title: "Practical Implementation",
+          content: [
+            "Automatic Power Factor Controllers: Monitor PF continuously, switch capacitor banks on/off as needed. Best for varying loads.",
+            "Fixed Capacitors: Simple, economical for constant loads. Size for full-load conditions to avoid over-correction.",
+            "Individual Correction: Install capacitors at each major motor/load. Corrects PF at source, maximum benefit.",
+            "Group Correction: Single capacitor bank for multiple similar loads. More economical than individual correction.",
+            "Central Correction: Capacitor bank at main service entrance. Simplest installation, benefits entire facility.",
+            "Never Over-Correct: Leading power factor (capacitive) can cause voltage rise, resonance, and equipment damage."
+          ]
+        },
+        {
+          title: "Common Mistakes and Best Practices",
+          content: [
+            "Mistake: Over-correcting to leading power factor - causes voltage rise, can damage equipment and trigger penalties",
+            "Mistake: Installing capacitors without harmonic analysis - can create resonance with non-linear loads (VFDs, computers)",
+            "Mistake: Not protecting capacitors with fuses - capacitor failures can be catastrophic without protection",
+            "Mistake: Correcting lightly loaded motors - causes high voltage at motor terminals, insulation stress",
+            "Best Practice: Target 0.95-0.98 PF, not 1.0 - leaves margin for load variation, avoids leading PF",
+            "Best Practice: Use reactors (5-7%) with capacitors in harmonic environments - prevents resonance",
+            "Best Practice: Install discharge resistors - safely bleeds capacitor charge after disconnection",
+            "Best Practice: Monitor temperature - excessive heat indicates harmonics or overload"
+          ]
+        }
+      ]
+    }
+  },
+  "kva-to-kw": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter the apparent power in kilovolt-amperes (kVA).",
+        "Input the power factor (cos φ) of your system or load.",
+        "Click 'Convert to kW' to calculate the real power.",
+        "View results including kW, kVAR, and phase angle."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Real Power (kW)",
+          definition: "The actual power consumed by the load that does useful work, measured in kilowatts. This is the power you pay for in your electricity bill."
+        },
+        {
+          term: "Apparent Power (kVA)",
+          definition: "The total power in an AC circuit, combining both real and reactive power. Measured in kilovolt-amperes. Equipment like transformers and generators are rated in kVA."
+        },
+        {
+          term: "Reactive Power (kVAR)",
+          definition: "The power that oscillates between source and load, creating magnetic fields in motors and transformers. Measured in kilovolt-amperes reactive. Does no useful work but necessary for AC equipment."
+        },
+        {
+          term: "Power Factor (cos φ)",
+          definition: "The ratio of real power to apparent power. Ranges from 0 to 1. Higher is better (1.0 is ideal). Indicates how effectively electrical power is being used."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to kVA and kW",
+      sections: [
+        {
+          title: "The Difference Between kVA and kW",
+          content: "kVA (apparent power) and kW (real power) are both measures of power but represent different aspects. kW is the actual power that performs work - running motors, heating elements, lighting. It's what meters measure and utilities bill. kVA is the total power the electrical system must handle, including both useful (kW) and non-useful reactive power (kVAR). Equipment like transformers, generators, and wiring must be sized for kVA, not just kW, because they handle the total current. The relationship: kVA = kW / power factor. For example, a 100kW load with 0.8 power factor requires 125kVA capacity (100/0.8=125)."
+        },
+        {
+          title: "Power Factor and the Power Triangle",
+          content: "Power factor is the cosine of the phase angle between voltage and current. In a power triangle: kVA is the hypotenuse (apparent power), kW is the adjacent side (real power), kVAR is the opposite side (reactive power). They relate by: kVA² = kW² + kVAR². Power factor = kW / kVA = cos φ. A power factor of 1.0 means all power is real (purely resistive load). Power factor less than 1.0 means reactive power is present (inductive or capacitive loads). Typical power factors: Resistive heaters: 1.0, Incandescent lights: 1.0, Fluorescent lights: 0.85-0.95 (with ballast), Induction motors: 0.7-0.9 (lower when lightly loaded), Transformers: 0.95-0.98."
+        },
+        {
+          title: "Why Equipment is Rated in kVA",
+          content: "Transformers, generators, and UPS systems are rated in kVA rather than kW because: 1) They must handle the total current (related to kVA), not just the real power current. 2) The load power factor is unknown during equipment design - could be 0.6 or 0.95 depending on application. 3) kVA rating indicates maximum current and voltage product the equipment can safely handle. 4) Heat dissipation depends on total current (kVA), not just real power. A 100kVA transformer can supply 100kW at unity power factor (PF=1.0), but only 80kW at 0.8 power factor. The kVA rating is the limit, regardless of load power factor."
+        },
+        {
+          title: "Practical Applications",
+          content: [
+            "Generator Sizing: Select generator kVA > load kVA. If load is 75kW at 0.85 PF, need 88kVA generator (75/0.85=88).",
+            "Transformer Selection: Size transformer for kVA demand, not just kW. Include future expansion and power factor.",
+            "Utility Bills: Utilities meter kWh (energy) but may charge for low power factor or excessive kVA demand.",
+            "Electrical Design: Circuit breakers, conductors sized for current related to kVA, not kW. 100kW at 0.7 PF draws more current than 100kW at 0.95 PF.",
+            "Power Factor Penalties: Utilities charge extra if power factor < 0.90-0.95. Improving PF reduces kVA draw and penalties."
+          ]
+        },
+        {
+          title: "Common Mistakes and Best Practices",
+          content: [
+            "Mistake: Sizing generator/transformer for kW only - leads to overload when power factor is low",
+            "Mistake: Assuming power factor is always 1.0 - most real loads have PF between 0.7-0.95",
+            "Mistake: Confusing energy (kWh) with power (kW, kVA) - kWh is energy over time, kW and kVA are instantaneous",
+            "Mistake: Ignoring power factor when calculating current - current depends on kVA, not kW",
+            "Best Practice: Measure actual power factor before sizing equipment - don't assume typical values",
+            "Best Practice: Include safety margin - size equipment 15-25% above calculated kVA requirement",
+            "Best Practice: Improve power factor when possible - reduces kVA demand, saves on utility charges",
+            "Best Practice: Use kVA for equipment ratings, kW for energy consumption and billing"
+          ]
+        }
+      ]
+    }
+  },
+  "kw-to-kva": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter the real power in kilowatts (kW).",
+        "Input the power factor (cos φ) of your system or load.",
+        "Click 'Convert to kVA' to calculate the apparent power.",
+        "View results including kVA, kVAR, and phase angle."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Apparent Power (kVA)",
+          definition: "The total power in an AC circuit, combining real and reactive power. This determines the size of transformers, generators, and conductors needed."
+        },
+        {
+          term: "Real Power (kW)",
+          definition: "The useful power that performs actual work. This is what you pay for in electricity bills and what meters typically measure."
+        },
+        {
+          term: "Reactive Power (kVAR)",
+          definition: "The oscillating power that creates magnetic/electric fields in reactive components. Necessary for motors and transformers but does no productive work."
+        },
+        {
+          term: "Phase Angle (φ)",
+          definition: "The angular difference between voltage and current waveforms, measured in degrees. Related to power factor by cos φ. Zero degrees means unity power factor (ideal)."
+        }
+      ]
+    },
+    guide: {
+      title: "Converting kW to kVA",
+      sections: [
+        {
+          title: "When to Convert kW to kVA",
+          content: "Converting kW to kVA is necessary when: 1) Sizing generators - Generator nameplates show kVA rating, but loads are often specified in kW. 2) Selecting transformers - Transformers rated in kVA must handle the total power, not just real power. 3) Planning electrical systems - Switchgear, cables, and protection devices must be sized for kVA (current). 4) Calculating current - I = kVA / (V × √3) for 3-phase, current depends on kVA not kW. 5) Understanding utility bills - Some utilities charge demand based on kVA, especially for large commercial/industrial customers."
+        },
+        {
+          title: "The Conversion Formula",
+          content: "To convert kW to kVA: kVA = kW / power factor. For example: 80kW load with 0.8 power factor requires 100kVA (80/0.8=100). Lower power factor means higher kVA requirement for same kW. At PF=1.0: kVA = kW (ideal, resistive loads). At PF=0.9: kVA = 1.11 × kW (typical good industrial). At PF=0.8: kVA = 1.25 × kW (typical uncorrected industrial). At PF=0.7: kVA = 1.43 × kW (poor, lightly loaded motors). The reactive power is calculated as: kVAR = kW × tan φ = kW × tan(cos⁻¹(PF))."
+        },
+        {
+          title: "Impact of Power Factor",
+          content: "Power factor dramatically affects kVA requirements. Consider a 100kW load: At PF = 1.00: Requires 100.0 kVA, 0 kVAR. At PF = 0.95: Requires 105.3 kVA, 32.9 kVAR. At PF = 0.90: Requires 111.1 kVA, 48.4 kVAR. At PF = 0.85: Requires 117.6 kVA, 62.0 kVAR. At PF = 0.80: Requires 125.0 kVA, 75.0 kVAR. At PF = 0.70: Requires 142.9 kVA, 102.0 kVAR. A drop from 0.95 to 0.70 power factor increases kVA requirement by 36%, meaning 36% more current flow, larger equipment, and higher costs."
+        },
+        {
+          title: "Equipment Sizing Guidelines",
+          content: [
+            "Generators: Size for peak kVA demand with 20-25% safety margin. Account for starting currents (motors draw 6x running current).",
+            "Transformers: Size for continuous kVA load plus 25% growth margin. Consider harmonic derating (10-20%) for non-linear loads.",
+            "UPS Systems: Size for kVA, not kW. UPS may be kVA-limited even if kW capacity remains. Check both kVA and kW ratings.",
+            "Cables and Breakers: Size for current, which relates to kVA. Higher kVA means higher current for same voltage.",
+            "Power Factor Correction: Installing capacitors reduces kVA for given kW, allowing smaller equipment or adding load capacity."
+          ]
+        },
+        {
+          title: "Common Applications and Examples",
+          content: [
+            "Example 1: Industrial facility needs 500kW power, PF = 0.85. Required kVA = 500/0.85 = 588kVA. Select 600kVA transformer for 2% margin.",
+            "Example 2: Data center 200kW IT load, PF = 0.95 (modern power supplies). Required UPS = 200/0.95 = 211kVA. Select 225kVA UPS.",
+            "Example 3: Motor load 75kW, PF = 0.82. Generator needed = 75/0.82 = 91kVA. Add 25% for starting current and safety = 114kVA generator.",
+            "Example 4: After installing capacitors, 100kW load improved from PF = 0.75 to 0.95. Before: 133kVA. After: 105kVA. Freed up 28kVA capacity for new loads.",
+            "Example 5: Utility demand charge: 250kW load, PF = 0.70. kVA demand = 357kVA. Improving to 0.95 reduces demand to 263kVA, saving on monthly charges."
+          ]
+        }
+      ]
+    }
+  },
+  "single-phase-power": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter the voltage (V) of your single-phase system (typically 120V or 230V).",
+        "Input the current (A) drawn by the load.",
+        "Enter the power factor (cos φ) if known, or use typical values.",
+        "Click 'Calculate Power' to compute all power values.",
+        "View real power (kW), apparent power (kVA), reactive power (kVAR), and phase angle."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Real Power (kW)",
+          definition: "The actual power consumed that does useful work, measured in kilowatts. In single-phase: P = V × I × cos φ / 1000."
+        },
+        {
+          term: "Apparent Power (kVA)",
+          definition: "The total power including both real and reactive components. In single-phase: S = V × I / 1000. Equipment must be sized for this value."
+        },
+        {
+          term: "Reactive Power (kVAR)",
+          definition: "The power that oscillates between source and load, creating magnetic or electric fields. In single-phase: Q = V × I × sin φ / 1000."
+        },
+        {
+          term: "Phase Angle (φ)",
+          definition: "The angular difference between voltage and current. Zero for resistive loads, positive for inductive (motors), negative for capacitive."
+        }
+      ]
+    },
+    guide: {
+      title: "Single-Phase Power Systems",
+      sections: [
+        {
+          title: "Single-Phase Power Basics",
+          content: "Single-phase AC power is the most common form of electrical power for residential and small commercial applications. It uses two wires: one hot (line) and one neutral, with voltage oscillating sinusoidally at 50Hz or 60Hz. In North America: 120V for lighting and outlets, 240V for large appliances (dryers, AC, electric ranges). In Europe/Asia: 230V standard for most applications. Single-phase power calculations use three fundamental formulas: Apparent Power (S) = V × I (the total power, in VA or kVA). Real Power (P) = V × I × cos φ (useful power, in W or kW). Reactive Power (Q) = V × I × sin φ (oscillating power, in VAR or kVAR)."
+        },
+        {
+          title: "Power Triangle Relationships",
+          content: "The three types of power form a right triangle: S (apparent power) is the hypotenuse. P (real power) is the adjacent side. Q (reactive power) is the opposite side. Relationships: S² = P² + Q². Power factor = P / S = cos φ. tan φ = Q / P. For example, a 10A load at 230V with 0.85 power factor: S = 230 × 10 = 2300 VA = 2.3 kVA. P = 2300 × 0.85 = 1955 W = 1.96 kW. Q = 2300 × sin(cos⁻¹(0.85)) = 2300 × 0.527 = 1212 VAR = 1.21 kVAR. Phase angle φ = cos⁻¹(0.85) = 31.8°."
+        },
+        {
+          title: "Common Single-Phase Loads",
+          content: [
+            "Resistive Loads (PF ≈ 1.0): Incandescent lights, electric heaters, toasters. Current in phase with voltage. All power is real power (kW = kVA).",
+            "Inductive Loads (PF = 0.6-0.9): Motors (pumps, compressors, fans), transformers, fluorescent lights. Current lags voltage. Significant reactive power.",
+            "Capacitive Loads (PF leading): Rare in single-phase, mostly in power factor correction. Current leads voltage. Negative reactive power.",
+            "Non-Linear Loads (distorted waveforms): LED drivers, computer power supplies, electronics. True power factor includes displacement and distortion factors."
+          ]
+        },
+        {
+          title: "Calculating Current and Voltage Drop",
+          content: "Current calculation from power: I = P / (V × PF) for known real power. I = S / V for known apparent power. For example: 1500W load at 120V, PF=0.9: I = 1500 / (120 × 0.9) = 13.9A. Same load as apparent power: S = 1500 / 0.9 = 1667 VA. I = 1667 / 120 = 13.9A (same result). Voltage drop in conductors: Vd = 2 × I × R × L / 1000 (for single-phase). Where R is resistance in Ω/kft, L is one-way length in ft. For 13.9A over 100ft using 14AWG (2.525 Ω/kft): Vd = 2 × 13.9 × 2.525 × 100 / 1000 = 7.0V drop. Voltage at load = 120 - 7.0 = 113V (5.8% drop, acceptable for lighting, marginal for motors)."
+        },
+        {
+          title: "Practical Examples",
+          content: [
+            "Example 1: 1500W space heater at 120V. PF=1.0 (resistive). I = 1500/120 = 12.5A. S = P = 1.5kW = 1.5kVA. Q = 0. Use 15A circuit.",
+            "Example 2: 1/2 HP motor (373W) at 120V, PF=0.75. I = 373/(120×0.75) = 4.1A. S = 0.50kVA. Q = 0.33kVAR. φ = 41.4°.",
+            "Example 3: Residential AC unit 4000W at 240V, PF=0.88. I = 4000/(240×0.88) = 18.9A. S = 4.55kVA. Q = 2.16kVAR. Use 20A breaker.",
+            "Example 4: LED light 18W at 120V, PF=0.90 (driver). I = 18/(120×0.90) = 0.17A. S = 20VA. Q = 8.8VAR.",
+            "Example 5: Combined load: 10×100W lamps + 1HP motor. Lamps: 1000W, PF=1.0. Motor: 746W, PF=0.80. Total P = 1746W. Total kVA and current calculated by complex sum of individual S values."
+          ]
+        }
+      ]
+    }
+  },
+  "apparent-power": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter the real power (kW) - the useful power consumed by the load.",
+        "Input the reactive power (kVAR) - the oscillating power in the system.",
+        "Click 'Calculate Apparent Power' to compute total power and power factor.",
+        "View results including apparent power (kVA), power factor, and phase angle."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Apparent Power (S)",
+          definition: "The vector sum of real and reactive power, measured in kVA. This is the total power the electrical system must supply and represents the capacity required."
+        },
+        {
+          term: "Real Power (P)",
+          definition: "The component of power that does actual work, measured in kW. This is the power converted to mechanical work, heat, light, or other useful forms."
+        },
+        {
+          term: "Reactive Power (Q)",
+          definition: "The component of power stored and returned by reactive elements (inductors and capacitors), measured in kVAR. Essential for magnetic fields in motors and transformers."
+        },
+        {
+          term: "Power Factor",
+          definition: "The ratio P/S, indicating how effectively power is used. Values range from 0 to 1, with 1.0 being ideal (all power is useful). Calculated as cos φ."
+        }
+      ]
+    },
+    guide: {
+      title: "Understanding Apparent Power",
+      sections: [
+        {
+          title: "What is Apparent Power?",
+          content: "Apparent power (S) represents the total power in an AC circuit, combining both the real power that does work and the reactive power that cycles between source and load. Unlike DC circuits where power is simply voltage × current, AC circuits with reactive loads (motors, transformers) have power that oscillates without doing useful work. Apparent power accounts for this: S = √(P² + Q²), where P is real power (kW) and Q is reactive power (kVAR). The unit kVA (kilovolt-ampere) distinguishes it from real power (kW). Equipment like transformers, generators, cables, and switchgear must be sized based on kVA because they must handle the total current, not just the component doing useful work."
+        },
+        {
+          title: "The Power Triangle",
+          content: "The relationship between P, Q, and S forms a right triangle called the power triangle: The hypotenuse is S (apparent power) in kVA. The horizontal leg is P (real/active power) in kW. The vertical leg is Q (reactive power) in kVAR. The angle φ between S and P represents the phase angle between voltage and current. By Pythagorean theorem: S² = P² + Q². Power factor = P/S = cos φ (ranges 0 to 1). Reactive factor = Q/S = sin φ. Tan φ = Q/P. For example: P=80kW, Q=60kVAR → S=√(80²+60²)=100kVA, PF=80/100=0.80, φ=36.87°."
+        },
+        {
+          title: "Why Apparent Power Matters",
+          content: "Apparent power determines system capacity requirements: Current magnitude: I = S/(V√3) for three-phase or I=S/V for single-phase. Higher S means higher current, requiring larger conductors. Equipment sizing: Transformers, generators, UPS rated in kVA must provide full S, not just P. A 100kVA transformer handles 100kW only at unity PF (PF=1.0). Losses: I²R losses in conductors, transformers depend on current (S), not just useful power (P). Higher S means higher losses. Utility charges: Some utilities bill for kVA demand or penalize low power factor because infrastructure must handle S. System capacity: A 1000kVA service can supply 1000kW at PF=1.0 but only 800kW at PF=0.8. Poor power factor wastes capacity."
+        },
+        {
+          title: "Improving Power Factor to Reduce kVA",
+          content: [
+            "Power factor correction reduces S without changing P. Example: 100kW load, PF=0.70 → S=143kVA. After adding 51kVAR capacitors to improve PF to 0.95 → S=105kVA. Benefit: 38kVA (27%) reduction in apparent power.",
+            "Benefits of PF correction: Reduced current draw (-27% in example above). Lower I²R losses in cables and transformers. Increased system capacity (38kVA freed for additional loads). Reduced utility demand charges and PF penalties.",
+            "Optimal target PF: Typically 0.95-0.98 for commercial/industrial. Not 1.0 - leaves margin for load variations. Avoid leading PF (over-correction) - causes problems.",
+            "Methods: Capacitor banks (most common), Synchronous condensers (large industrial), Adjusting motor loading (operate motors near rated load)."
+          ]
+        },
+        {
+          title: "Calculating Apparent Power in Different Scenarios",
+          content: [
+            "Scenario 1 - From P and Q: Given 75kW real power, 100kVAR reactive power. S = √(75² + 100²) = 125kVA. PF = 75/125 = 0.60 (poor).",
+            "Scenario 2 - From P and PF: Given 200kW real power, PF=0.92. S = P/PF = 200/0.92 = 217kVA. Q = √(S² - P²) = √(217² - 200²) = 85kVAR.",
+            "Scenario 3 - From V and I (single-phase): Measured 240V, 50A. S = V×I = 240×50 = 12,000VA = 12kVA. If PF=0.85: P=10.2kW, Q=6.3kVAR.",
+            "Scenario 4 - From V and I (three-phase): Measured 480V line, 100A. S = √3×V×I = 1.732×480×100 = 83.1kVA. If PF=0.88: P=73.1kW, Q=39.3kVAR.",
+            "Scenario 5 - Combined loads: Motor 50kW @ 0.80 PF (62.5kVA, 37.5kVAR) + Heater 30kW @ 1.0 PF (30kVA, 0kVAR). Total P=80kW, Q=37.5kVAR. Combined S=√(80²+37.5²)=88.5kVA, PF=0.90."
+          ]
+        }
+      ]
+    }
+  },
+  "reactive-power": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter the apparent power (kVA) from equipment nameplate or measurement.",
+        "Input the real power (kW) actually consumed by the load.",
+        "Ensure real power is less than or equal to apparent power.",
+        "Click 'Calculate Reactive Power' to compute reactive power and power factor.",
+        "View results including reactive power (kVAR), power factor, and phase angle."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Reactive Power (Q)",
+          definition: "The power that oscillates between source and load without doing useful work, measured in kVAR. Necessary for creating magnetic fields in motors and transformers."
+        },
+        {
+          term: "Apparent Power (S)",
+          definition: "The total power that must be supplied by the electrical system, measured in kVA. The vector sum of real and reactive power: S = √(P² + Q²)."
+        },
+        {
+          term: "Real Power (P)",
+          definition: "The power that performs actual work and is converted to other forms of energy, measured in kW. This is what you pay for on your electric bill."
+        },
+        {
+          term: "Phase Angle (φ)",
+          definition: "The angular displacement between voltage and current waveforms. Calculated as φ = cos⁻¹(P/S). Larger angles indicate more reactive power and lower power factor."
+        }
+      ]
+    },
+    guide: {
+      title: "Understanding Reactive Power",
+      sections: [
+        {
+          title: "What is Reactive Power?",
+          content: "Reactive power is the portion of AC power that flows back and forth between the source and load without being converted to useful work. Unlike real power (kW) which is consumed and converted to heat, light, or mechanical work, reactive power (kVAR) is alternately stored in the magnetic fields of inductors (motors, transformers) or electric fields of capacitors, then returned to the source. This power is essential for the operation of AC equipment but does not register on energy meters (kWh) because no net energy is transferred over a complete cycle. However, reactive power causes real current to flow in the conductors, creating I²R losses and requiring larger equipment. Formula: Q = √(S² - P²) or Q = P × tan φ or Q = V × I × sin φ."
+        },
+        {
+          title: "Sources of Reactive Power",
+          content: "Inductive loads (lagging, positive Q): AC motors are the primary source - they need reactive power to create rotating magnetic fields. Especially high when motors run lightly loaded or during starting. Transformers require reactive power for magnetizing current, typically 2-5% of rating. Reactors and inductors in filters, ballasts, control circuits. Inductive loads cause current to lag voltage by angle φ. Capacitive loads (leading, negative Q): Power factor correction capacitors supply reactive power locally. Lightly loaded cables and transmission lines (capacitive charging current). Synchronous motors can be overexcited to generate reactive power (synchronous condenser). Capacitive loads cause current to lead voltage. Balance: Ideal system has equal inductive and capacitive reactive power, canceling to near-zero net reactive power and unity power factor."
+        },
+        {
+          title: "Impact of Reactive Power",
+          content: "Reactive power has several negative impacts on electrical systems: Increased current: For given real power P, higher Q means higher total current I = S/V where S = √(P²+Q²). Example: 100kW load, Q=0 → I=217A at 480V. Same load, Q=100kVAR → I=307A (41% more current). Higher losses: I²R losses increase with square of current. 41% current increase → 99% loss increase. Wasted capacity: Transformers, cables, switchgear sized for kVA (includes reactive power). High Q reduces useful capacity. Voltage drop: Higher current causes more voltage drop: ΔV = I×R. Low voltage affects equipment performance. Utility penalties: Many utilities charge for excessive reactive power or low power factor. Some have minimum PF requirements (0.90-0.95). Equipment rating reduction: Generators, UPS may be kVA-limited before reaching kW rating due to reactive power."
+        },
+        {
+          title: "Managing and Minimizing Reactive Power",
+          content: [
+            "Capacitor Banks: Install capacitors to supply reactive power locally. Capacitors have negative Q (leading), canceling inductive Q (lagging). Size capacitors for kVAR reduction needed. Example: 100kW motor at PF=0.70 has 102kVAR. Adding 70kVAR capacitors improves PF to 0.95, leaving only 32kVAR from utility.",
+            "Motor Loading: Operate motors near their rated load. Lightly loaded motors have very poor PF (high reactive power demand). A motor at 25% load might have PF=0.50 vs PF=0.85 at 75% load. Size motors appropriately - don't use oversized motors.",
+            "Synchronous Motors: Can generate reactive power when overexcited. Useful for large installations. Can be adjusted to control PF continuously.",
+            "Efficient Transformers: Modern transformers have lower magnetizing current, reducing reactive power draw. Energy-efficient transformers pay off through lower losses and reactive power.",
+            "Power Quality Equipment: Active harmonic filters can provide reactive power correction along with harmonic mitigation. Static VAR compensators (SVC) for dynamic reactive power control in large facilities."
+          ]
+        },
+        {
+          title: "Calculating Reactive Power",
+          content: [
+            "Method 1 - From S and P: Q = √(S² - P²). Example: 100kVA transformer, 85kW load. Q = √(100² - 85²) = 52.7kVAR. PF = 85/100 = 0.85.",
+            "Method 2 - From P and PF: First find S = P/PF. Then Q = √(S² - P²). Example: 60kW load, PF=0.75. S = 60/0.75 = 80kVA. Q = √(80² - 60²) = 53kVAR.",
+            "Method 3 - From P and φ: Q = P × tan φ where φ = cos⁻¹(PF). Example: 120kW, PF=0.90. φ = cos⁻¹(0.90) = 25.84°. Q = 120 × tan(25.84°) = 58.1kVAR.",
+            "Method 4 - From V, I, and PF (single-phase): S = V×I, P = S×PF, Q = √(S² - P²). Example: 240V, 30A, PF=0.82. S = 7.2kVA, P = 5.9kW, Q = 4.1kVAR.",
+            "Method 5 - Capacitor kVAR for PF correction: Qc = P(tan φ₁ - tan φ₂). Example: 200kW from PF=0.75 to 0.95. Qc = 200(tan(cos⁻¹(0.75)) - tan(cos⁻¹(0.95))) = 200(0.882-0.329) = 111kVAR capacitor needed."
+          ]
+        }
+      ]
+    }
+  },
+  "power-triangle": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Select calculation method: From P & Q, From P & S, or From Q & S.",
+        "Enter the two known power values based on your selection.",
+        "Click 'Calculate Power Triangle' to compute all values.",
+        "View complete power triangle with real, reactive, and apparent power.",
+        "See power factor and phase angle relationships."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Power Triangle",
+          definition: "A graphical representation showing the relationship between real power (P), reactive power (Q), and apparent power (S) as a right triangle. The angle φ represents the phase difference between voltage and current."
+        },
+        {
+          term: "Real Power (P) - Horizontal",
+          definition: "The useful power component (adjacent side of triangle), measured in kW. This is the power that does actual work and is what energy meters measure."
+        },
+        {
+          term: "Reactive Power (Q) - Vertical",
+          definition: "The oscillating power component (opposite side of triangle), measured in kVAR. Positive for inductive loads (lagging), negative for capacitive loads (leading)."
+        },
+        {
+          term: "Apparent Power (S) - Hypotenuse",
+          definition: "The total power (hypotenuse of triangle), measured in kVA. This is what equipment like transformers and generators must be sized to provide: S = √(P² + Q²)."
+        }
+      ]
+    },
+    guide: {
+      title: "The Power Triangle Explained",
+      sections: [
+        {
+          title: "Understanding the Power Triangle",
+          content: "The power triangle is a fundamental concept in AC power systems that visually represents the relationship between three types of power. Imagine a right triangle: The horizontal leg (adjacent) represents real power P (kW) - the useful power doing work. The vertical leg (opposite) represents reactive power Q (kVAR) - the oscillating power. The hypotenuse represents apparent power S (kVA) - the total power the system must supply. The angle φ between the horizontal (P) and hypotenuse (S) is the phase angle - the lag between voltage and current waveforms. Mathematical relationships: S² = P² + Q² (Pythagorean theorem). cos φ = P/S (power factor). sin φ = Q/S (reactive factor). tan φ = Q/P."
+        },
+        {
+          title: "Power Triangle for Different Loads",
+          content: "Different types of loads create different power triangle shapes: Purely Resistive (heaters, incandescent lights): Q = 0, φ = 0°, PF = 1.0. Triangle collapses to horizontal line. S = P, all power is useful. Highly Inductive (lightly loaded motors): Large Q, φ = 60°+, PF < 0.6. Tall triangle. Much reactive power needed. Typical Inductive (motors at rated load): Moderate Q, φ = 25-35°, PF = 0.85-0.90. Balanced triangle. Most industrial loads. Corrected with Capacitors: Small Q, φ = 18°, PF = 0.95. Flat triangle. Small reactive component. Capacitive (over-corrected): Negative Q, φ negative, PF leading. Triangle below horizontal. Avoid this condition."
+        },
+        {
+          title: "Solving the Power Triangle",
+          content: "Given any two values from P, Q, S, or φ (PF), you can solve for all others: Scenario 1 - Know P and Q: S = √(P² + Q²). PF = P/S. φ = tan⁻¹(Q/P). Example: P=60kW, Q=45kVAR → S=75kVA, PF=0.80, φ=36.87°. Scenario 2 - Know P and S: Q = √(S² - P²). PF = P/S. φ = cos⁻¹(P/S). Example: P=85kW, S=100kVA → Q=52.7kVAR, PF=0.85, φ=31.79°. Scenario 3 - Know Q and S: P = √(S² - Q²). PF = P/S. φ = sin⁻¹(Q/S). Example: Q=60kVAR, S=100kVA → P=80kW, PF=0.80, φ=36.87°. Scenario 4 - Know P and PF: S = P/PF. Q = P × tan(cos⁻¹(PF)). φ = cos⁻¹(PF). Example: P=120kW, PF=0.90 → S=133kVA, Q=58.1kVAR, φ=25.84°."
+        },
+        {
+          title: "Power Factor Correction Using the Triangle",
+          content: "Power factor correction involves adding capacitors to supply reactive power, reducing Q and flattening the triangle: Before correction: P=100kW, Q=100kVAR (highly inductive motor). S=√(100²+100²)=141kVA. PF=100/141=0.71, φ=45°. After adding 70kVAR capacitors: Capacitors supply +70kVAR (leading, negative Q). Net Q = 100kVAR - 70kVAR = 30kVAR from utility. New S=√(100²+30²)=104kVA. New PF=100/104=0.96, φ=16.7°. Benefits: kVA reduced from 141 to 104 (26% reduction). Current reduced by 26% (I=S/V). Losses reduced by 44% (proportional to I²). Triangle is flatter, more horizontal (more efficient). System freed up 37kVA capacity for additional loads."
+        },
+        {
+          title: "Practical Applications",
+          content: [
+            "Equipment Sizing: Transformer for 200kW load, PF=0.82. Q = 200×tan(cos⁻¹(0.82)) = 200×0.688 = 138kVAR. S = √(200²+138²) = 244kVA. Need 250kVA transformer (round up to standard size).",
+            "Current Calculation: 100kW, 75kVAR load at 480V three-phase. S = √(100²+75²) = 125kVA. I = 125×1000/(√3×480) = 150A. Use 175A breaker with 15% safety margin.",
+            "PF Penalty Analysis: Utility bills for kW but penalizes PF<0.90. Load 500kW, Q=364kVAR, S=619kVA, PF=0.81. Add 242kVAR capacitors to improve to 0.95 PF: New Q=122kVAR, S=526kVA, eliminates penalty.",
+            "Generator Selection: Standby generator for critical 150kW load, PF=0.88. S = 150/0.88 = 170kVA. Add 25% safety for motor starting = 213kVA. Select 250kVA generator.",
+            "Cable Sizing: 80kW load at 208V, PF=0.75. S = 80/0.75 = 107kVA. I = 107×1000/(√3×208) = 297A. From ampacity tables, need 350kcmil copper (310A) in conduit."
+          ]
+        }
+      ]
+    }
+  },
+  "electrical-load": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Add electrical loads using the 'Add Load' button.",
+        "For each load, enter: name, power (W), quantity, and usage hours per day.",
+        "The calculator shows individual load power (W) automatically.",
+        "Enter system voltage (typically 120V, 230V, or 480V).",
+        "Input the estimated power factor for the combined loads.",
+        "Click 'Calculate Total Load' to compute power, current, and energy consumption.",
+        "Remove loads using the X button if needed."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Total Real Power (kW)",
+          definition: "The sum of all individual load powers. This is the actual power consumed and represents the continuous electrical load on the system."
+        },
+        {
+          term: "Total Apparent Power (kVA)",
+          definition: "The total power accounting for power factor: kVA = kW / PF. This determines the size of transformers, generators, and conductors needed."
+        },
+        {
+          term: "Total Current (A)",
+          definition: "The current that will flow based on voltage and apparent power. Calculated as I = kVA × 1000 / V for single-phase. This determines conductor and breaker sizes."
+        },
+        {
+          term: "Daily Energy Consumption (kWh/day)",
+          definition: "The total energy used per day: sum of (power × quantity × hours) for all loads. This determines electricity costs and sizing for backup power systems."
+        }
+      ]
+    },
+    guide: {
+      title: "Electrical Load Calculation Guide",
+      sections: [
+        {
+          title: "Why Calculate Electrical Loads?",
+          content: "Electrical load calculation is essential for: 1) Panel and Service Sizing: Determines required ampacity for main service, sub-panels, and feeders. Under-sizing causes overloads and tripped breakers. Over-sizing wastes money on unnecessary capacity. 2) Generator/UPS Sizing: Standby and backup systems must handle the total load plus starting currents. Load calculation prevents under-sizing (equipment won't start) or over-sizing (wasted capital). 3) Energy Cost Estimation: Knowing daily/monthly kWh consumption allows accurate electricity cost budgeting. Helps justify energy efficiency investments. 4) Conductor and Breaker Selection: Total current determines wire gauge and overcurrent protection sizing per NEC requirements. 5) Demand Calculations: Some loads don't run simultaneously. Applying demand factors per NEC prevents over-sizing."
+        },
+        {
+          title: "Types of Electrical Loads",
+          content: "Continuous Loads: Run for 3+ hours continuously (HVAC, lighting, refrigeration). NEC requires sizing circuits for 125% of continuous load current. Example: 1200W continuous load needs circuit sized for 1500W (1200×1.25). Non-Continuous Loads: Run less than 3 hours (hair dryers, toasters, some tools). Can size circuits for 100% of load. Starting vs Running Current: Motors, compressors draw 5-8× normal current when starting. Must consider in generator sizing, but not steady-state panel sizing. Inrush lasts only seconds. Cyclic Loads: Operate in cycles (washing machines, water heaters). Average power over time is less than nameplate. Can apply diversity/demand factors. Resistive vs Inductive: Resistive (heaters, lights): PF≈1.0, simple kW calculation. Inductive (motors, transformers): PF=0.7-0.9, must account for reactive power when sizing equipment."
+        },
+        {
+          title: "Calculating Total Load",
+          content: "Step-by-step process: 1) List all loads: Name, power rating (W), quantity, hours of daily use. Get power from equipment nameplates. 2) Calculate individual load totals: Load Total (W) = Unit Power × Quantity. Example: 10 LED lights, 12W each = 120W total. 3) Sum all loads for total power: Total P = Σ(individual loads). Example: Lights 120W + Motors 3000W + Heaters 2000W = 5120W = 5.12kW. 4) Convert to apparent power using power factor: Total S (kVA) = Total P (kW) / PF. Example: 5.12kW ÷ 0.88 = 5.82kVA. 5) Calculate current based on voltage: Single-phase: I = S × 1000 / V. Three-phase: I = S × 1000 / (√3 × V). Example: 5.82kVA ÷ 230V = 25.3A single-phase."
+        },
+        {
+          title: "Energy Consumption Calculation",
+          content: "Daily energy (kWh/day): For each load: Energy = Power (kW) × Quantity × Hours/day. Sum all individual energies for total daily consumption. Example: 10 lights × 0.012kW × 5 hours = 0.6 kWh. Monthly and yearly energy: Monthly (kWh/month) = Daily × 30. Yearly (kWh/year) = Daily × 365. Cost calculation: Cost = Energy (kWh) × Rate ($/kWh). Example: 120 kWh/month × $0.12/kWh = $14.40/month. Practical example: Home load - 20 LED lights (12W, 5hr/day): 1.2 kWh/day. Refrigerator (150W, 24hr/day): 3.6 kWh/day. AC unit (2000W, 8hr/day): 16 kWh/day. TV (100W, 4hr/day): 0.4 kWh/day. Total: 21.2 kWh/day = 636 kWh/month. At $0.12/kWh = $76/month."
+        },
+        {
+          title: "Demand Factors and Diversity",
+          content: [
+            "Not all loads operate simultaneously. NEC allows demand factors to reduce calculated load: Lighting (general): Typically 100% of first 3000VA, then 35% for remainder. Receptacles: 100% first 10kVA, 50% beyond 10kVA. Ranges/Ovens: Demand factor based on number of units (NEC Table 220.55). HVAC: Typically 100% of largest unit only. Motors: 125% largest motor + 100% sum of others.",
+            "Diversity Factor: Ratio of sum of individual max demands to max total demand. Example: 10 apartments, each 5kW max load. Sum = 50kW. Actual peak demand = 35kW. Diversity factor = 50/35 = 1.43. Can size transformer/service for 35kW, not 50kW.",
+            "Example Application: Building with 100 offices, each with: Lighting 500W, Computer 200W, HVAC 1000W. Sum = 170kW if all on. With NEC demand factors: Lighting 70%, Receptacles 50%, HVAC 70%. Actual demand ≈ 110kW. Can size 150kVA transformer vs 200kVA without demand factors."
+          ]
+        },
+        {
+          title: "Practical Load Calculation Examples",
+          content: [
+            "Example 1 - Residential Home: 40 LED lights (12W, 5hr) = 2.4 kWh/day. Refrigerator (150W, 24hr) = 3.6 kWh/day. AC (3500W, 8hr) = 28 kWh/day. Washer (500W, 1hr) = 0.5 kWh/day. Total: 34.5 kWh/day, 1035 kWh/month. Peak load: 3500W + 150W + 240W = 3.89kW. At PF=0.92: 4.23kVA. Current at 240V: 17.6A. Use 20A main breaker.",
+            "Example 2 - Small Shop: 50 fluorescent lights (32W, 10hr) = 16 kWh/day. 5 HP air compressor (3.73kW, 4hr, PF=0.82) = 14.9 kWh/day. Welding machine (8kW, 2hr) = 16 kWh/day. Hand tools (1kW, 6hr) = 6 kWh/day. Total: 52.9 kWh/day. Peak: 15.3kW. At PF=0.85: 18kVA. Current at 240V: 75A. Use 100A service.",
+            "Example 3 - Office Building: 200 computers (150W, 8hr) = 240 kWh/day. 100 lights (25W, 10hr) = 25 kWh/day. HVAC (30kW, 12hr) = 360 kWh/day. Elevator (10kW, 2hr) = 20 kWh/day. Total: 645 kWh/day. Peak with diversity (70%): 35kW. At PF=0.90: 38.9kVA. Current at 208V 3-phase: 108A.",
+            "Example 4 - Data Center: 200 servers (300W, 24hr) = 1440 kWh/day. Cooling (50kW, 24hr) = 1200 kWh/day. Lighting (2kW, 24hr) = 48 kWh/day. UPS losses 5% = 134 kWh/day. Total: 2822 kWh/day, 84,660 kWh/month. Peak: 110kW continuous. At PF=0.95: 116kVA. Need 150kVA UPS with 20% margin."
+          ]
+        }
+      ]
+    }
+  },
+  "energy-cost": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter the power consumption of your device or load.",
+        "Select the power unit: watts (W) or kilowatts (kW).",
+        "Input the usage time and select the time unit (per day, week, month, or year).",
+        "Enter your electricity rate in $/kWh (check your utility bill).",
+        "Click 'Calculate Cost' to see daily, monthly, and yearly energy consumption and costs.",
+        "Compare different appliances or usage scenarios to identify savings opportunities."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Energy (kWh)",
+          definition: "Kilowatt-hours represent the amount of energy consumed over time. 1 kWh = running a 1000W device for 1 hour. This is what you're billed for on your electric bill."
+        },
+        {
+          term: "Power (W or kW)",
+          definition: "The rate at which energy is consumed, measured in watts or kilowatts. Higher power means faster energy consumption. 1 kW = 1000 W."
+        },
+        {
+          term: "Electricity Rate ($/kWh)",
+          definition: "The cost per kilowatt-hour charged by your utility company. Varies by region, time of day (in some areas), and usage tier. Check your bill for your actual rate."
+        },
+        {
+          term: "Daily/Monthly/Yearly Cost",
+          definition: "The projected electricity cost based on the usage pattern. Helps estimate budget and compare efficiency of different appliances or usage scenarios."
+        }
+      ]
+    },
+    guide: {
+      title: "Understanding Electricity Costs",
+      sections: [
+        {
+          title: "How Electricity Billing Works",
+          content: "Utilities bill for energy consumption, not just power. Energy = Power × Time. You pay for kilowatt-hours (kWh), not kilowatts. A 100W light bulb on for 10 hours consumes 1 kWh (100W × 10hr ÷ 1000 = 1 kWh). A 1000W space heater on for 1 hour also consumes 1 kWh. Both cost the same despite different power ratings because energy consumed is equal. Your electric bill shows: kWh used (energy consumption, usually monthly). Rate ($/kWh, varies by region and utility). Total cost = kWh × Rate. Additional charges may include: Fixed monthly service fee, Demand charges (commercial/industrial), Time-of-use rates (higher during peak hours), Power factor penalties (commercial/industrial)."
+        },
+        {
+          title: "Calculating Energy Consumption",
+          content: "Formula: Energy (kWh) = Power (kW) × Time (hours). Example 1: 60W light bulb on 5 hours/day. Power = 60W = 0.06kW. Daily energy = 0.06kW × 5hr = 0.3 kWh. Monthly = 0.3 × 30 = 9 kWh. At $0.12/kWh = $1.08/month. Example 2: 1500W space heater on 8 hours/day. Power = 1.5kW. Daily = 1.5 × 8 = 12 kWh. Monthly = 12 × 30 = 360 kWh. At $0.12/kWh = $43.20/month. Example 3: Refrigerator rated 150W runs 24hr (but cycles on/off, ~40% duty). Effective power = 150W × 0.40 = 60W. Daily = 0.06kW × 24hr = 1.44 kWh. Monthly = 43.2 kWh. At $0.12/kWh = $5.18/month."
+        },
+        {
+          title: "Typical Electricity Rates by Region",
+          content: "United States average: $0.10-0.15/kWh residential. Hawaii (highest): ~$0.33/kWh due to island isolation. Louisiana (lowest): ~$0.09/kWh due to abundant natural gas. Northeast (CT, MA, NY): $0.20-0.25/kWh. West Coast (CA): $0.18-0.25/kWh. Midwest: $0.10-0.13/kWh. South: $0.09-0.12/kWh. Commercial rates: Generally 20-30% lower than residential due to volume. Industrial rates: Even lower, often $0.05-0.08/kWh. Time-of-use (TOU) rates: Some utilities charge more during peak hours (typically 3-8 PM weekdays). Peak rate might be $0.30/kWh. Off-peak (night/weekends) might be $0.08/kWh. Shifting usage to off-peak can save significantly."
+        },
+        {
+          title: "Cost of Common Appliances",
+          content: [
+            "LED Light 12W, 5hr/day: 0.06 kWh/day, 1.8 kWh/month, $0.22/month @ $0.12/kWh",
+            "Incandescent 60W, 5hr/day: 0.3 kWh/day, 9 kWh/month, $1.08/month (5× LED cost)",
+            "Refrigerator 150W equivalent, 24hr: 1.44 kWh/day, 43 kWh/month, $5.18/month",
+            "Air Conditioner 3500W, 8hr/day: 28 kWh/day, 840 kWh/month, $100.80/month",
+            "Electric Water Heater 4500W, 3hr/day: 13.5 kWh/day, 405 kWh/month, $48.60/month",
+            "Clothes Dryer 3000W, 1hr/day: 3 kWh/day, 90 kWh/month, $10.80/month",
+            "Desktop Computer 200W, 8hr/day: 1.6 kWh/day, 48 kWh/month, $5.76/month",
+            "Laptop 50W, 8hr/day: 0.4 kWh/day, 12 kWh/month, $1.44/month (75% less than desktop)",
+            "Space Heater 1500W, 6hr/day: 9 kWh/day, 270 kWh/month, $32.40/month",
+            "Electric Stove 3000W, 1hr/day: 3 kWh/day, 90 kWh/month, $10.80/month",
+            "Dishwasher 1800W, 1hr/day: 1.8 kWh/day, 54 kWh/month, $6.48/month",
+            "Hair Dryer 1500W, 0.2hr/day: 0.3 kWh/day, 9 kWh/month, $1.08/month"
+          ]
+        },
+        {
+          title: "Energy Saving Strategies",
+          content: [
+            "Replace Incandescent with LED: 60W incandescent → 12W LED (same light). Saves 48W per bulb. If 20 bulbs, 5hr/day: Savings = 20 × 48W × 5hr × 30days ÷ 1000 = 144 kWh/month = $17.28/month.",
+            "Use Energy Star Appliances: Refrigerator: Old 1200 kWh/year → New 400 kWh/year. Saves 800 kWh/year = $96/year @ $0.12/kWh. Washing Machine: Old 450 kWh/year → New 180 kWh/year. Saves 270 kWh/year = $32.40/year.",
+            "Reduce AC/Heating Usage: Increase thermostat 2°F in summer: Saves 5-10% cooling cost. 840 kWh/month × 7% = 59 kWh = $7/month. Lower thermostat 2°F in winter: Similar savings on heating.",
+            "Shift to Off-Peak Hours (if TOU rates): Running dishwasher, laundry, EV charging at night. Peak $0.30/kWh → Off-peak $0.08/kWh. 100 kWh shifted saves $22/month.",
+            "Unplug Vampire Loads: Devices consuming power while 'off' (TVs, chargers, appliances). Typical home: 50W continuous standby = 1.2 kWh/day = 36 kWh/month = $4.32/month wasted. Use power strips to fully disconnect.",
+            "Optimize Water Heater: Lower temperature 140°F → 120°F saves 6-10%. 405 kWh/month × 8% = 32 kWh = $3.86/month. Insulate tank and pipes for additional 4-9% savings."
+          ]
+        }
+      ]
+    }
   }
 };
 

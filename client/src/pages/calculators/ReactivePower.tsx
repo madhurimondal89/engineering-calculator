@@ -1,0 +1,194 @@
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Calculator, Activity } from "lucide-react";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
+
+const formSchema = z.object({
+  apparentPower: z.coerce.number().positive("Apparent power must be positive"),
+  realPower: z.coerce.number().positive("Real power must be positive"),
+}).refine((data) => data.realPower <= data.apparentPower, {
+  message: "Real power must be less than or equal to apparent power",
+  path: ["realPower"],
+});
+
+type FormValues = z.infer<typeof formSchema>;
+
+export default function ReactivePower() {
+  const [result, setResult] = useState<{
+    reactivePower: number;
+    powerFactor: number;
+    phaseAngle: number;
+  } | null>(null);
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      apparentPower: 0,
+      realPower: 0,
+    },
+  });
+
+  const onSubmit = (values: FormValues) => {
+    const { apparentPower: S, realPower: P } = values;
+
+    const Q = Math.sqrt(S * S - P * P);
+    const pf = P / S;
+    const angle = Math.acos(pf) * (180 / Math.PI);
+
+    setResult({
+      reactivePower: Q,
+      powerFactor: pf,
+      phaseAngle: angle,
+    });
+  };
+
+  return (
+    <div className="min-h-screen bg-background p-4 md:p-8">
+      <div className="max-w-4xl mx-auto space-y-8">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+          <a href="/" className="hover:text-foreground">Home</a>
+          <span>/</span>
+          <a href="/#power-system" className="hover:text-foreground">Power System</a>
+          <span>/</span>
+          <span className="text-foreground">Reactive Power Calculator</span>
+        </div>
+
+        <div className="space-y-2">
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground flex items-center gap-3">
+            <Activity className="h-8 w-8 md:h-10 md:w-10 text-primary" />
+            Reactive Power Calculator
+          </h1>
+          <p className="text-lg text-muted-foreground">
+            Calculate reactive power (Q) from apparent power (S) and real power (P)
+          </p>
+        </div>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Calculator className="h-5 w-5" />
+              Calculate Reactive Power
+            </CardTitle>
+            <CardDescription>
+              Enter apparent power and real power to calculate reactive power
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="apparentPower"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Apparent Power (kVA)</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="number"
+                            placeholder="e.g., 100"
+                            data-testid="input-apparent-power"
+                            step="any"
+                            value={field.value ?? ""}
+                            onChange={(e) => field.onChange(e.target.value === "" ? undefined : e.target.value)}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="realPower"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Real Power (kW)</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="number"
+                            placeholder="e.g., 80"
+                            data-testid="input-real-power"
+                            step="any"
+                            value={field.value ?? ""}
+                            onChange={(e) => field.onChange(e.target.value === "" ? undefined : e.target.value)}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                        <p className="text-xs text-muted-foreground">Must be less than or equal to apparent power</p>
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  className="w-full"
+                  size="lg"
+                  data-testid="button-calculate"
+                >
+                  <Calculator className="mr-2 h-4 w-4" />
+                  Calculate Reactive Power
+                </Button>
+              </form>
+            </Form>
+
+            {result && (
+              <div className="mt-6 p-6 bg-primary/5 rounded-lg border-2 border-primary/20 space-y-4">
+                <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                  <Activity className="h-5 w-5 text-primary" />
+                  Results
+                </h3>
+                
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Reactive Power (Q)</p>
+                    <p className="text-3xl font-mono font-bold text-primary" data-testid="result-reactive-power">
+                      {result.reactivePower.toFixed(2)} kVAR
+                    </p>
+                  </div>
+
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Power Factor (cos φ)</p>
+                    <p className="text-2xl font-mono font-bold text-foreground" data-testid="result-power-factor">
+                      {result.powerFactor.toFixed(4)}
+                    </p>
+                  </div>
+
+                  <div className="space-y-1 md:col-span-2">
+                    <p className="text-sm text-muted-foreground">Phase Angle (φ)</p>
+                    <p className="text-2xl font-mono font-bold text-foreground" data-testid="result-phase-angle">
+                      {result.phaseAngle.toFixed(2)}°
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-4 p-4 bg-muted/50 rounded-md space-y-2">
+                  <p className="text-sm font-medium text-foreground">Formula Used:</p>
+                  <code className="text-sm font-mono text-muted-foreground block">
+                    Q = √(S² - P²)
+                  </code>
+                  <code className="text-sm font-mono text-muted-foreground block">
+                    Power Factor = P / S
+                  </code>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    This is based on the power triangle relationship
+                  </p>
+                </div>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        <CalculatorAccordion items={getCalculatorAccordion("reactive-power")} />
+      </div>
+    </div>
+  );
+}
