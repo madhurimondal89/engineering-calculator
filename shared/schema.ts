@@ -7,6 +7,7 @@ export const calculatorCategories = [
   "Electronics",
   "Wire & Cable",
   "Power System",
+  "Motor",
   "Mechanical", 
   "Civil",
   "General Science"
@@ -505,6 +506,64 @@ export const calculators: Calculator[] = [
     category: "Power System",
     path: "/calculators/energy-cost",
     icon: "DollarSign"
+  },
+  
+  // Motor
+  {
+    id: "motor-starting-current",
+    title: "Motor Starting Current Calculator",
+    description: "Calculate inrush/starting current for AC motors based on LRA or starting method",
+    category: "Motor",
+    path: "/calculators/motor-starting-current",
+    icon: "Zap"
+  },
+  {
+    id: "motor-full-load-current",
+    title: "Motor Full Load Current Calculator",
+    description: "Calculate full load current (FLC) for single-phase and three-phase motors",
+    category: "Motor",
+    path: "/calculators/motor-full-load-current",
+    icon: "Activity"
+  },
+  {
+    id: "motor-efficiency",
+    title: "Motor Efficiency Calculator",
+    description: "Calculate motor efficiency from input power and output power",
+    category: "Motor",
+    path: "/calculators/motor-efficiency",
+    icon: "Gauge"
+  },
+  {
+    id: "motor-power-factor",
+    title: "Motor Power Factor Calculator",
+    description: "Calculate power factor for AC motors from real and apparent power",
+    category: "Motor",
+    path: "/calculators/motor-power-factor",
+    icon: "Triangle"
+  },
+  {
+    id: "motor-speed",
+    title: "Motor Speed Calculator",
+    description: "Calculate synchronous speed, actual speed, and slip for AC induction motors",
+    category: "Motor",
+    path: "/calculators/motor-speed",
+    icon: "RotateCw"
+  },
+  {
+    id: "motor-torque",
+    title: "Motor Torque Calculator",
+    description: "Calculate motor torque from power and speed (τ = P / ω)",
+    category: "Motor",
+    path: "/calculators/motor-torque",
+    icon: "Wrench"
+  },
+  {
+    id: "motor-hp-kw",
+    title: "Motor HP to kW Converter",
+    description: "Convert between horsepower (HP) and kilowatts (kW) for motors",
+    category: "Motor",
+    path: "/calculators/motor-hp-kw",
+    icon: "ArrowLeftRight"
   },
   
   // Mechanical

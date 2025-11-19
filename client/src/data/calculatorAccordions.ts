@@ -4284,6 +4284,483 @@ const accordionContent: Record<string, CalculatorAccordionContent> = {
         }
       ]
     }
+  },
+
+  // Motor Calculators
+  "motor-starting-current": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter the motor power rating in HP or kW",
+        "Select the power unit (HP or kW)",
+        "Enter the supply voltage",
+        "Select motor type (Single-phase or Three-phase)",
+        "Select the starting method (DOL, Star-Delta, Soft Start, or LRA)",
+        "If using LRA method, enter the Locked Rotor Amps value",
+        "Enter power factor and efficiency (typical values pre-filled)",
+        "Click 'Calculate Starting Current' to see results"
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Full Load Current (FLC)",
+          definition: "The current drawn by the motor when operating at its rated load. This is the normal operating current under full-load conditions."
+        },
+        {
+          term: "Starting Current (Ist)",
+          definition: "The inrush current drawn when the motor first starts. Typically 5-8 times FLC for DOL starting. This high current is due to low back-EMF at startup."
+        },
+        {
+          term: "Locked Rotor Amps (LRA)",
+          definition: "The maximum current drawn when the rotor is stationary (locked). Usually indicated by motor nameplate code letter. Used to calculate starting current accurately."
+        },
+        {
+          term: "Starting Method",
+          definition: "The technique used to start the motor. DOL (highest inrush), Star-Delta (reduces inrush to ~33%), Soft-starter (gradual current ramp), VFD (lowest inrush)."
+        },
+        {
+          term: "Ratio (Ist / FLC)",
+          definition: "The multiplier showing how many times larger starting current is compared to full load current. Important for circuit breaker and contactor sizing."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Motor Starting Current",
+      sections: [
+        {
+          title: "Why Motors Draw High Starting Current",
+          content: "When a motor starts, it draws significantly higher current than during normal operation. At standstill, the rotor has no back-EMF (electromotive force) opposing the applied voltage. The only opposition to current is the motor's winding resistance and leakage reactance, both relatively small. As the rotor accelerates, it generates back-EMF that opposes the supply voltage, reducing current draw. At full speed under rated load, back-EMF is high, resulting in normal full-load current. During starting, the absence of back-EMF causes current to surge 5-8 times FLC for direct-on-line (DOL) starting."
+        },
+        {
+          title: "Starting Methods and Current Reduction",
+          content: "Direct On Line (DOL): Full voltage applied at startup. Starting current = 5-8× FLC. Simplest and cheapest method. Used for small motors (<7.5 HP) or where high starting torque needed and supply can handle inrush. Star-Delta (Y-Δ): Motor starts in star connection (reduced voltage), then switches to delta at ~80% speed. Starting current = 2-2.5× FLC (reduced to ~33% of DOL). Starting torque also reduced to ~33%. Requires 6-wire motor connection. Soft Starter: Electronic device gradually ramps up voltage. Starting current = 3-4× FLC. Smooth acceleration, reduced mechanical stress. More expensive than DOL/Star-Delta. Variable Frequency Drive (VFD): Controls both voltage and frequency. Starting current = 1.5-2× FLC. Best current control, adjustable speed. Most expensive option. Autotransformer: Uses transformer to reduce starting voltage. Current reduction depends on tap setting (typically 50%, 65%, 80%). Less common today, replaced by soft starters."
+        },
+        {
+          title: "Locked Rotor Code Letters",
+          content: "Motor nameplates often show a code letter indicating locked rotor kVA per HP. This determines starting current characteristics. Code A: 0-3.14 kVA/HP (lowest starting current). Code B: 3.15-3.54 kVA/HP. Code C: 3.55-3.99 kVA/HP. Code D: 4.0-4.49 kVA/HP. Code E: 4.5-4.99 kVA/HP. Code F: 5.0-5.59 kVA/HP. Code G: 5.6-6.29 kVA/HP. Code H: 6.3-7.09 kVA/HP. Code J: 7.1-7.99 kVA/HP. Code K: 8.0-8.99 kVA/HP. Code L: 9.0-9.99 kVA/HP. Code M: 10.0-11.19 kVA/HP. Code N: 11.2-12.49 kVA/HP. Code P: 12.5-13.99 kVA/HP. Code R: 14.0-15.99 kVA/HP. Code S: 16.0-17.99 kVA/HP. Code T: 18.0-19.99 kVA/HP. Code U: 20.0-22.39 kVA/HP. Code V: 22.4 and up kVA/HP. Higher letters = higher starting current. Most general-purpose motors are Code F to H."
+        },
+        {
+          title: "Calculating Starting Current",
+          content: "For three-phase motors: FLC = (P × 1000) / (√3 × V × PF × η). For single-phase motors: FLC = (P × 1000) / (V × PF × η). Where P = power (kW), V = voltage (V), PF = power factor, η = efficiency. Starting current depends on method: DOL: Ist = FLC × 6 (typical range 5-8). Star-Delta: Ist = FLC × 2 (range 2-2.5). Soft Start: Ist = FLC × 3.5 (range 3-4). Using LRA: If nameplate shows LRA directly, use that value. From code letter: LRA = (Code kVA/HP × HP × 1000) / V. Example: 10 HP, 460V, Code F motor. Code F = 5.0-5.59 kVA/HP (use midpoint 5.3). LRA = 5.3 × 10 × 1000 / 460 = 115A."
+        },
+        {
+          title: "Impact on Electrical System",
+          content: "High starting current affects: Voltage Dip: Starting current causes temporary voltage drop. Large motors can cause lights to dim, sensitive equipment to malfunction. Rule of thumb: Motor HP should not exceed 20% of transformer kVA rating for DOL starting. Circuit Protection: Circuit breakers and fuses must handle starting current without tripping. Motor circuit breakers (Type D) have higher trip threshold for startup. Inverse-time breakers allow brief overload during start. Contactor Sizing: Contactors must handle inrush current and associated magnetic forces. AC-3 rated contactors designed for motor starting duty. Undersized contactors may weld shut or fail prematurely. Cable Sizing: Cables sized for FLC, but voltage drop during start considered. Long cable runs increase impedance, worsen voltage dip. Transformer Capacity: Transformer must supply starting kVA without excessive voltage drop. Starting kVA = √3 × V × Ist / 1000. 10% voltage drop acceptable during brief motor start."
+        },
+        {
+          title: "Selecting Starting Method",
+          content: "DOL Starting: Use when: Motor < 7.5 HP (5.5 kW). Supply has sufficient capacity. No sensitive loads affected by voltage dip. High starting torque required. Cost is primary consideration. Star-Delta Starting: Use when: Motor 7.5-50 HP (5.5-37 kW). Reduced starting torque acceptable (fan, pump loads). Need lower cost than soft starter. Motor has 6-wire connection available. Soft Starter: Use when: Motor 10-500 HP (7.5-375 kW). Smooth acceleration desired. Mechanical stress reduction important. Starting/stopping frequent. Can justify higher cost. VFD: Use when: Variable speed operation needed. Minimum starting current essential. Energy savings important. Precise control required. Highest cost justified."
+        }
+      ]
+    }
+  },
+
+  "motor-full-load-current": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter the motor power rating",
+        "Select power unit (HP or kW)",
+        "Enter supply voltage",
+        "Select motor type (Single-phase or Three-phase)",
+        "Enter power factor (typical: 0.85 for motors)",
+        "Enter efficiency (typical: 0.90 for general-purpose motors)",
+        "Click 'Calculate Full Load Current' to see results"
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Full Load Current (FLC)",
+          definition: "The current drawn when motor operates at its rated power output. Used for sizing conductors, overload protection, and calculating circuit requirements. Also called rated current or nameplate current."
+        },
+        {
+          term: "Input Power",
+          definition: "The electrical power supplied to the motor. Input Power = Output Power / Efficiency. The difference between input and output is losses (heat, friction, magnetic losses)."
+        },
+        {
+          term: "Apparent Power (kVA)",
+          definition: "The total power supplied by the source, including both real power and reactive power. kVA = kW / PF. Circuit components must be rated for kVA, not just kW."
+        },
+        {
+          term: "Power Factor (PF)",
+          definition: "The ratio of real power to apparent power. Motors are inductive loads with lagging power factor (0.7-0.9). Low PF increases current for same kW, requiring larger conductors and circuit protection."
+        },
+        {
+          term: "Efficiency (η)",
+          definition: "The ratio of mechanical output power to electrical input power. Modern motors: 85-96% efficient. Premium efficiency (IE3): >92%. Super premium (IE4): >94%. Efficiency decreases at partial load."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Motor Full Load Current",
+      sections: [
+        {
+          title: "The FLC Formula Explained",
+          content: "For three-phase motors: FLC = (P × 1000) / (√3 × V × PF × η). For single-phase motors: FLC = (P × 1000) / (V × PF × η). Where: P = output power (kW), V = line-to-line voltage (3-phase) or line voltage (1-phase), PF = power factor (0.7-0.9 typical), η = efficiency (0.85-0.95 typical). The factor 1000 converts kW to W. The factor √3 (1.732) appears in 3-phase because power is distributed across three conductors. Example: 10 HP (7.46 kW), 460V, 3-phase, PF=0.85, η=0.90. FLC = (7.46 × 1000) / (1.732 × 460 × 0.85 × 0.90) = 12.2 A."
+        },
+        {
+          title: "Why FLC Matters",
+          content: "Conductor Sizing: Conductors must carry at least 125% of FLC per NEC. For 12.2A FLC, minimum conductor rating = 12.2 × 1.25 = 15.25A. Select 14 AWG (20A) for short runs, 12 AWG (25A) for longer runs to limit voltage drop. Overload Protection: Thermal overload relays set at 115-125% of FLC. Protects motor from overheating due to overload or phase loss. 12.2A motor: overload set at 13.4-15.25A range. Circuit Breaker Sizing: Must carry FLC continuously but allow brief starting current. Motor circuit breakers typically 150-250% of FLC. 12.2A motor: 20-30A circuit breaker typical. Transformer Capacity: Total connected motor load determines transformer size. Include diversity factor: Not all motors run at full load simultaneously. Typical 0.7-0.8 diversity for multiple motors. Cost Analysis: Current determines conductor size, which affects installation cost. Lower current = smaller conductors = lower material and labor cost. Improving PF and efficiency reduces FLC, saving on electrical infrastructure."
+        },
+        {
+          title: "Power Factor and Its Impact",
+          content: "Power factor represents the phase angle between voltage and current in AC circuits. In motors, current lags voltage due to magnetic field energy storage. Typical motor power factors: Large motors (>50 HP): 0.85-0.92. Medium motors (5-50 HP): 0.80-0.88. Small motors (<5 HP): 0.70-0.85. Lightly loaded motors: 0.50-0.70. Impact of low power factor: 100 kW motor, PF=0.70 vs PF=0.90, 460V, 3-phase. At PF=0.70: I = 100,000 / (1.732 × 460 × 0.70) = 179A. At PF=0.90: I = 100,000 / (1.732 × 460 × 0.90) = 139A. Low PF requires 29% more current (40A difference). Larger conductors, circuit breakers, contactors needed. Higher I²R losses in conductors. Utility may charge power factor penalty. Power factor correction using capacitors: Adds leading reactive power to offset lagging. Reduces current drawn from supply. Improves voltage regulation. Capacitor kVAR = P × (tan φ1 - tan φ2). Where φ = arccos(PF)."
+        },
+        {
+          title: "Motor Efficiency Classes",
+          content: "International Efficiency (IE) Classes per IEC 60034-30-1: IE1 - Standard Efficiency: Older designs, 85-90% typical. Being phased out in many regions. IE2 - High Efficiency: 88-92% typical. Minimum in many countries. IE3 - Premium Efficiency: 90-94% typical. Required in EU, USA (NEMA Premium). IE4 - Super Premium Efficiency: 92-96% typical. Best available technology. IE5 - Ultra Premium Efficiency: >96%, emerging technology. Benefits of higher efficiency: Lower operating current for same output power. Reduced energy costs: 90% vs 95% efficiency, 5.5% energy savings. Less heat generation, longer motor life. May qualify for utility rebates. Example: 50 HP motor, 8000 hours/year, $0.10/kWh. IE2 (90% eff): Annual energy = 37.3 kW / 0.90 × 8000 = 331,111 kWh. Cost = $33,111. IE4 (95% eff): Annual energy = 37.3 kW / 0.95 × 8000 = 314,105 kWh. Cost = $31,410. Savings = $1,701/year. Higher efficiency motor may pay for itself in 2-3 years."
+        },
+        {
+          title: "Derating Factors",
+          content: "FLC must be adjusted for: Ambient Temperature: Motors rated for 40°C ambient. Above 40°C: derate 1% per degree C. At 50°C: multiply FLC by 1.10 (10% increase). Altitude: Standard rating up to 1000m elevation. Above 1000m: derate 1% per 100m. At 2000m: multiply FLC by 1.10. Voltage Variation: Motors tolerate ±10% voltage variation. Low voltage increases current: I varies inversely with V. 10% low voltage → 11% higher current. High voltage decreases current but may cause insulation stress. Frequency Variation: Designed for 50 Hz or 60 Hz operation. Operating 60 Hz motor at 50 Hz: Speed reduced 17%, current increased. Harmonic Distortion: VFDs and nonlinear loads cause harmonics. Harmonics increase RMS current, heating. May require 110-115% FLC rating. Duty Cycle: Continuous duty (S1): Full FLC applies. Intermittent duty (S3): Can use higher current during on-time. Frequent starts (S4, S5): Heating from starting current. May limit load to 80-90% of rating."
+        },
+        {
+          title: "Single-Phase vs Three-Phase",
+          content: "Single-Phase Motors: Used for residential, small commercial (< 5 HP). Line current = P / (V × PF × η). Only one voltage waveform, no phase angle benefit. Higher current for same power vs 3-phase. Less efficient, larger conductors needed. Three-Phase Motors: Standard for industrial, large commercial (> 1 HP). Line current = P / (√3 × V × PF × η). Power distributed across three phases, 73% of single-phase current. More efficient, smooth torque, smaller size. Comparison Example: 5 HP (3.73 kW), PF=0.85, η=0.90. Single-phase, 230V: I = 3730 / (230 × 0.85 × 0.90) = 21.2A. Three-phase, 230V: I = 3730 / (1.732 × 230 × 0.85 × 0.90) = 12.2A. Three-phase uses 42% less current (9A difference). Conductor sizing: single-phase needs 10 AWG, three-phase needs 14 AWG. Converting Single-Phase to Three-Phase: Phase converter or VFD can convert. Enables using 3-phase motors on 1-phase supply. Input current from 1-phase supply similar to single-phase motor. Output: balanced 3-phase, motor operates normally. Cost-effective for workshop with multiple motors."
+        }
+      ]
+    }
+  },
+
+  "motor-efficiency": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter the motor output power (mechanical power delivered to load)",
+        "Enter the motor input power (electrical power consumed from supply)",
+        "Click 'Calculate Efficiency' to see results",
+        "View efficiency percentage, decimal value, and power losses",
+        "Check the efficiency rating classification"
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Efficiency (η)",
+          definition: "The ratio of mechanical output power to electrical input power, expressed as decimal (0-1) or percentage (0-100%). Higher efficiency means less energy wasted as heat and more useful work output."
+        },
+        {
+          term: "Power Losses",
+          definition: "The difference between input and output power. Losses appear as heat and include: copper losses (I²R heating), core losses (hysteresis, eddy currents), friction and windage, stray load losses. Typical losses: 5-15%."
+        },
+        {
+          term: "Output Power",
+          definition: "The useful mechanical power delivered to the load. Measured at the motor shaft. This is the power doing actual work (pumping, compressing, rotating, lifting). Rated in kW or HP."
+        },
+        {
+          term: "Input Power",
+          definition: "The electrical power drawn from the supply. Always greater than output power due to losses. Measured with power meter. Input = Output / Efficiency. This is what you pay for on electric bill."
+        },
+        {
+          term: "Efficiency Rating (IE Class)",
+          definition: "International standard classification. IE1 (Standard), IE2 (High), IE3 (Premium), IE4 (Super Premium), IE5 (Ultra Premium). Higher class = better efficiency = lower operating cost. Most regions now require minimum IE2 or IE3."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Motor Efficiency",
+      sections: [
+        {
+          title: "Understanding Motor Efficiency",
+          content: "Motor efficiency is the ratio of mechanical power output to electrical power input. Formula: η = P_out / P_in, where η is efficiency (0 to 1 or 0% to 100%). No motor is 100% efficient; all have losses. Typical efficiencies: Small motors (< 1 HP): 60-80%. Medium motors (1-50 HP): 85-92%. Large motors (> 50 HP): 92-96%. Premium efficiency motors (IE3): 90-95% across range. Super premium (IE4): 92-96%. The difference between input and output is losses, dissipated as heat. Losses = Input - Output = Input × (1 - η). Example: 10 kW output, 90% efficiency. Input = 10 / 0.90 = 11.11 kW. Losses = 11.11 - 10 = 1.11 kW (10% of input). These losses heat the motor and surrounding area."
+        },
+        {
+          title: "Types of Motor Losses",
+          content: "Copper Losses (I²R losses): Due to resistance in stator and rotor windings. Heat generated = I²R watts. Largest single loss component (typically 55-60% of total losses). Varies with load: double the current quadruples copper losses. Reduced by using larger diameter wire (lower R). Core Losses (Iron Losses): Hysteresis losses: Energy lost magnetizing and demagnetizing iron core each cycle. Proportional to frequency and flux density. Eddy current losses: Circulating currents induced in iron core. Reduced by using laminated core instead of solid iron. Core losses relatively constant (30-35% of total), independent of load. Mechanical Losses: Friction: Bearings, shaft seals. Constant regardless of load. Reduced with quality bearings, proper lubrication. Windage: Air resistance of rotating fan blades. Small component (3-5% of total losses). Stray Load Losses: Various small losses: harmonics, leakage flux. Difficult to measure directly. Assumed as 1-2% of output power. Load-dependent losses. Total losses = Copper + Core + Mechanical + Stray. Example breakdown for 10 kW motor (1.11 kW total loss): Copper: 0.66 kW (60%), Core: 0.33 kW (30%), Mechanical: 0.08 kW (7%), Stray: 0.04 kW (3%)."
+        },
+        {
+          title: "Factors Affecting Efficiency",
+          content: "Motor Design: Premium efficiency motors use: More copper (larger conductor area, lower resistance). Better core steel (lower hysteresis losses). Optimized air gap (reduces magnetizing current). Improved cooling (larger frame, better ventilation). Tighter manufacturing tolerances. Cost 15-30% more but save energy over lifetime. Load Level: Efficiency peaks at 75-100% rated load. At 50% load: efficiency drops 2-5 points. At 25% load: efficiency drops 5-10 points. Never operate motor continuously below 50% load if efficiency matters. Voltage: Operating voltage affects efficiency. 10% low voltage: efficiency drops 1-2%. Increased current → higher I²R losses. Magnetic saturation changes. 10% high voltage: efficiency may drop slightly. Risk of insulation damage. Maintain voltage within ±5% of rated. Frequency: Operating 60 Hz motor at 50 Hz: Speed reduced 17%. Flux density increases. Core losses increase. Overall efficiency drops 2-4%. VFDs: Introduce harmonic losses. Efficiency reduction: 1-3% depending on VFD quality. High-quality VFDs minimize harmonic content. Temperature: High ambient temperature reduces efficiency. Winding resistance increases with temperature. 10°C rise → resistance up 4%. Proper ventilation maintains efficiency."
+        },
+        {
+          title: "Measuring Motor Efficiency",
+          content: "Direct Method (Input-Output): Measure electrical input power with power meter. Measure mechanical output power at shaft with dynamometer or torque sensor. Calculate η = P_out / P_in. Most accurate but requires load testing. Slip Method (for induction motors): Measure slip at known load. Calculate losses from slip. Less accurate, no direct measurement needed. Nameplate Method: Use manufacturer's stated efficiency. May not match actual field conditions. Suitable for estimates, not precision. Field Testing Procedure: Install calibrated power meter on motor supply. Ensure stable load conditions. Record voltage, current, power factor, power (kW). Measure mechanical output: torque and speed. Calculate power = 2π × N × T / 60 (kW). Where N = speed (RPM), T = torque (N⋅m). Efficiency = (Mechanical Power / Electrical Power) × 100%. Example: Electrical: 10.5 kW, 0.88 PF, 460V, 15.2A. Mechanical: 1450 RPM, 65.7 N⋅m. Mech Power = 2 × 3.1416 × 1450 × 65.7 / 60 = 9.97 kW. Efficiency = 9.97 / 10.5 = 94.9%."
+        },
+        {
+          title: "Energy and Cost Savings",
+          content: "Upgrading from standard to premium efficiency motor saves energy and money. Energy Savings Calculation: Standard motor: 50 HP, 90% eff, 6000 hours/year. Input power = 37.3 kW / 0.90 = 41.4 kW. Annual energy = 41.4 × 6000 = 248,640 kWh. Premium motor: 50 HP, 94% eff, 6000 hours/year. Input power = 37.3 kW / 0.94 = 39.7 kW. Annual energy = 39.7 × 6000 = 238,200 kWh. Savings = 248,640 - 238,200 = 10,440 kWh/year (4.2% reduction). Cost Savings (at $0.10/kWh): Annual savings = 10,440 × $0.10 = $1,044/year. Over 20-year motor life = $20,880 saved. If premium motor costs $500 more: Payback = $500 / $1,044 = 0.48 years (6 months). NPV of savings (5% discount): ~$13,000. Return on investment: 209%/year. Factors affecting payback: Hours of operation: More hours = faster payback. Energy cost: Higher rates = faster payback. Motor size: Larger motors save more absolute kWh. Load factor: Motors running at high load save more. As energy costs rise, premium efficiency becomes more compelling. Many utilities offer rebates for premium efficiency motors. Typical rebate: $10-30 per HP, reducing upfront cost difference."
+        },
+        {
+          title: "Improving Existing Motor Efficiency",
+          content: "If replacing motor not feasible, improve efficiency of existing motor: Ensure Proper Load: Motors most efficient at 75-100% load. Oversized motor runs inefficiently at partial load. Replace with correctly sized motor if consistently <50% loaded. Improve Power Quality: Correct phase imbalance: Even 1% imbalance increases losses. Check and balance phase voltages. Maintain voltage within ±5% of rated. Low voltage increases current and losses. Reduce harmonic distortion with filters. Regular Maintenance: Clean ventilation passages annually. Blocked vents increase temperature, reduce efficiency. Inspect and replace bearings on schedule. Worn bearings increase friction losses. Ensure proper belt tension (belt-driven loads). Loose belts slip, tight belts load bearings. Check alignment periodically. Misalignment causes vibration, mechanical losses. Rewind vs Replace: Motor rewind can reduce efficiency 1-2% per rewind. Copper losses increase if winding technique poor. After 2-3 rewinds, replacement more cost-effective. Specify premium rewind practices if rewinding. Use VFD for Variable Loads: Loads varying significantly over time benefit from VFD. VFD adjusts speed to match load, reducing energy. Example: Fan/pump operating at 50% flow most of time. Fixed speed: motor runs full speed, damper restricts flow (energy wasted). VFD: motor runs at 70% speed to produce 50% flow (energy saved). Energy savings: 30-50% for variable loads."
+        }
+      ]
+    }
+  },
+
+  "motor-power-factor": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter the real power (kW) - the actual power doing work",
+        "Enter the apparent power (kVA) - the total power supplied",
+        "Ensure apparent power ≥ real power (validation enforced)",
+        "Click 'Calculate Power Factor' to see results",
+        "View power factor (decimal and %), reactive power, and phase angle",
+        "Check the power factor rating classification"
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Power Factor (PF)",
+          definition: "The ratio of real power to apparent power. Represents efficiency of power utilization. Range: 0 to 1 (0% to 100%). Unity (1.0) is ideal. Motors typically 0.70-0.90. Low PF increases current for same kW output."
+        },
+        {
+          term: "Real Power (P)",
+          definition: "The actual power doing useful work, measured in kilowatts (kW). This is the power converted to mechanical work, heat, or light. Only real power does work; this is what runs the motor load."
+        },
+        {
+          term: "Apparent Power (S)",
+          definition: "The total power supplied by the source, measured in kilovolt-amperes (kVA). S = √(P² + Q²). Circuit components sized for kVA, not kW. Generators, transformers, cables rated in kVA."
+        },
+        {
+          term: "Reactive Power (Q)",
+          definition: "Power oscillating between source and load, measured in kilovolt-amperes reactive (kVAR). Does no real work but necessary for magnetic fields in motors. Q = √(S² - P²). Corrected with capacitors."
+        },
+        {
+          term: "Phase Angle (θ)",
+          definition: "The angle between voltage and current waveforms. θ = arccos(PF). 0° = resistive load (unity PF). Positive angle = inductive (lagging PF, typical for motors). Larger angle = lower PF."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Motor Power Factor",
+      sections: [
+        {
+          title: "Understanding Power Factor",
+          content: "Power factor is the ratio of real power (kW) to apparent power (kVA). Formula: PF = P / S = cos(θ), where θ is the phase angle between voltage and current. In AC circuits, voltage and current may not be in phase. Resistive loads (heaters): Voltage and current in phase, θ = 0°, PF = 1.0 (unity). Inductive loads (motors, transformers): Current lags voltage, 0° < θ < 90°, PF < 1.0 (lagging). Capacitive loads (power factor correction capacitors): Current leads voltage, -90° < θ < 0°, PF < 1.0 (leading). Motors are inductive: require magnetizing current to create magnetic field. This magnetizing current does not contribute to mechanical work. It creates reactive power (kVAR). Example: Motor consumes 80 kW real power and 60 kVAR reactive power. Apparent power = √(80² + 60²) = 100 kVA. Power factor = 80 / 100 = 0.80 or 80%. Phase angle = arccos(0.80) = 36.87°. Current lags voltage by 36.87°."
+        },
+        {
+          title: "Why Power Factor Matters",
+          content: "Low power factor has significant consequences: Increased Current: Lower PF requires higher current for same kW. Example: 100 kW load, 460V, 3-phase. At PF = 1.0: I = 100,000 / (1.732 × 460 × 1.0) = 125.5A. At PF = 0.80: I = 100,000 / (1.732 × 460 × 0.80) = 156.9A. At PF = 0.70: I = 100,000 / (1.732 × 460 × 0.70) = 179.3A. Lower PF increases current 43% (0.70 vs 1.0). Larger Conductors Required: Higher current needs larger wire gauge. 125A: 1/0 AWG copper. 157A: 3/0 AWG copper. 179A: 4/0 AWG copper. Significant cost increase in materials and installation. Higher I²R Losses: Power loss in conductors = I²R. Doubling current quadruples losses. At PF = 0.70 vs 1.0: Current up 43%, losses up 104%. Wasted energy, heat generation, reduced efficiency. Transformer Capacity: Transformer sized for kVA, not kW. 100 kW load at PF = 0.70 requires 143 kVA transformer. Same load at PF = 1.0 requires 100 kVA transformer. 43% larger (more expensive) transformer needed. Utility Penalties: Many utilities charge penalty for PF < 0.90. Typical: 0.5% charge for each 0.01 below 0.90. At PF = 0.70: penalty = 20 × 0.5% = 10% on bill. For $10,000/month bill: $1,000/month penalty = $12,000/year."
+        },
+        {
+          title: "Motor Power Factor Characteristics",
+          content: "Induction motor power factor varies with load: No load (0% load): PF = 0.15-0.25. Magnetizing current dominates, little real power. Light load (25%): PF = 0.50-0.65. Magnetizing current still significant fraction. Half load (50%): PF = 0.70-0.80. Improved but not optimal. Three-quarter load (75%): PF = 0.80-0.88. Near optimal range. Full load (100%): PF = 0.85-0.92. Best power factor. Overload (>100%): PF may reach 0.90-0.95. But motor overheats. Why PF improves with load: Motor requires fixed magnetizing current regardless of load. At light load, this reactive component is large relative to real current. At full load, real current increases while magnetizing current stays same. Fraction of current doing real work increases. Example: 10 HP motor, 460V, 3-phase. Magnetizing current (constant): 3A. At 25% load: Real current 2A. Total current = √(2² + 3²) = 3.6A. PF = 2 / 3.6 = 0.56. At 100% load: Real current 10A. Total current = √(10² + 3²) = 10.4A. PF = 10 / 10.4 = 0.96."
+        },
+        {
+          title: "Power Factor Correction",
+          content: "Power factor correction adds capacitance to offset inductive reactance. Capacitors provide leading reactive power to cancel lagging reactive power from motors. Benefits: Reduced current draw from utility. Smaller conductor and circuit breaker requirements. Lower I²R losses and voltage drop. Avoid utility power factor penalties. Increased system capacity. Capacitor Sizing Formula: Required capacitor kVAR = P × (tan φ1 - tan φ2). Where: P = motor kW. φ1 = arccos(PF1) = existing phase angle. φ2 = arccos(PF2) = target phase angle. Example: 100 kW motor, existing PF = 0.70, target PF = 0.95. φ1 = arccos(0.70) = 45.57°. tan φ1 = 1.02. φ2 = arccos(0.95) = 18.19°. tan φ2 = 0.33. Capacitor kVAR = 100 × (1.02 - 0.33) = 69 kVAR. Install 69 kVAR capacitor bank. Before correction: Apparent power = 100 / 0.70 = 143 kVA. Current (460V, 3-ph) = 180A. After correction: Apparent power = 100 / 0.95 = 105 kVA. Current (460V, 3-ph) = 132A. Current reduced 27%, significant savings on infrastructure. Capacitor Types: Fixed capacitors: Sized for specific motor, always connected. Automatic capacitor banks: Switch capacitor steps based on load/PF. Synchronous condensers: Rotating machines providing variable reactive power. Active harmonic filters: Electronic devices providing PF correction and harmonic filtering."
+        },
+        {
+          title: "Practical Considerations",
+          content: "Installing Capacitors: Individual correction: Capacitor for each motor. Automatic with motor starter. Exact correction for that load. Group correction: Capacitor bank for group of motors. Centralized at distribution panel. Sized for combined load. Central correction: One large bank at main switchboard. For entire facility. Switched in steps based on demand. Prevent Over-Correction: Do not correct beyond PF = 1.0 (unity). Leading power factor (capacitive) causes: Voltage rise, harmonic resonance, damage to capacitors. Correct to PF = 0.95, not 1.0, for safety margin. Use automatic switching to match correction to load. Motor Starting: Disconnect capacitors during motor start. Starting current can damage capacitors. Voltage transient during switching. Reconnect after motor reaches rated speed. Some motor starters have built-in capacitor disconnect. Harmonics: VFD-powered motors have harmonic currents. Harmonics cause capacitor overheating. Use harmonic-rated or detuned capacitor banks. Consider active harmonic filter instead of capacitors. Maintenance: Inspect capacitors annually. Check for bulging, leaking, overheating. Test capacitance periodically. Capacity decreases over time. Replace capacitors when capacity drops 10-15%. Failed capacitors provide no correction but draw current."
+        },
+        {
+          title: "Economic Analysis",
+          content: "Cost-Benefit of Power Factor Correction: Example: 500 kW average load, PF = 0.72, 8000 hours/year. Utility penalty: 0.5% per 0.01 below 0.90 PF. Current penalty: (0.90 - 0.72) × 100 × 0.5% = 9% surcharge. Annual energy bill: $250,000. Penalty: $250,000 × 9% = $22,500/year. Install 400 kVAR capacitor bank to improve PF to 0.93. Capacitor cost: 400 kVAR × $35/kVAR = $14,000. Installation: $3,000. Total investment: $17,000. Annual savings: $22,500 (penalty eliminated). Additional savings from reduced I²R losses: ~$3,000. Total annual savings: $25,500. Simple payback: $17,000 / $25,500 = 0.67 years (8 months). 15-year savings (present value, 5% discount): $253,000. Return on investment: 1400%. Net present value: $236,000. Internal rate of return: 150%. Clearly justified investment. Additional Benefits (Difficult to Quantify): Extended life of transformers and motors (cooler operation). Increased capacity to add loads without upgrading transformer. Improved voltage regulation. Reduced downtime from overloaded equipment. Better equipment performance and reliability. Factors Affecting Payback: Utility penalty structure: Higher penalties = faster payback. Operating hours: More hours = more savings. Load size: Larger loads save more absolutely. Energy cost: Higher rates = faster payback. Most industrial facilities with motors achieve < 2 year payback."
+        }
+      ]
+    }
+  },
+
+  "motor-speed": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Select the supply frequency (50 Hz or 60 Hz)",
+        "Select number of motor poles (2, 4, 6, 8, 10, or 12)",
+        "Enter slip percentage (typical: 2-5% for induction motors)",
+        "Click 'Calculate Speed' to see results",
+        "View synchronous speed, actual rotor speed, slip in RPM, and slip percentage"
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Synchronous Speed (Ns)",
+          definition: "The speed of the rotating magnetic field in the stator. Calculated as Ns = (120 × f) / P. This is the theoretical maximum speed. Rotor cannot reach this speed in induction motors."
+        },
+        {
+          term: "Actual Speed (N)",
+          definition: "The real operating speed of the rotor. Always less than synchronous speed in induction motors. N = Ns × (1 - s/100), where s is slip percentage. This is the shaft speed driving the load."
+        },
+        {
+          term: "Slip (%)",
+          definition: "The difference between synchronous and actual speed as percentage. s = [(Ns - N) / Ns] × 100. Typical: 2-5% at full load. Higher slip = more torque but lower efficiency and more heat."
+        },
+        {
+          term: "Number of Poles (P)",
+          definition: "The number of magnetic poles in the motor stator winding. Always an even number (2, 4, 6, 8, etc.). More poles = lower speed. 2-pole fastest, 12-pole slowest."
+        },
+        {
+          term: "Frequency (f)",
+          definition: "The supply frequency in Hertz (cycles per second). Standard: 60 Hz (North America), 50 Hz (Europe, Asia). Higher frequency = higher synchronous speed for same pole count."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Motor Speed",
+      sections: [
+        {
+          title: "Understanding Motor Speed",
+          content: "Induction motors operate on the principle of a rotating magnetic field. The stator winding creates a magnetic field that rotates at synchronous speed. Formula: Ns = (120 × f) / P, where Ns = synchronous speed (RPM), f = frequency (Hz), P = number of poles. Example: 4-pole motor, 60 Hz. Ns = (120 × 60) / 4 = 1800 RPM. The rotor tries to follow this rotating field but always lags behind (slips). This slip is essential for induction motor operation. If rotor reached synchronous speed, no relative motion between rotor and field. No induced current in rotor, no torque produced. Motor would stop accelerating. At standstill: Slip = 100% (maximum). At no-load: Slip = 1-2% (minimum). At full-load: Slip = 2-5% (typical). During overload: Slip increases beyond 5%."
+        },
+        {
+          title: "Standard Synchronous Speeds",
+          content: "Common synchronous speeds for 50 Hz and 60 Hz: 2-Pole motors: 50 Hz = 3000 RPM, 60 Hz = 3600 RPM. Applications: Fans, blowers, centrifugal pumps requiring high speed. 4-Pole motors: 50 Hz = 1500 RPM, 60 Hz = 1800 RPM. Applications: General purpose, most common configuration. Pumps, compressors, conveyors. 6-Pole motors: 50 Hz = 1000 RPM, 60 Hz = 1200 RPM. Applications: Lower speed requirements, mixers, agitators. 8-Pole motors: 50 Hz = 750 RPM, 60 Hz = 900 RPM. Applications: High torque, slow speed. Crushers, mills, large fans. 10-Pole motors: 50 Hz = 600 RPM, 60 Hz = 720 RPM. 12-Pole motors: 50 Hz = 500 RPM, 60 Hz = 600 RPM. Applications: Very slow speeds, high torque. Large reciprocating compressors, cooling tower fans. Most motors are 2, 4, or 6 pole. Higher pole counts less common, larger and more expensive."
+        },
+        {
+          title: "Slip and Its Significance",
+          content: "Slip is fundamental to induction motor operation. Definition: s = (Ns - N) / Ns. Also: s = (Ns - N) / Ns × 100%. At different load conditions: No-Load Slip: 0.5-2%. Motor spins near synchronous speed, very little torque needed. Light Load (25%): 1-2.5% slip. Moderate Load (50%): 2-3% slip. Full Load (100%): 3-5% slip. Typical operating point, maximum efficiency near here. Overload (>100%): >5% slip. Motor slows significantly, risk of overheating. Slip affects: Torque: Higher slip → more induced rotor current → more torque. Efficiency: Higher slip → more rotor losses (I²R) → lower efficiency. Speed Regulation: Good regulation = small slip change from no-load to full-load. Typical: 2-5% speed drop from no-load to full-load. Heating: Rotor losses = (Slip × Mechanical Power). High slip generates excessive heat. Example: 10 HP motor, 1800 RPM synchronous, 1750 RPM actual. Slip = (1800 - 1750) / 1800 = 2.78%. If overloaded to 1700 RPM: Slip = (1800 - 1700) / 1800 = 5.56% (doubled). Rotor heating doubles, risk of thermal damage."
+        },
+        {
+          title: "Speed Control Methods",
+          content: "Changing motor speed: Pole Changing: Motors can be wound for multiple pole configurations (e.g., 4/6 pole). Switch connections to change poles, thus synchronous speed. Discrete speed steps, not continuously variable. Less common today, replaced by VFDs. Voltage Control: Reducing voltage reduces torque (T ∝ V²). Motor slows due to increased slip. Poor method: Inefficient, high slip losses, limited range. Frequency Control (VFD): Change supply frequency to change synchronous speed. V/f ratio maintained to preserve flux. Best method: Wide speed range (0-120 Hz typical). High efficiency, smooth control. Example: 4-pole, 60 Hz motor normally runs 1800 RPM. At 30 Hz: Ns = (120 × 30) / 4 = 900 RPM. At 90 Hz: Ns = (120 × 90) / 4 = 2700 RPM. Mechanical Speed Changing: Gearbox: Reduces speed, increases torque mechanically. Belt drive with variable pulleys: Stepless speed control. Direct mechanical solution, no electrical complexity."
+        },
+        {
+          title: "Speed-Torque Characteristics",
+          content: "Induction motor torque varies with slip: Starting (100% slip): High starting torque (150-300% of rated). Acceleration region (100-10% slip): Torque rises to peak (breakdown torque). Peak torque typically at 10-20% slip. Breakdown torque = 200-300% of rated torque. Operating region (5-0% slip): Torque decreases as speed approaches synchronous. Linear relationship: T ≈ s for small slip. Full-load point: Intersection of motor torque curve and load torque curve. Typical slip: 3-5%. Stable operation: Slope of motor curve > slope of load curve. Example: 10 HP motor, 1800 RPM synchronous, 5% rated slip. Full-load speed = 1800 × (1 - 0.05) = 1710 RPM. Full-load torque = (10 HP × 5252) / 1710 = 30.7 lb-ft. At 10% slip (1620 RPM): Available torque ≈ 60 lb-ft (breakdown torque). At 0% slip (1800 RPM): Available torque = 0 (theoretical). Load Type Effects: Constant torque loads: Torque independent of speed (conveyors, positive displacement pumps). Motor must provide rated torque across speed range. Variable torque loads: Torque varies with speed (fans, centrifugal pumps). T ∝ N² for fans/pumps. Power ∝ N³. Reduced speed significantly reduces power."
+        },
+        {
+          title: "Practical Considerations",
+          content: "Speed Measurement: Tachometer: Optical or contact type, measures actual RPM. Strobe light: Visual method, freeze rotating marks at synchronous multiples. Speed encoder: Attached to shaft, high precision. Slip calculation: Measure actual speed, calculate from synchronous speed. Speed Variations: Voltage variations: ±10% voltage causes ±1-2% speed change. Frequency variations: 1% frequency change = 1% speed change. Load variations: Heavy load increases slip, reduces speed. Temperature: Rotor resistance increases with temperature, increasing slip. Overload Protection: Motors protected by thermal overloads. Excessive slip causes rotor overheating. Overload relay trips before damage. Check nameplate: Service factor, ambient temperature rating. Speed vs Application: High speed (3600 RPM): Fans, blowers, centrifugal pumps. Lower inertia loads, lower starting torque. Medium speed (1800 RPM): Most general-purpose applications. Balanced torque and speed requirements. Low speed (≤1200 RPM): High inertia, high starting torque loads. Crushers, mills, large machinery. Better speed regulation at low speeds."
+        }
+      ]
+    }
+  },
+
+  "motor-torque": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter motor power rating",
+        "Select power unit (HP or kW)",
+        "Enter motor speed in RPM",
+        "Click 'Calculate Torque' to see results",
+        "View torque in Newton-meters (N⋅m) and pound-feet (lb⋅ft)",
+        "See angular velocity calculation in radians per second"
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Torque (T)",
+          definition: "The rotational force produced by the motor, measured in N⋅m or lb⋅ft. Torque = Force × Distance from rotation axis. Higher torque can move heavier loads or overcome greater resistance. T = P / ω."
+        },
+        {
+          term: "Power (P)",
+          definition: "The rate of doing work, measured in kW or HP. Power is torque multiplied by angular speed. For same power, lower speed produces higher torque. P = T × ω. 1 HP = 0.746 kW."
+        },
+        {
+          term: "Speed (N)",
+          definition: "The rotational speed of the motor shaft, measured in RPM (revolutions per minute). Inversely related to torque for constant power. Higher speed = lower torque for same power. Typical: 900-3600 RPM."
+        },
+        {
+          term: "Angular Velocity (ω)",
+          definition: "The rotational speed in radians per second. ω = (2π × N) / 60. Used in torque calculations. Converts RPM to rad/s for SI units. 1 revolution = 2π radians."
+        },
+        {
+          term: "Newton-meter (N⋅m)",
+          definition: "SI unit of torque. 1 N⋅m = force of 1 Newton applied at 1 meter radius. Common in metric countries. Conversion: 1 lb⋅ft = 1.356 N⋅m. Typical motor: 10-1000 N⋅m."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Motor Torque",
+      sections: [
+        {
+          title: "Understanding Torque",
+          content: "Torque is the rotational equivalent of linear force. While force causes linear acceleration (F = ma), torque causes rotational acceleration (T = Iα). Definition: Torque = Force × Perpendicular Distance from axis. Units: Newton-meters (N⋅m) in SI, pound-feet (lb⋅ft) in Imperial. Conversion: 1 lb⋅ft = 1.356 N⋅m, 1 N⋅m = 0.7376 lb⋅ft. Torque and Power Relationship: Power = Torque × Angular Velocity. P = T × ω, where P in watts, T in N⋅m, ω in rad/s. Practical formula: T = (9550 × P) / N, where P in kW, N in RPM, T in N⋅m. Or in Imperial: T = (5252 × P) / N, where P in HP, N in RPM, T in lb⋅ft. Example: 10 HP motor at 1750 RPM. T = (5252 × 10) / 1750 = 30 lb⋅ft = 40.7 N⋅m. The motor can exert 30 lb of force at 1 ft radius."
+        },
+        {
+          title: "Types of Motor Torque",
+          content: "Starting Torque (Locked Rotor Torque): Torque available at 0 RPM when motor first energized. Typically 150-300% of full-load torque for induction motors. Critical for starting heavy loads or high-inertia loads. NEMA design B: 150% of rated. Design C: 200% of rated. Design D: 275% of rated. Pull-Up Torque (Accelerating Torque): Minimum torque during acceleration from standstill to operating speed. Usually occurs at 60-80% of synchronous speed. Must exceed load torque throughout acceleration. Typically 100-150% of rated torque. Breakdown Torque (Pull-Out Torque): Maximum torque motor can develop before stalling. Typically 200-300% of full-load torque. Occurs at 10-20% slip (80-90% synchronous speed). Safety margin: Motor won't stall unless load exceeds this. Full-Load Torque (Rated Torque): Torque at rated power and speed. This is the continuous duty rating. Used for motor selection. T = (9550 × kW) / RPM. Example: 10 kW at 1450 RPM. T = (9550 × 10) / 1450 = 65.9 N⋅m."
+        },
+        {
+          title: "Torque-Speed Curve",
+          content: "Induction motor torque varies with speed: At 0% speed (locked rotor): Starting torque (150-300% rated). 0-30% speed: Torque dips slightly (pull-up region). 30-80% speed: Torque rises to peak (breakdown torque at ~80%). 80-100% speed: Torque decreases linearly. At 100% speed (synchronous): Zero torque (theoretical, can't operate here). Operating Point: Where motor torque curve intersects load torque curve. Stable if motor curve steeper than load curve at intersection. Typical full-load operation at 95-97% synchronous speed. Example: 4-pole, 60 Hz motor (1800 RPM synchronous). Starting: 1.5 × rated torque at 0 RPM. Pull-up: 1.2 × rated torque at 600 RPM (33% speed). Breakdown: 2.5 × rated torque at 1620 RPM (90% speed). Full-load: 1.0 × rated torque at 1750 RPM (97% speed). Load Types: Constant Torque: Required torque same at all speeds (conveyors, hoists). Motor must provide rated torque from 0 to full speed. Variable Torque: Required torque varies with speed. Fans/pumps: T ∝ N², reduces at low speed. Allows smaller motor or soft starting."
+        },
+        {
+          title: "Calculating Required Torque",
+          content: "To select proper motor size, calculate load torque requirements: Linear Motion (Belt, Chain): Force required at load. Speed of movement. Torque = Force × Pulley Radius. Power = Force × Velocity. Example: Conveyor needs 200 lb force, moves 100 ft/min. Power = 200 × 100 / 33,000 = 0.606 HP. Using 6-inch pulley (0.25 ft radius). Torque = 200 × 0.25 = 50 lb⋅ft. At 100 ft/min on 6-inch pulley: RPM = 100 / (π × 0.5) = 63.7 RPM. Motor: 0.606 HP, 63.7 RPM, 50 lb⋅ft torque. Use 1 HP motor with gearbox to reduce speed. Rotational Acceleration: Must accelerate load inertia (I) to speed. Torque = I × α, where α = angular acceleration. Inertia I = Σ(m × r²) for all rotating masses. Acceleration time affects motor selection. Example: Accelerate 10 kg-m² inertia to 1000 RPM in 2 seconds. α = (1000 × 2π/60) / 2 = 52.4 rad/s². Torque = 10 × 52.4 = 524 N⋅m. Very high torque needed for rapid acceleration. May require larger motor or longer acceleration time. Overcoming Friction: Bearing friction, seal friction. Rolling resistance for wheels. Windage (air resistance). Measure or estimate from manufacturer data. Add to load torque calculation."
+        },
+        {
+          title: "Gearboxes and Torque Multiplication",
+          content: "Gearboxes change speed-torque relationship: Gear Ratio (GR) = Input Speed / Output Speed = Output Torque / Input Torque. Speed Reduction: GR = 10:1 means output speed is 1/10 input. Output torque is 10× input (minus losses). Power remains constant (minus efficiency losses). Efficiency typically 90-98% per stage. Example: Motor: 5 HP, 1750 RPM, 15 lb⋅ft torque. Gearbox: 10:1 ratio, 95% efficiency. Output: 175 RPM, 142.5 lb⋅ft (15 × 10 × 0.95). Power: 4.75 HP (5 × 0.95), torque increased 9.5×. Selection Considerations: Torque Capacity: Gearbox rated for output torque. Overhang Load: If load not concentric, creates side load. Service Factor: For shock loads or continuous duty. Typically 1.25-2.0 depending on application. Multiple Stages: High ratios use multiple gear stages. Each stage: 3:1 to 5:1 typical. Total ratio = product of stages. 100:1 = 5:1 × 5:1 × 4:1 (three stages). Cost and Size: Higher ratios larger, more expensive. Consider direct drive high-torque motor vs small motor with gearbox. Gearbox adds maintenance (lubrication, wear)."
+        },
+        {
+          title: "Torque Measurement and Verification",
+          content: "Measuring Motor Torque: Dynamometer: Applies calibrated brake load to motor. Measures force and distance → torque. Accurate but requires special setup. Inline Torque Sensor: Mounted on motor shaft. Measures strain in shaft (twist). Real-time torque monitoring. Expensive, used for critical applications. Electrical Method: Measure motor input power and speed. Calculate: T = (9550 × P) / N. Requires accurate power meter. Assumes known efficiency. Prony Brake: Simple mechanical brake. Apply known friction force at known radius. Measure speed drop → torque. Verification Methods: Calculate torque from motor nameplate. Compare measured speed under load vs no-load. Higher slip → higher load → higher torque. Check current draw: Higher current = higher torque (approximately). Typical Measurements: Monitor torque for condition monitoring. Detect bearing wear, misalignment (increased friction). Verify proper loading (underloaded wastes energy). Prevent overload (thermal damage). Common Issues: Measured torque much less than rated: Check voltage, frequency. Motor may be partially failed (winding damage). Load may have high friction (bearings, alignment). Torque fluctuates: Load has cyclic variations. Normal for reciprocating loads (compressors). May indicate mechanical problems (loose coupling)."
+        }
+      ]
+    }
+  },
+
+  "motor-hp-kw": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Select conversion direction (HP → kW or kW → HP)",
+        "Enter power value in the selected unit",
+        "Click 'Convert' to see the result",
+        "View converted power value in the output unit",
+        "See conversion formula and quick reference table"
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Horsepower (HP)",
+          definition: "Imperial unit of power. 1 HP = 550 ft⋅lb/s = 745.7 watts. Defined by James Watt (18th century). Common in USA, motor industry worldwide. Mechanical HP different from electrical HP (746W) or metric HP (735.5W)."
+        },
+        {
+          term: "Kilowatt (kW)",
+          definition: "SI unit of power. 1 kW = 1000 watts. Standard in most countries. Used for electrical power measurements. 1 kW = 1.341 HP. Energy billing in kWh (kilowatt-hours)."
+        },
+        {
+          term: "Conversion Factor",
+          definition: "HP to kW: multiply by 0.746. kW to HP: multiply by 1.341. Exact: 1 HP = 0.74570 kW. Rounded: 1 HP ≈ 0.75 kW or 3/4 kW. Quick mental math: 10 HP ≈ 7.5 kW, 100 HP ≈ 75 kW."
+        },
+        {
+          term: "Mechanical HP",
+          definition: "Original definition: 550 ft⋅lb/s. Power to lift 550 lbs by 1 ft in 1 second. Or 33,000 ft⋅lb/min. Equivalent to 745.699872 watts. This is what motor nameplates specify."
+        },
+        {
+          term: "Other HP Variants",
+          definition: "Electrical HP: Exactly 746 W (rounded for convenience). Metric HP (PS, CV): 735.5 W = 0.9863 mechanical HP. Boiler HP: 33,475 BTU/hr (archaic, rarely used). Always clarify which HP definition when critical."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to HP and kW Conversion",
+      sections: [
+        {
+          title: "History of Horsepower",
+          content: "Horsepower defined by James Watt in late 1700s. Purpose: Market steam engines to replace horses. Needed relatable comparison for potential customers. Watt observed horses turning mill wheels (grinding grain). Measured work: horse could lift 550 lbs by 1 ft in 1 second. Or 33,000 ft⋅lb per minute (same rate). Defined: 1 Horsepower = 550 ft⋅lb/s = 33,000 ft⋅lb/min. This became standard for rating engines, motors, pumps. Modern Equivalents: 1 HP (mechanical) = 745.699872 W (exact). Usually rounded: 1 HP ≈ 746 W or 0.746 kW. Reverse: 1 kW = 1.34102 HP. Usually rounded: 1 kW ≈ 1.34 HP. Example: 5 HP motor = 5 × 0.746 = 3.73 kW. 10 kW motor = 10 × 1.341 = 13.41 HP. International Standards: USA, Canada: HP still common on motor nameplates. Europe, Asia, most world: kW standard. IEC (International Electrotechnical Commission): Specifies kW. Both often shown on nameplates for global markets."
+        },
+        {
+          title: "When to Use HP vs kW",
+          content: "Horsepower Used: USA motor industry: NEMA standards in HP. Automotive: Engine power in HP (USA market). Historical documentation: Old equipment rated in HP. Consumer products: Lawnmowers, shop tools (USA). Quick estimates: 'A 5 HP motor for this pump.' Kilowatts Used: Most of world: IEC standards in kW. Electrical engineering: All electrical calculations in kW. Energy billing: Electricity billed per kWh (kilowatt-hour). Scientific/technical: SI units preferred. Industrial control: Modern VFDs display kW. Dual Ratings: Many motors show both: '10 HP (7.5 kW).' Allows use in different markets. Electrical nameplates usually show kW primary. Mechanical applications may show HP primary. Practical Advice: For international projects: Use kW as primary unit. For USA domestic: HP acceptable but include kW equivalent. Energy analysis: Always use kW (utility bills in kWh). Motor selection: Check if catalog uses HP or kW, convert as needed."
+        },
+        {
+          title: "Common Motor Sizes and Conversions",
+          content: "Fractional HP Motors: 1/4 HP = 0.19 kW (186.4W). 1/3 HP = 0.25 kW (248.5W). 1/2 HP = 0.37 kW (373W). 3/4 HP = 0.56 kW (560W). 1 HP = 0.75 kW (746W). Applications: Small pumps, fans, conveyor motors. Standard Integral HP Motors: 1.5 HP = 1.1 kW. 2 HP = 1.5 kW. 3 HP = 2.2 kW. 5 HP = 3.7 kW. 7.5 HP = 5.5 kW. 10 HP = 7.5 kW. 15 HP = 11 kW. 20 HP = 15 kW. 25 HP = 18.5 kW. 30 HP = 22 kW. Applications: Industrial pumps, compressors, machine tools. Large Motors: 50 HP = 37 kW. 75 HP = 55 kW. 100 HP = 75 kW. 150 HP = 110 kW. 200 HP = 150 kW. 250 HP = 185 kW. 300 HP = 225 kW. 400 HP = 300 kW. 500 HP = 375 kW. 1000 HP = 750 kW. Applications: Large compressors, fans, pumps, process equipment. Notice Pattern: Odd numbers common in HP: 3, 5, 7.5, 15, 25, 50, 75... Rounder numbers in kW: 2.2, 3.7, 5.5, 11, 18.5, 37, 55... This reflects historical development in different regions."
+        },
+        {
+          title: "Power, Current, and Motor Sizing",
+          content: "Relationship Between Power and Current: Power determines current draw. Higher HP/kW = higher current. Formula: I = P / (V × PF × η × √3) for 3-phase. Example 1: 10 HP (7.46 kW), 460V, 3-phase, PF=0.85, η=0.90. I = 7460 / (460 × 0.85 × 0.90 × 1.732) = 12.2A. Example 2: 50 HP (37.3 kW), 460V, 3-phase, PF=0.88, η=0.92. I = 37,300 / (460 × 0.88 × 0.92 × 1.732) = 60.9A. Sizing Conductors: Conductors sized for 125% of motor FLC (NEC). 10 HP motor (12.2A): Wire for 12.2 × 1.25 = 15.25A. Use 14 AWG (20A). 50 HP motor (60.9A): Wire for 60.9 × 1.25 = 76.1A. Use 4 AWG (85A). Circuit Breakers: Typically 150-250% of FLC. 10 HP: 12.2A → 20A breaker. 50 HP: 60.9A → 100A breaker. Overload Protection: Thermal overloads set at 115-125% FLC. 10 HP: 12.2A → 14-15A overload. 50 HP: 60.9A → 70-76A overload. Motor Selection: Size for load requirement plus safety margin. Typical: 125% of calculated load. Avoid oversizing >150% (poor efficiency at partial load). Consider service factor: Allows 115% continuous overload. SF 1.15 motor can run continuously at 11.5 HP (if rated 10 HP)."
+        },
+        {
+          title: "Energy Consumption and Cost",
+          content: "Energy Calculation: Energy (kWh) = Power (kW) × Time (hours). Must convert HP to kW for energy calculations. Example 1: 5 HP motor runs 8 hours/day, 22 days/month. Power = 5 HP × 0.746 = 3.73 kW. Monthly hours = 8 × 22 = 176 hours. Energy = 3.73 × 176 = 656.5 kWh/month. At $0.10/kWh: Cost = 656.5 × $0.10 = $65.65/month. Annual: $65.65 × 12 = $788/year. Example 2: 100 HP motor, continuous operation, 90% average load, 92% efficiency. Average power = 100 × 0.90 × 0.746 / 0.92 = 73.0 kW. Monthly hours = 24 × 30 = 720 hours. Energy = 73.0 × 720 = 52,560 kWh/month. At $0.08/kWh: Cost = 52,560 × $0.08 = $4,205/month. Annual: $50,460/year. Efficiency Impact: Standard efficiency (90%): 100 HP motor uses 100 × 0.746 / 0.90 = 82.9 kW. Premium efficiency (95%): 100 HP motor uses 100 × 0.746 / 0.95 = 78.5 kW. Difference: 82.9 - 78.5 = 4.4 kW saved. Annual savings: 4.4 kW × 8760 hr × $0.08/kWh = $3,083/year. Premium motor may cost $1000 more but saves $3083/year. Payback: 4 months. Total Ownership Cost: Purchase price: One-time. Energy cost: Ongoing, usually exceeds purchase price within 1-2 years. Maintenance: Ongoing, 5-10% of purchase price annually. For 100 HP motor, 20-year life, 8760 hr/year, $0.08/kWh: Purchase: $10,000 (one-time). Energy: $50,460/year × 20 = $1,009,200 (98% of total cost). Maintenance: $500/year × 20 = $10,000 (1% of total cost). Total: $1,029,200. Energy dominates total cost! Even small efficiency improvements save significantly."
+        },
+        {
+          title: "International Variations",
+          content: "Different HP Definitions: Mechanical/Imperial HP: 550 ft⋅lb/s = 745.7 W. USA, Canada, used for motors. Metric HP (Pferdestärke PS, Chevaux-Vapeur CV): 75 kgf⋅m/s = 735.5 W. Germany, France, some others. 0.986 mechanical HP. Electrical HP: Exactly 746 W. Simplified for electrical calculations. Boiler HP: 33,475 BTU/hr = 9.81 kW. Archaic, rarely used today. Conversions: 1 Mechanical HP = 745.7 W = 1.014 Metric HP = 0.999 Electrical HP. 1 Metric HP = 735.5 W = 0.986 Mechanical HP. Always specify which HP when precision matters! Voltage and Frequency: North America: 460V, 60 Hz common for industrial. Europe/Asia: 400V, 50 Hz common. 60 Hz motors produce 20% more power than 50 Hz (same frame). 50 Hz motors have 20% higher torque per HP. Motor Design Standards: NEMA (USA): Defines frame sizes, performance. Dimensions, mounting, shaft size standardized. Ratings in HP. IEC (International): Defines frame sizes, performance (different from NEMA). Dimensions slightly different. Ratings in kW. Frame sizes incompatible: NEMA 286T ≠ IEC 160M (different dimensions). Selecting Motors Globally: Specify voltage, frequency, and power. Use kW to avoid HP confusion. Check if NEMA or IEC frame needed. Verify nameplate shows both HP and kW. For replacement: Match frame size exactly (NEMA or IEC). Convert power carefully considering voltage/frequency differences."
+        }
+      ]
+    }
   }
 };
 

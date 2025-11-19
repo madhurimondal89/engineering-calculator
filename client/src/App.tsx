@@ -82,6 +82,15 @@ import PowerTriangle from "@/pages/calculators/PowerTriangle";
 import ElectricalLoad from "@/pages/calculators/ElectricalLoad";
 import EnergyCost from "@/pages/calculators/EnergyCost";
 
+// Motor Calculators
+import MotorStartingCurrent from "@/pages/calculators/MotorStartingCurrent";
+import MotorFullLoadCurrent from "@/pages/calculators/MotorFullLoadCurrent";
+import MotorEfficiency from "@/pages/calculators/MotorEfficiency";
+import MotorPowerFactor from "@/pages/calculators/MotorPowerFactor";
+import MotorSpeed from "@/pages/calculators/MotorSpeed";
+import MotorTorque from "@/pages/calculators/MotorTorque";
+import MotorHPKW from "@/pages/calculators/MotorHPKW";
+
 function Router() {
   return (
     <Switch>
@@ -161,6 +170,15 @@ function Router() {
       <Route path="/calculators/power-triangle" component={PowerTriangle} />
       <Route path="/calculators/electrical-load" component={ElectricalLoad} />
       <Route path="/calculators/energy-cost" component={EnergyCost} />
+      
+      {/* Motor Calculators */}
+      <Route path="/calculators/motor-starting-current" component={MotorStartingCurrent} />
+      <Route path="/calculators/motor-full-load-current" component={MotorFullLoadCurrent} />
+      <Route path="/calculators/motor-efficiency" component={MotorEfficiency} />
+      <Route path="/calculators/motor-power-factor" component={MotorPowerFactor} />
+      <Route path="/calculators/motor-speed" component={MotorSpeed} />
+      <Route path="/calculators/motor-torque" component={MotorTorque} />
+      <Route path="/calculators/motor-hp-kw" component={MotorHPKW} />
       
       {/* Fallback to 404 */}
       <Route component={NotFound} />
