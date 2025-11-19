@@ -3012,41 +3012,47 @@ const accordionContent: Record<string, CalculatorAccordionContent> = {
     howToUse: {
       title: "How to Use This Calculator",
       steps: [
+        "Select the number of bands (4, 5, or 6) using the band count selector at the top.",
         "For Color to Value: Select the color of each band on your resistor from the dropdown menus.",
-        "The calculator displays a visual representation of the resistor with your selected colors.",
+        "The calculator displays a live visual representation of the resistor with your selected colors.",
         "The resistance value, tolerance, and acceptable range are calculated automatically.",
-        "For Value to Color: Enter the desired resistance value in ohms in the input field.",
-        "The calculator will display the appropriate color bands needed for that resistance.",
-        "Refer to the color code reference chart at the bottom for quick reference.",
-        "The calculator supports standard 4-band resistors with ±5% tolerance (Gold) as default."
+        "For 6-band resistors, the temperature coefficient (ppm/°C) is also displayed.",
+        "For Value to Color: Choose the target band count, then enter the desired resistance value in ohms.",
+        "Select tolerance and (for 6-band) temperature coefficient from the dropdown menus.",
+        "The calculator will display the appropriate color bands needed for that resistance value.",
+        "Refer to the comprehensive color code reference chart at the bottom for quick reference."
       ]
     },
     metrics: {
       title: "Understanding the Metrics",
       items: [
         {
-          term: "1st Band (First Digit)",
-          definition: "The first significant digit of the resistance value. Colors range from Black (0) to White (9). This forms the tens place of the base resistance number."
+          term: "4-Band Resistors",
+          definition: "Standard consumer-grade resistors with 2 significant digits. Format: Digit1-Digit2-Multiplier-Tolerance. Typical tolerances: ±5% (Gold), ±10% (Silver), ±20% (None). Example: Brown-Black-Red-Gold = 10×100 = 1kΩ ±5%."
         },
         {
-          term: "2nd Band (Second Digit)",
-          definition: "The second significant digit of the resistance value. Also ranges from Black (0) to White (9). This forms the ones place of the base resistance number."
+          term: "5-Band Resistors",
+          definition: "Precision resistors with 3 significant digits for more accurate values. Format: Digit1-Digit2-Digit3-Multiplier-Tolerance. Typical tolerances: ±1% (Brown), ±0.5% (Green), ±0.1% (Violet). Example: Brown-Black-Black-Brown-Brown = 100×10 = 1kΩ ±1%."
         },
         {
-          term: "3rd Band (Multiplier)",
-          definition: "The multiplier that determines the magnitude of resistance. Black = ×1, Brown = ×10, Red = ×100, up to Violet = ×10M. Gold and Silver represent decimal multipliers (×0.1 and ×0.01)."
+          term: "6-Band Resistors",
+          definition: "High-precision resistors with 3 significant digits plus temperature coefficient. Format: Digit1-Digit2-Digit3-Multiplier-Tolerance-TempCoeff. Used in critical applications requiring thermal stability. Example: Brown-Black-Black-Brown-Brown-Red = 1kΩ ±1% 50ppm/°C."
         },
         {
-          term: "4th Band (Tolerance)",
-          definition: "Indicates the precision or acceptable deviation from the nominal value. Gold = ±5%, Silver = ±10%, Brown = ±1%, Red = ±2%. No band (or just resistor body color) = ±20%."
+          term: "Temperature Coefficient (ppm/°C)",
+          definition: "Indicates how much the resistance changes per degree Celsius. Measured in parts per million (ppm). Brown=100ppm/°C, Red=50ppm/°C, Orange=15ppm/°C. Lower ppm means better stability across temperature changes. Only present on 6-band resistors."
+        },
+        {
+          term: "Multiplier Band",
+          definition: "Determines the magnitude of resistance by powers of 10. Black=×1, Brown=×10, Red=×100, Orange=×1k, Yellow=×10k, Green=×100k, Blue=×1M, Violet=×10M. Gold=×0.1 and Silver=×0.01 for sub-ohm values."
+        },
+        {
+          term: "Tolerance",
+          definition: "The acceptable deviation from nominal value. 4-band: Gold=±5%, Silver=±10%, None=±20%. 5/6-band: Brown=±1%, Red=±2%, Green=±0.5%, Blue=±0.25%, Violet=±0.1%, Grey=±0.05%. Precision circuits require tighter tolerances."
         },
         {
           term: "Resistance Value",
-          definition: "The calculated resistance in ohms (Ω), kilohms (kΩ), or megohms (MΩ). Calculated as: (First Digit × 10 + Second Digit) × Multiplier."
-        },
-        {
-          term: "Acceptable Range",
-          definition: "The minimum and maximum resistance values considering the tolerance. A 1kΩ ±5% resistor can measure anywhere from 950Ω to 1050Ω and still be within specification."
+          definition: "For 4-band: (D1×10 + D2) × Multiplier. For 5/6-band: (D1×100 + D2×10 + D3) × Multiplier. Displayed in Ω, kΩ, or MΩ automatically. The calculator shows the exact value and its acceptable range based on tolerance."
         }
       ]
     },
@@ -3055,17 +3061,18 @@ const accordionContent: Record<string, CalculatorAccordionContent> = {
       sections: [
         {
           title: "What is a Resistor Color Code?",
-          content: "The resistor color code is a standardized marking system used to indicate the resistance value, tolerance, and sometimes the temperature coefficient of resistors. Since resistors are often too small to print numbers on, colored bands provide a compact, reliable way to encode this information. The system was developed in the 1920s and standardized by the Electronic Industries Alliance (EIA). The most common format uses 4 colored bands, though 5-band and 6-band resistors exist for higher precision applications."
+          content: "The resistor color code is a standardized marking system used to indicate the resistance value, tolerance, and sometimes the temperature coefficient of resistors. Since resistors are often too small to print numbers on, colored bands provide a compact, reliable way to encode this information. The system was developed in the 1920s and standardized by the Electronic Industries Alliance (EIA). Three formats exist: 4-band resistors (2 significant digits) for general use, 5-band resistors (3 significant digits) for precision applications, and 6-band resistors (3 digits + temperature coefficient) for critical applications requiring thermal stability."
         },
         {
           title: "How to Read Color Bands",
           content: [
-            "Hold the resistor so the tolerance band (usually Gold or Silver) is on the right",
-            "The first band (leftmost) represents the first significant digit (0-9)",
-            "The second band represents the second significant digit (0-9)",
-            "The third band is the multiplier (power of 10 to multiply by)",
-            "The fourth band is the tolerance (precision of the resistor)",
-            "If there's a fifth band, it indicates temperature coefficient in ppm/°C"
+            "Identify the band count: 4-band (common), 5-band (precision), or 6-band (high-precision with temp coefficient)",
+            "Hold the resistor so the tolerance band is on the right (usually Gold, Silver, or Brown)",
+            "4-Band: Read left to right: Digit1, Digit2, Multiplier, Tolerance",
+            "5-Band: Read left to right: Digit1, Digit2, Digit3, Multiplier, Tolerance",
+            "6-Band: Read left to right: Digit1, Digit2, Digit3, Multiplier, Tolerance, Temperature Coefficient",
+            "The first band often has a wider spacing or the body is asymmetric to indicate orientation",
+            "When in doubt, measure with a multimeter to verify the value"
           ]
         },
         {
