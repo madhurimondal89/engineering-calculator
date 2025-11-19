@@ -13,6 +13,13 @@ This is a full-stack calculator hub built with React, TypeScript, Express, and T
 
 ## Recent Changes
 
+**November 19, 2025 - Header Navigation Updates ✅ COMPLETE**
+- Added "Back" button in header (only visible on calculator pages)
+- Added "Home" tab linking to https://www.calculatorfree.in/ (opens in new tab)
+- Conditional rendering based on route detection (useLocation hook)
+- Mobile-responsive: "Back" text hidden on small screens, icon always visible
+- All E2E tests passed (11 steps)
+
 **November 19, 2025 - Informational Accordion Sections ✅ COMPLETE**
 - Added educational accordion sections to ALL 19 calculators
 - Three sections per calculator: "How to Use", "Understanding the Metrics", "Detailed Guide"
