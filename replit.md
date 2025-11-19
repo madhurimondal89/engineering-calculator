@@ -4,14 +4,36 @@ A professional web application providing engineering and science calculators org
 
 ## Overview
 
-This is a full-stack calculator hub built with React, TypeScript, Express, and Tailwind CSS. It provides 19 specialized calculators across four engineering/science categories:
+This is a full-stack calculator hub built with React, TypeScript, Express, and Tailwind CSS. It provides 32 specialized calculators across five engineering/science categories:
 
-- **Electrical** (11 calculators): Ohm's Law, Power Calculator, Resistor Calculator, Voltage Divider, Current Divider, Series & Parallel Resistance, Series & Parallel Capacitor, Series & Parallel Inductor, Conductance, Impedance, Reactance
-- **Mechanical**: Force, Torque, Pressure Calculators  
-- **Civil**: Beam Deflection, Concrete Volume Calculators
-- **General Science**: Velocity, Density, Acceleration Calculators
+- **Electrical - Basic** (11 calculators): Ohm's Law, Power Calculator, Resistor Calculator, Voltage Divider, Current Divider, Series & Parallel Resistance, Series & Parallel Capacitor, Series & Parallel Inductor, Conductance, Impedance, Reactance
+- **AC Circuits** (13 calculators): AC Power, Power Factor, RLC Series, RLC Parallel, Resonant Frequency, Q-Factor, Phase Angle, Time Constant, AC Voltage Divider, AC Current Divider, Impedance Matching, Transformer, Three Phase Power
+- **Mechanical** (3 calculators): Force, Torque, Pressure Calculators  
+- **Civil** (2 calculators): Beam Deflection, Concrete Volume Calculators
+- **General Science** (3 calculators): Velocity, Density, Acceleration Calculators
 
 ## Recent Changes
+
+**November 19, 2025 - Batch 2: AC Circuits Calculators ✅ COMPLETE**
+- Added 13 new AC Circuits calculators expanding electrical category
+- AC Power Calculator (real, reactive, apparent power with power factor)
+- Power Factor Calculator (PF analysis, correction calculations)
+- RLC Series & Parallel Circuit Calculators (impedance, phase angle, resonance)
+- Resonant Frequency Calculator (f₀ = 1/(2π√LC))
+- Q-Factor Calculator (quality factor from bandwidth or components)
+- Phase Angle Calculator (from power values, impedance, or time delay)
+- Time Constant Calculator (RC and RL circuits with tab switching)
+- AC Voltage/Current Divider Calculators (complex impedance division)
+- Impedance Matching Calculator (VSWR, reflection coefficient, return loss)
+- Transformer Calculator (turns ratio, step-up/step-down detection)
+- Three Phase Power Calculator (Star/Delta configurations with tabs)
+- Created 1,260+ lines of comprehensive SEO-optimized educational content
+- All 13 calculators include full accordion sections (How to Use, Metrics, Detailed Guide)
+- Updated footer to 5-column layout with dedicated "AC Circuits" column
+- Total calculators expanded from 19 to 32
+- All calculators tested end-to-end (57 test steps)
+- Architect approved as production-ready
+- Formulas verified: AC power triangle, transformer equations, star/delta conversions, RLC impedance, impedance matching, time constants
 
 **November 19, 2025 - Header Navigation Updates ✅ COMPLETE**
 - Added "Back" button in header (only visible on calculator pages)
