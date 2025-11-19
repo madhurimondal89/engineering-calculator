@@ -4,6 +4,7 @@ import { z } from "zod";
 export const calculatorCategories = [
   "Electrical",
   "AC Circuits",
+  "Electronics",
   "Mechanical", 
   "Civil",
   "General Science"
@@ -280,6 +281,104 @@ export const calculators: Calculator[] = [
     category: "AC Circuits",
     path: "/calculators/three-phase-power",
     icon: "Layers"
+  },
+  
+  // Electronics
+  {
+    id: "led-resistor",
+    title: "LED Resistor Calculator",
+    description: "Calculate the required current-limiting resistor for LEDs",
+    category: "Electronics",
+    path: "/calculators/led-resistor",
+    icon: "Lightbulb"
+  },
+  {
+    id: "voltage-regulator",
+    title: "Voltage Regulator Calculator",
+    description: "Calculate voltage regulator components and power dissipation",
+    category: "Electronics",
+    path: "/calculators/voltage-regulator",
+    icon: "Gauge"
+  },
+  {
+    id: "bjt-biasing",
+    title: "BJT Biasing Calculator",
+    description: "Calculate BJT transistor biasing resistors and operating point",
+    category: "Electronics",
+    path: "/calculators/bjt-biasing",
+    icon: "Cpu"
+  },
+  {
+    id: "mosfet",
+    title: "MOSFET Calculator",
+    description: "Calculate MOSFET parameters including drain current and power",
+    category: "Electronics",
+    path: "/calculators/mosfet",
+    icon: "Chip"
+  },
+  {
+    id: "op-amp",
+    title: "Op-Amp Calculator",
+    description: "Calculate operational amplifier gain and feedback resistor values",
+    category: "Electronics",
+    path: "/calculators/op-amp",
+    icon: "Triangle"
+  },
+  {
+    id: "555-timer",
+    title: "555 Timer Calculator",
+    description: "Calculate timing components for 555 timer circuits (astable and monostable)",
+    category: "Electronics",
+    path: "/calculators/555-timer",
+    icon: "Clock"
+  },
+  {
+    id: "rc-filter",
+    title: "RC Filter Calculator",
+    description: "Calculate RC low-pass and high-pass filter cutoff frequency and response",
+    category: "Electronics",
+    path: "/calculators/rc-filter",
+    icon: "Filter"
+  },
+  {
+    id: "capacitor-charge",
+    title: "Capacitor Charge/Discharge Calculator",
+    description: "Calculate capacitor voltage and charge over time during charging and discharging",
+    category: "Electronics",
+    path: "/calculators/capacitor-charge",
+    icon: "BatteryCharging"
+  },
+  {
+    id: "zener-diode",
+    title: "Zener Diode Calculator",
+    description: "Calculate Zener diode voltage regulation and current-limiting resistor",
+    category: "Electronics",
+    path: "/calculators/zener-diode",
+    icon: "Zap"
+  },
+  {
+    id: "transistor-amplifier",
+    title: "Transistor Amplifier Gain Calculator",
+    description: "Calculate transistor amplifier voltage gain and input/output impedance",
+    category: "Electronics",
+    path: "/calculators/transistor-amplifier",
+    icon: "Volume2"
+  },
+  {
+    id: "wheatstone-bridge",
+    title: "Wheatstone Bridge Calculator",
+    description: "Calculate unknown resistance using Wheatstone bridge configuration",
+    category: "Electronics",
+    path: "/calculators/wheatstone-bridge",
+    icon: "Grid"
+  },
+  {
+    id: "decibel",
+    title: "Decibel (dB) Calculator",
+    description: "Convert between power ratio, voltage ratio, and decibels",
+    category: "Electronics",
+    path: "/calculators/decibel",
+    icon: "Radio"
   },
   
   // Mechanical
