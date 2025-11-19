@@ -3,7 +3,7 @@
 ## Overview
 This project is a professional web application providing a comprehensive hub of specialized engineering and science calculators. Built with React, TypeScript, Express, and Tailwind CSS, the application aims to be a go-to resource for engineers, students, and enthusiasts, offering accurate calculations and educational content. The business vision is to capture a significant market share in online technical calculators by providing a superior user experience and a vast array of tools.
 
-**Current Status**: 66 calculators across 9 categories (Electrical, AC Circuits, Electronics, Wire & Cable, Mechanical, Civil, General Science, Power System, Motor)
+**Current Status**: 74 calculators across 10 categories (Electrical, AC Circuits, Electronics, Wire & Cable, Power System, Motor, Battery & Energy, Mechanical, Civil, General Science)
 
 ## User Preferences
 - Uses Inter font for UI, JetBrains Mono for numerical displays
@@ -33,7 +33,28 @@ The application follows a full-stack architecture with a React-based frontend an
 - **Form Validation**: All calculators use React Hook Form + Zod validation with z.coerce.number() pattern for robust number input handling. Empty inputs map to undefined, preventing NaN errors while allowing users to clear fields.
 - **Key Features**: Dark mode, input validation with real-time error messages, clear unit indicators, responsive design, professional UI, and formula display.
 
-### Recent Additions (Batch 6 - Motor Calculators)
+### Recent Additions (Batch 7 - Battery & Energy Calculators)
+**Completed**: November 19, 2025
+
+Added 8 comprehensive Battery & Energy calculators covering energy storage and battery systems:
+1. **Battery Capacity** - Convert between Ah, Wh, and kWh for different battery voltages
+2. **Battery Life** - Estimate runtime based on capacity, load current, and depth of discharge
+3. **Battery Charge Time** - Calculate charging time with charger current and efficiency
+4. **Battery Series Parallel** - Determine voltage and capacity for series/parallel battery configurations
+5. **Solar Panel Output** - Calculate daily energy production from solar panels
+6. **UPS Backup Time** - Estimate UPS runtime with battery capacity and inverter efficiency
+7. **Energy Storage** - Size battery banks for off-grid and backup power systems
+8. **Battery Internal Resistance** - Calculate internal resistance from voltage measurements
+
+**Technical Implementation**:
+- All calculators use React Hook Form + Zod validation with z.coerce.number()
+- Optional fields with .default() pattern to prevent undefined validation errors
+- Critical calculation fixes: charger efficiency handling, inverter efficiency application, kWh-to-Wh unit conversion
+- Comprehensive educational content: 145+ lines covering battery chemistry, Peukert's law, DoD, cycle life, charging methods
+- E2E tested with Playwright - all 8 calculators verified with realistic inputs and expected outputs
+- Data-testid attributes on all interactive elements for robust testing
+
+### Previous Additions (Batch 6 - Motor Calculators)
 **Completed**: November 19, 2025
 
 Added 7 comprehensive Motor calculators covering motor analysis and conversions:

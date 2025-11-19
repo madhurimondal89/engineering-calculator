@@ -256,7 +256,7 @@ export default function EnergyStorage() {
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-muted-foreground">Required Energy:</span>
                     <div className="text-2xl font-bold font-mono" data-testid="text-required-energy">
-                      {results.requiredEnergy.toFixed(2)} kWh
+                      {(results.requiredEnergy / 1000).toFixed(2)} kWh
                     </div>
                   </div>
                 </div>
@@ -269,7 +269,7 @@ export default function EnergyStorage() {
                     </div>
                   </div>
                   <div className="text-xs text-muted-foreground mt-1" data-testid="text-batteries-description">
-                    Based on 200Ah standard battery
+                    Based on specified battery capacity
                   </div>
                 </div>
 
