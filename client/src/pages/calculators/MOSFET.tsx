@@ -35,26 +35,32 @@ export default function MOSFET() {
       return;
     }
 
-    // Calculate drain current using square-law model
-    // Id = Kn × (Vgs - Vth)²
-    const vov = vgsVal - vthVal; // Overdrive voltage
-    const id = knVal * vov * vov;
+    const vov = vgsVal - vthVal; // Overdrive voltage (Vgs - Vth)
+    let id: number;
+    let gm: number;
+    let region: string;
 
-    // Determine operating region
-    let region = "";
+    // Determine operating region and calculate drain current
     if (vdsVal < vov) {
+      // Triode (Linear) Region: Vds < (Vgs - Vth)
+      // Id = Kn × [(Vgs-Vth)×Vds - Vds²/2]
       region = "Triode/Linear";
-      // In triode: Id = Kn × [(Vgs-Vth)×Vds - Vds²/2]
-      // Using simplified calculation here
+      id = knVal * (vov * vdsVal - (vdsVal * vdsVal) / 2);
+      
+      // Transconductance in triode: gm = Kn × Vds
+      gm = knVal * vdsVal;
     } else {
+      // Saturation Region: Vds ≥ (Vgs - Vth)
+      // Id = Kn × (Vgs - Vth)²
       region = "Saturation";
+      id = knVal * vov * vov;
+      
+      // Transconductance in saturation: gm = 2 × Kn × (Vgs - Vth)
+      gm = 2 * knVal * vov;
     }
 
-    // Power dissipation
+    // Power dissipation: Pd = Id × Vds
     const power = id * vdsVal;
-
-    // Transconductance gm = 2 × √(Kn × Id)
-    const gm = 2 * Math.sqrt(knVal * id);
 
     setResult({ id: id * 1000, power, region, gm: gm * 1000 }); // Convert to mA and mS
   };
