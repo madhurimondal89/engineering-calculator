@@ -4,15 +4,38 @@ A professional web application providing engineering and science calculators org
 
 ## Overview
 
-This is a full-stack calculator hub built with React, TypeScript, Express, and Tailwind CSS. It provides 32 specialized calculators across five engineering/science categories:
+This is a full-stack calculator hub built with React, TypeScript, Express, and Tailwind CSS. It provides 44 specialized calculators across six engineering/science categories:
 
 - **Electrical - Basic** (11 calculators): Ohm's Law, Power Calculator, Resistor Calculator, Voltage Divider, Current Divider, Series & Parallel Resistance, Series & Parallel Capacitor, Series & Parallel Inductor, Conductance, Impedance, Reactance
 - **AC Circuits** (13 calculators): AC Power, Power Factor, RLC Series, RLC Parallel, Resonant Frequency, Q-Factor, Phase Angle, Time Constant, AC Voltage Divider, AC Current Divider, Impedance Matching, Transformer, Three Phase Power
+- **Electronics** (12 calculators): LED Resistor, Voltage Regulator, BJT Biasing, MOSFET, Op-Amp, 555 Timer, RC Filter, Capacitor Charge/Discharge, Zener Diode, Transistor Amplifier Gain, Wheatstone Bridge, Decibel
 - **Mechanical** (3 calculators): Force, Torque, Pressure Calculators  
 - **Civil** (2 calculators): Beam Deflection, Concrete Volume Calculators
 - **General Science** (3 calculators): Velocity, Density, Acceleration Calculators
 
 ## Recent Changes
+
+**November 19, 2025 - Batch 3: Electronics Calculators ✅ COMPLETE**
+- Added 12 new Electronics calculators expanding the hub to new category
+- LED Resistor Calculator (current-limiting resistor: R = (Vs - Vf) / If)
+- Voltage Regulator Calculator (linear regulator power dissipation and efficiency)
+- BJT Biasing Calculator (voltage divider bias resistor values)
+- MOSFET Calculator (drain current with triode/saturation region detection: fixed to properly calculate Id = Kn×[(Vgs-Vth)×Vds - Vds²/2] for triode, Id = Kn×(Vgs-Vth)² for saturation)
+- Op-Amp Calculator (inverting/non-inverting amplifier gain with tab switching)
+- 555 Timer Calculator (astable/monostable timing circuits with frequency and pulse width)
+- RC Filter Calculator (low-pass/high-pass cutoff frequency fc = 1/(2πRC))
+- Capacitor Charge/Discharge Calculator (exponential charging Vc = V×(1-e^(-t/RC)))
+- Zener Diode Regulator Calculator (series resistor and power calculations)
+- Transistor Amplifier Gain Calculator (common-emitter gain Av = -Rc/Re)
+- Wheatstone Bridge Calculator (unknown resistance Rx = R2×R3/R1)
+- Decibel Calculator (power/voltage ratio conversions with dB = 10×log₁₀ or 20×log₁₀)
+- Created 1,500+ lines of comprehensive SEO-optimized educational content
+- All 12 calculators include full accordion sections (How to Use, Metrics, Detailed Guide)
+- Updated footer to 6-column layout with dedicated "Electronics" column
+- Total calculators expanded from 32 to 44 across 6 categories
+- All calculators tested end-to-end (66+ test steps including triode/saturation region tests)
+- Architect approved as production-ready after MOSFET calculator fix
+- Formulas verified: MOSFET operating regions, Op-Amp gain equations, 555 timing, RC filters, exponential charging, Wheatstone bridge balance, decibel conversions
 
 **November 19, 2025 - Batch 2: AC Circuits Calculators ✅ COMPLETE**
 - Added 13 new AC Circuits calculators expanding electrical category
