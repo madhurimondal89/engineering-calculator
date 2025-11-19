@@ -4761,6 +4761,255 @@ const accordionContent: Record<string, CalculatorAccordionContent> = {
         }
       ]
     }
+  },
+
+  // Battery & Energy Calculators
+  "battery-capacity": {
+    howToUse: {
+      title: "How to Use the Battery Capacity Calculator",
+      steps: [
+        "Enter the battery capacity value in either Ah (amp-hours) or Wh (watt-hours)",
+        "Select the appropriate unit (Ah or Wh) from the dropdown",
+        "Enter the battery voltage in volts (e.g., 12V, 24V, 48V)",
+        "Click 'Calculate Battery Capacity' to see the results",
+        "View capacity in Ah, energy in Wh and kWh"
+      ]
+    },
+    metrics: {
+      title: "Understanding Battery Capacity Metrics",
+      items: [
+        {
+          term: "Amp-Hours (Ah)",
+          definition: "Battery capacity measured in amp-hours. Indicates how many amps a battery can deliver for one hour. A 100Ah battery can theoretically supply 100A for 1 hour, 50A for 2 hours, or 10A for 10 hours. Actual capacity varies with discharge rate (Peukert's Law)."
+        },
+        {
+          term: "Watt-Hours (Wh)",
+          definition: "Energy storage measured in watt-hours. Calculated as Ah × Voltage. More universal than Ah since it accounts for voltage. A 12V 100Ah battery stores 1200Wh. A 24V 50Ah battery also stores 1200Wh (same energy, different voltage/capacity)."
+        },
+        {
+          term: "Kilowatt-Hours (kWh)",
+          definition: "Energy in thousands of watt-hours. Common unit for utility billing and large batteries. 1 kWh = 1000Wh. A 12V 100Ah battery = 1.2 kWh. Tesla Powerwall 2: 13.5 kWh. Electric vehicles: 40-100+ kWh battery packs."
+        },
+        {
+          term: "C-Rate",
+          definition: "Discharge/charge rate relative to capacity. 1C = discharge in 1 hour. 0.5C = discharge in 2 hours. 2C = discharge in 30 minutes. For 100Ah battery: 1C = 100A, 0.5C = 50A, 2C = 200A. Higher C-rates reduce effective capacity (Peukert effect)."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Battery Capacity",
+      sections: [
+        {
+          title: "Understanding Ah vs Wh",
+          content: "Amp-Hours (Ah): Current-based rating. Depends on voltage for energy content. 100Ah at 12V ≠ 100Ah at 24V in energy. Use when: Comparing batteries of same voltage. Calculating runtime with known current draw. Sizing battery banks (series/parallel). Watt-Hours (Wh): Energy-based rating. Independent of voltage configuration. 1200Wh is same energy regardless of voltage. Use when: Comparing different voltage systems. Calculating energy needs. Sizing off-grid solar systems. Conversion: Wh = Ah × V. Ah = Wh / V. Example 1: 12V 100Ah battery. Energy = 100 × 12 = 1200Wh = 1.2kWh. Example 2: 48V 200Ah battery. Energy = 200 × 48 = 9600Wh = 9.6kWh. Example 3: 5kWh energy storage at 24V. Capacity = 5000 / 24 = 208.3Ah. Which to Use: Electrical specs: Use Ah (current ratings, wire sizing). Energy analysis: Use Wh or kWh (runtime, solar sizing). System comparison: Use Wh (compare different voltages)."
+        },
+        {
+          title: "Battery Chemistry and Capacity",
+          content: "Lead-Acid Batteries: Flooded, AGM, Gel types. Nominal: 2.0V per cell, 6V/12V common. Capacity at 20-hour rate (0.05C). Usable: 50% DoD recommended. 100Ah rated = 50Ah usable. Deep cycle can handle 80% DoD. Capacity decreases with age, cycles. Cost: $100-200 per kWh. Applications: Automotive, UPS, off-grid solar. Lithium-Ion Batteries: LiFePO4, NMC, NCA chemistries. Nominal: 3.2-3.7V per cell. Capacity at 1C or higher discharge rate. Usable: 80-90% DoD safe. 100Ah rated = 80-90Ah usable. Minimal capacity fade with cycles. Cost: $300-600 per kWh (declining). Applications: EVs, portable power, grid storage. Nickel-Metal Hydride (NiMH): Nominal: 1.2V per cell. Capacity at 0.2C discharge. Usable: 80% DoD typical. Self-discharge: Higher than Li-ion. Cost: $200-400 per kWh. Applications: Hybrid vehicles, power tools. Comparison Example: All rated 100Ah nominal. Lead-acid 12V: 1.2kWh total, 0.6kWh usable (50% DoD). LiFePO4 12.8V: 1.28kWh total, 1.02kWh usable (80% DoD). NiMH 12V: 1.2kWh total, 0.96kWh usable (80% DoD). Li-ion provides nearly 2× usable energy per Ah rating!"
+        },
+        {
+          title: "Calculating Runtime",
+          content: "Basic Formula: Runtime (hours) = Capacity (Ah) / Load Current (A). Must account for: Depth of Discharge (DoD). Inverter efficiency (if using). Peukert effect (capacity loss at high currents). Temperature effects. Example 1 (Simple): 12V 100Ah battery, 5A load. Runtime = 100 / 5 = 20 hours (theoretical). Realistic with 50% DoD: 20 × 0.5 = 10 hours. Example 2 (With Inverter): 12V 200Ah battery, 500W AC load, 85% inverter efficiency. DC current = 500 / (12 × 0.85) = 49.0A. Runtime = 200 / 49.0 = 4.08 hours (100% DoD). With 50% DoD: 4.08 × 0.5 = 2.04 hours. Example 3 (High Discharge): 12V 100Ah battery rated at 20-hour rate. Load: 50A (0.5C). Peukert exponent 1.3 for lead-acid. Effective capacity = 100 / (50/5)^(1.3-1) = 82.4Ah. Runtime = 82.4 / 50 = 1.65 hours. At 20-hour rate (5A): 100 / 5 = 20 hours. At 1-hour rate (50A): only 1.65 hours (not 2 hours)! Temperature Impact: 25°C (77°F): Rated capacity. 0°C (32°F): 70-80% capacity. -20°C (-4°F): 50% capacity or less. 40°C (104°F): 105% capacity but accelerated aging. Cold significantly reduces available energy!"
+        }
+      ]
+    }
+  },
+
+  "battery-life": {
+    howToUse: {
+      title: "How to Use the Battery Life Calculator",
+      steps: [
+        "Enter the battery capacity in Ah or mAh",
+        "Select the appropriate capacity unit from the dropdown",
+        "Enter the load current in A or mA",
+        "Select the current unit (match your measurement)",
+        "Enter the discharge rate (typical: 0.8 for 80% usable capacity)",
+        "Click 'Calculate Battery Life' to see runtime results",
+        "View runtime in hours, minutes, and days"
+      ]
+    },
+    metrics: {
+      title: "Understanding Battery Life Metrics",
+      items: [
+        {
+          term: "Runtime Hours",
+          definition: "How long the battery will last under the specified load. Calculated from usable capacity divided by load current. Assumes constant load and ideal conditions. Actual runtime may vary with temperature, battery age, and discharge profile."
+        },
+        {
+          term: "Discharge Rate",
+          definition: "Percentage of total capacity safely usable. Lead-acid: 0.5 (50%) for longevity, 0.8 (80%) for deep-cycle. Lithium: 0.8-0.9 (80-90%) safe. Affects cycle life: Deeper discharge = fewer cycles. Balance runtime needs vs battery lifespan."
+        },
+        {
+          term: "Usable Capacity",
+          definition: "Actual amp-hours available for use after applying discharge rate limit. Total capacity × discharge rate. 100Ah battery at 80% discharge = 80Ah usable. Protects battery from damage and extends cycle life."
+        },
+        {
+          term: "Load Current",
+          definition: "Continuous current drawn by the connected load. Higher current = shorter runtime. Also reduces effective capacity (Peukert effect). Measure actual current for accuracy. Don't rely solely on nameplate ratings."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Battery Runtime Estimation",
+      sections: [
+        {
+          title: "Factors Affecting Battery Life",
+          content: "Discharge Rate (C-Rate): Low rate (0.05C): Battery delivers full rated capacity or more. Medium rate (0.2-1C): Near-rated capacity. High rate (>1C): Reduced capacity due to Peukert effect. Example: 100Ah battery. At 5A (0.05C): ~100Ah available, 20hr runtime. At 50A (0.5C): ~85Ah available, 1.7hr runtime (not 2hr). At 100A (1C): ~75Ah available, 0.75hr runtime (not 1hr). Temperature: 25°C (77°F): Rated capacity. 0°C (32°F): 70-80% capacity (cold slows chemical reactions). -20°C (-4°F): 50% capacity (extreme cold). 40°C (104°F): 105% capacity but accelerated aging. Battery Age: New battery: 100% capacity. After 500 cycles (lead-acid): 80% capacity typical. After 2000 cycles (lithium): 80% capacity typical. Old batteries have reduced runtime even at same current. State of Charge: Full charge: Maximum runtime. 50% charged: Half runtime. Don't confuse DoD limit with current charge state. Battery Chemistry: Lead-acid: Significant Peukert effect, temperature sensitive. Lithium: Minimal Peukert effect, less temperature sensitive. NiMH: Moderate Peukert effect, higher self-discharge. Load Profile: Constant load: Easier to calculate. Variable load: Average current over time. Pulsed loads: May not affect runtime much if duty cycle low. Starting surges: Can cause voltage sag, reduce runtime."
+        },
+        {
+          title: "Peukert's Law",
+          content: "Concept: Battery capacity decreases at higher discharge rates. Named after German scientist Wilhelm Peukert (1897). More current = less total energy delivered. Formula: t = C / I^k. Where: t = time to discharge. C = nominal capacity (Ah). I = discharge current (A). k = Peukert exponent. Peukert Exponent (k): Perfect battery: k = 1.0 (capacity independent of rate). Lead-acid: k = 1.1-1.4 (1.3 typical). AGM: k = 1.05-1.15. Lithium: k = 1.0-1.05 (nearly ideal). Lower k = better performance at high currents. Example Calculations: 100Ah lead-acid (k=1.3). Rated at 20-hour rate (5A). 5A discharge: t = 100 / 5^1.3 = 20hr (by definition). 10A discharge: t = 100 / 10^1.3 = 5.25hr (not 10hr!). 50A discharge: t = 100 / 50^1.3 = 0.76hr (not 2hr!). Capacity at each rate: 5A: 5 × 20 = 100Ah (rated). 10A: 10 × 5.25 = 52.5Ah (47.5% loss). 50A: 50 × 0.76 = 38Ah (62% loss). Practical Impact: Sizing batteries: Oversize for high-current loads. 1000W inverter load from 12V = 83A. Need 200Ah+ battery for reasonable runtime. Small 100Ah battery would give poor performance. Deep cycle vs starting: Starting batteries: High k, poor deep discharge. Deep cycle: Lower k, better at sustained loads. Runtime calculations: Must account for Peukert or overestimate runtime. Use actual discharge current, not average. Lithium Advantage: k ≈ 1.0, full capacity at high rates. 100Ah lithium delivers 100Ah even at 100A (1C). Can use smaller battery for same performance."
+        },
+        {
+          title: "Depth of Discharge and Cycle Life",
+          content: "Relationship: Deeper discharge = fewer cycles before 80% capacity. Shallower discharge = more cycles. Trade-off: runtime per cycle vs total cycles. DoD vs Cycle Life (Lead-Acid): 100% DoD: ~200-300 cycles. 80% DoD: ~400-500 cycles. 50% DoD: ~1200-1500 cycles. 30% DoD: ~3000-4000 cycles. 10% DoD: ~10,000+ cycles. DoD vs Cycle Life (Lithium): 100% DoD: ~1000-1500 cycles. 80% DoD: ~2000-3000 cycles. 50% DoD: ~5000-8000 cycles. 30% DoD: ~10,000+ cycles. Total Energy Delivered: Lead-acid 100Ah (12V, 1.2kWh): 100% DoD, 300 cycles: 300 × 1.2 = 360 kWh total. 50% DoD, 1500 cycles: 1500 × 0.6 = 900 kWh total (2.5× more). 30% DoD, 4000 cycles: 4000 × 0.36 = 1440 kWh total (4× more). Conclusion: Shallower cycling delivers more total energy. Lithium 100Ah (12.8V, 1.28kWh): 80% DoD, 3000 cycles: 3000 × 1.02 = 3060 kWh total. 50% DoD, 8000 cycles: 8000 × 0.64 = 5120 kWh total (67% more). Still significant but less dramatic than lead-acid. Practical Recommendations: Off-grid solar: Lead-acid at 50% DoD. Lithium at 80% DoD. Daily cycling: Size battery 2× daily energy need (lead-acid). Or 1.25× daily energy (lithium). Occasional use: Can use higher DoD, infrequent cycling. Emergency backup: Size for 50% DoD, extend battery life. EVs: 80-90% DoD acceptable, 10-15 year lifespan. Cost Analysis: Lead-acid: $150 per kWh, 50% DoD, 1500 cycles. Cost per cycle: $150 / 1500 = $0.10/cycle. Cost per kWh delivered: $150 / 900 = $0.17/kWh. Lithium: $500 per kWh, 80% DoD, 3000 cycles. Cost per cycle: $500 / 3000 = $0.17/cycle. Cost per kWh delivered: $500 / 3060 = $0.16/kWh. Similar cost per kWh despite higher upfront cost!"
+        }
+      ]
+    }
+  },
+
+  "battery-charge-time": {
+    howToUse: {
+      title: "How to Use the Battery Charge Time Calculator",
+      steps: ["Enter battery capacity in Ah or mAh", "Select capacity unit", "Enter charger current in A or mA", "Select current unit", "Enter charger efficiency (typical: 0.85)", "Enter current charge level percentage (0-100%)", "Click 'Calculate Charge Time'"]
+    },
+    metrics: {
+      title: "Understanding Charging Time Metrics",
+      items: [
+        {term: "Charger Current", definition: "Maximum current the charger delivers. Higher current = faster charging but may reduce battery life. Typical: 0.1C-0.5C for lead-acid, up to 1C for lithium."},
+        {term: "Charger Efficiency", definition: "Percentage of input power reaching battery. Typical: 85-95%. Lost as heat. Affects charging time and energy cost."},
+        {term: "Capacity to Charge", definition: "Amp-hours needed to reach full. Total capacity × (1 - current charge level). Example: 100Ah at 50% = 50Ah to charge."},
+        {term: "Charging Stages", definition: "Bulk: Constant current, fastest. Absorption: Constant voltage, slower top-off. Float: Maintenance trickle charge."}
+      ]
+    },
+    guide: {
+      title: "Complete Battery Charging Guide",
+      sections: [
+        {title: "Charging Methods and Stages", content: "Most chargers use multi-stage charging: Bulk stage provides constant current until battery reaches absorption voltage (typically 80-90% charged). Absorption stage holds constant voltage while current tapers as battery fills. Float stage maintains full charge at lower voltage. Lead-acid: Bulk at 14.4-14.8V, Float at 13.2-13.8V. Lithium: Bulk at 14.4-14.6V (LiFePO4), no float needed. Charging time = (Capacity to charge / Charger current) / Efficiency. Add 15-25% for absorption stage. Fast charging (>0.5C) reduces battery cycle life."},
+        {title: "Safe Charge Rates by Chemistry", content: "Lead-Acid: Maximum 0.3C (C/3), typical 0.1-0.2C. Example: 100Ah battery with 10A charger (0.1C) takes ~12 hours. Lithium: Can handle 1C safely, up to 3C for special cells. Example: 100Ah LiFePO4 with 50A charger (0.5C) takes ~2.5 hours. Fast charging generates heat and reduces cycle life. Cold temperatures (<0°C) require reduced charge rates to prevent damage."},
+        {title: "Temperature Effects on Charging", content: "Cold batteries (<0°C): Charge at maximum 0.05C. Risk of lithium plating in Li-ion batteries. Lead-acid accepts charge poorly when cold. Hot batteries (>45°C): Reduce charge rate or stop. Risk of thermal runaway. Optimal charging: 15-25°C. Monitor battery temperature during fast charging."}
+      ]
+    }
+  },
+
+  "battery-series-parallel": {
+    howToUse: {
+      title: "How to Use Battery Series Parallel Calculator",
+      steps: ["Enter single battery voltage", "Enter single battery capacity (Ah)", "Select configuration type", "Enter number in series (if applicable)", "Enter number in parallel (if applicable)", "Click 'Calculate Configuration'"]
+    },
+    metrics: {
+      title: "Series and Parallel Configuration Basics",
+      items: [
+        {term: "Series Connection", definition: "Batteries connected + to -. Voltages add, capacity stays same. Two 12V 100Ah in series = 24V 100Ah. Used for higher voltage systems."},
+        {term: "Parallel Connection", definition: "Batteries connected + to +, - to -. Capacities add, voltage stays same. Two 12V 100Ah in parallel = 12V 200Ah. Used for higher capacity."},
+        {term: "Series-Parallel", definition: "Combination of both. Increases voltage AND capacity. Four 6V 200Ah batteries: 2S2P = 12V 400Ah total."},
+        {term: "Total Energy", definition: "Wh = Voltage × Capacity. Same regardless of configuration. Four 12V 100Ah: Series (48V 100Ah) = 4800Wh. Parallel (12V 400Ah) = 4800Wh."}
+      ]
+    },
+    guide: {
+      title: "Battery Bank Configuration Guide",
+      sections: [
+        {title: "Series Configuration Details", content: "In series: Voltage = Single voltage × Number in series. Capacity remains same as single battery. All cells carry same current, weakest cell limits entire string. Must match capacities closely. Higher voltage reduces current for same power, allowing smaller wire sizes. Used in: 48V telecom, EV battery packs, high-voltage solar systems."},
+        {title: "Parallel Configuration Details", content: "In parallel: Capacity = Single capacity × Number in parallel. Voltage remains same. Current splits among batteries. Must match voltages closely (within 0.1V) to prevent circulating currents. Higher capacity provides longer runtime. Need heavier wiring for higher total current. Used in: RV/marine house banks, off-grid solar, long-runtime UPS systems."},
+        {title: "Series-Parallel Design Best Practices", content: "Configuration strategy: First determine voltage needed, then capacity, then calculate arrangement. Example: Need 24V 400Ah from 12V 200Ah batteries. Series: 2 for 24V. Parallel: 2 strings for 400Ah. Total: 4 batteries (2S2P). Critical: Each parallel string must have same number of series batteries. Never mix old and new batteries. Use busbars for parallel connections. Fuse each parallel string individually. For lithium: BMS monitors each series cell voltage. Proper voltage balancing essential."}
+      ]
+    }
+  },
+
+  "solar-panel-output": {
+    howToUse: {
+      title: "How to Use Solar Panel Output Calculator",
+      steps: ["Enter panel power rating in watts", "Enter number of panels", "Enter peak sun hours per day for your location", "Enter system efficiency (typical: 0.75)", "Click 'Calculate Solar Output'"]
+    },
+    metrics: {
+      title: "Understanding Solar Panel Output",
+      items: [
+        {term: "Panel Power Rating", definition: "Nameplate wattage under standard test conditions (STC): 1000W/m² irradiance, 25°C cell temp, AM1.5 spectrum. Real-world output typically 75-85% of rated."},
+        {term: "Peak Sun Hours", definition: "Equivalent hours of 1000W/m² sunlight per day. Not same as daylight hours. Varies by location and season. US average: 4-6 hours. Check NREL database for accurate local data."},
+        {term: "System Efficiency", definition: "Overall system losses: Inverter (5-15%), wiring (2-3%), temperature (10-25%), soiling (2-5%), shading (0-80%). Typical: 75% (0.75). Good systems: 80-85%."},
+        {term: "Daily Output", definition: "Energy produced per day: Panel Watts × Panels × Peak Hours × Efficiency. 300W panel, 5 peak hours, 75% efficiency = 1.125 kWh/day."}
+      ]
+    },
+    guide: {
+      title: "Comprehensive Solar Panel Guide",
+      sections: [
+        {title: "Understanding Solar Panel Output", content: "Panel ratings (STC) assume ideal conditions: 1000W/m² irradiance (bright noon sun), 25°C panel temperature, clean panels. Real-world factors: Temperature: Panels lose ~0.5%/°C above 25°C. 45°C panel = 10% power loss. Irradiance: Morning/evening <1000W/m², clouds reduce further. Angle/orientation: Off-optimal reduces output 10-30%. Soiling: Dust/pollen reduces 2-5%, bird droppings 20%+ if covering cells. Shading: Even small shade can reduce output 50%+ due to cell mismatch. System efficiency accounts for all losses. Daily energy = Rated power × Peak sun hours × System efficiency. Example: 5kW system, 5 peak sun hours, 75% efficiency = 5 × 5 × 0.75 = 18.75 kWh/day."},
+        {title: "Peak Sun Hours by Location", content: "Peak sun hours vary by: Latitude: Equator ~6 hours, polar regions ~2-3 hours. Season: Summer > Spring/Fall > Winter. Example, Phoenix AZ: Summer 7 hours, Winter 5 hours. Weather: Cloudy climates have lower peak hours. Pacific Northwest ~3-4 hours. Southwest US ~5-7 hours. Find accurate data: NREL PVWatts database, NASA SSE, Local solar installers. Use annual average for sizing, consider seasonal variation for off-grid systems."},
+        {title: "System Sizing for Off-Grid", content: "Calculate daily energy need: List all loads with power and hours used. Example: Lights 100W × 5hr, Fridge 150W × 24hr, TV 80W × 3hr. Daily total: 500 + 3600 + 240 = 4340Wh = 4.34kWh. Size solar array: Daily need / (Peak hours × Efficiency). 4.34kWh / (5hr × 0.75) = 1.16kW. Add 25% margin: 1.16 × 1.25 = 1.45kW. Use 5× 300W panels = 1.5kW array. Size battery: Daily need × Days autonomy / DoD. 4.34kWh × 2 days / 0.5 = 17.4kWh. Use 12V system: 17400/12 = 1450Ah. Build with 4× 12V 400Ah batteries (1600Ah, some margin)."}
+      ]
+    }
+  },
+
+  "ups-backup-time": {
+    howToUse: {
+      title: "How to Use UPS Backup Time Calculator",
+      steps: ["Enter battery voltage (typically 12V)", "Enter battery capacity in Ah", "Enter connected load power in watts", "Enter inverter efficiency (typical: 0.85)", "Enter depth of discharge limit (typical: 0.8 for lithium, 0.5 for lead-acid)", "Click 'Calculate Backup Time'"]
+    },
+    metrics: {
+      title: "UPS Backup Time Metrics",
+      items: [
+        {term: "Battery Voltage", definition: "Nominal voltage of UPS battery bank. Common: 12V (small UPS), 24V (medium), 48V (large). Higher voltage = lower current = smaller wires."},
+        {term: "Load Power", definition: "Total wattage of connected equipment. Measure actual power, not just nameplate. Computers use 50-70% of PSU rating. Consider inrush current for motors/compressors."},
+        {term: "Inverter Efficiency", definition: "Percentage of DC battery power converted to AC output. Typical: 85-95%. Higher quality inverters = higher efficiency. Efficiency drops at very light loads (<20%)."},
+        {term: "Depth of Discharge", definition: "How much battery capacity to use. Lead-acid: 50% for longevity. Lithium: 80% safe. Deeper discharge = shorter battery life."}
+      ]
+    },
+    guide: {
+      title: "UPS Backup Time Complete Guide",
+      sections: [
+        {title: "Calculating UPS Runtime", content: "Basic formula: Runtime = (Battery Wh × DoD) / (Load W / Efficiency). Example: 12V 100Ah battery (1200Wh), 500W load, 85% efficiency, 50% DoD. Usable energy = 1200 × 0.5 = 600Wh. Actual load = 500 / 0.85 = 588W. Runtime = 600 / 588 = 1.02 hours = 61 minutes. Add derating factors: Battery age: Reduce capacity by 20% after 3-5 years. Temperature: Reduce 20% if room is hot or cold. High discharge rate: Peukert effect reduces capacity. Realistic runtime: 61 × 0.8 × 0.8 = 39 minutes. Always oversize UPS for adequate runtime."},
+        {title: "UPS Sizing Best Practices", content: "Measure actual load: Use kill-a-watt meter for computers/equipment. Don't rely on nameplate ratings. Typical computer: 100-300W actual (400-600W PSU). Server rack: Measure each device, sum total. Determine required runtime: Desktop PC: 5-10 minutes (enough to save and shutdown). Home office: 30-60 minutes (weather outage). Server room: 2-4 hours (critical systems). Data center: 15-30 minutes (until generator starts). Size battery capacity: Runtime needed × Load / (Voltage × DoD × Efficiency). Example for 1-hour runtime, 1000W load, 24V, 50% DoD, 85% eff: Capacity = 1 × 1000 / (24 × 0.5 × 0.85) = 98Ah. Use 2× 12V 100Ah in series (24V 100Ah). Add 20% margin for battery aging and inefficiencies."},
+        {title: "Extending UPS Battery Life", content: "Factors affecting battery life: Operating temperature: 25°C = rated life. 30°C = 50% life reduction. Keep UPS in cool room. Cycle depth: Shallow discharge = longer life. Size battery larger to reduce DoD per cycle. Float voltage: Proper float voltage prevents sulfation. Too high = water loss, too low = sulfation. Maintenance: Replace batteries every 3-5 years (lead-acid). Test UPS monthly under load. Keep batteries clean and terminals tight. Upgrade to lithium: Lithium UPS batteries: 3-5× longer life (10+ years). 80% DoD safe vs 50% lead-acid. Lighter weight, smaller footprint. Higher upfront cost but lower TCO."}
+      ]
+    }
+  },
+
+  "energy-storage": {
+    howToUse: {
+      title: "How to Use Energy Storage Calculator",
+      steps: ["Enter daily energy consumption in kWh", "Enter desired days of autonomy", "Enter system voltage (12V, 24V, or 48V)", "Enter depth of discharge limit", "Enter battery efficiency (typical: 0.85)", "Click 'Calculate Storage Requirements'"]
+    },
+    metrics: {
+      title: "Energy Storage System Metrics",
+      items: [
+        {term: "Daily Energy Consumption", definition: "Total kWh used per day. Measure from utility bill or energy monitor. Include all loads: lights, appliances, HVAC, pumps. Plan for future loads."},
+        {term: "Days of Autonomy", definition: "Days system can run without charging. Off-grid solar: 2-3 days typical. Backup power: 1 day minimum. Critical loads: 3-7 days. More days = larger, costlier battery."},
+        {term: "System Voltage", definition: "Battery bank voltage. 12V: Small systems <3kW. 24V: Medium 3-5kW. 48V: Large >5kW. Higher voltage = lower current = cheaper wiring/components."},
+        {term: "Required Capacity", definition: "Battery Ah needed at system voltage. (Daily kWh × Days × 1000) / (Voltage × DoD × Efficiency). Accounts for usable capacity and losses."}
+      ]
+    },
+    guide: {
+      title: "Complete Energy Storage System Design",
+      sections: [
+        {title: "Sizing Energy Storage Systems", content: "Step 1 - Calculate daily load: Inventory all electrical loads. Lights: 10× 10W LED × 5hr = 500Wh. Refrigerator: 150W × 24hr × 0.4 = 1440Wh (40% duty cycle). Computer: 200W × 8hr = 1600Wh. Total: 3540Wh = 3.54kWh/day. Add 20% margin: 3.54 × 1.2 = 4.25kWh/day. Step 2 - Determine days autonomy: Off-grid solar: 2-3 days (for cloudy weather). Emergency backup: 1-2 days. Critical applications: 3-7 days. Example: 3 days autonomy. Total energy: 4.25 × 3 = 12.75kWh. Step 3 - Select voltage: Small (<3kW): 12V. Medium (3-5kW): 24V. Large (>5kW): 48V. Choose 48V for this example. Step 4 - Calculate capacity: Capacity = Energy / (Voltage × DoD × Efficiency). 12.75kWh / (48V × 0.5 × 0.85) = 625Ah at 48V. Using 12V batteries in series: 625Ah ÷ 4 batteries = 625Ah per battery (4S configuration). Use 4× 12V 700Ah batteries in series for margin."},
+        {title: "System Voltage Selection", content: "12V Systems: Pros: Common battery sizes available. Simple wiring, familiar to RV/marine. Many 12V appliances available. Cons: Very high currents (>200A possible). Expensive thick wiring required. Voltage drop issues. Best for: RVs, boats, small cabins <1kW average. 24V Systems: Pros: Half the current of 12V. Good balance of current and voltage. Reasonable wire sizes. Cons: Fewer native 24V appliances. Need step-down for 12V loads. Best for: Medium homes 2-5kW average. Most common for off-grid homes. 48V Systems: Pros: Lowest current for given power. Smallest/cheapest wiring. Most efficient inverters. Standard for large systems. Cons: Higher voltage = more shock hazard. Requires series batteries (complexity). Fewer direct 48V loads. Best for: Large homes >5kW average. Commercial/industrial backup. Grid-tied with storage."},
+        {title: "Battery Technology Selection", content: "Lead-Acid (Flooded): Pros: Lowest upfront cost ($100-150/kWh). Proven technology, 10+ years in stationary use. Easy to recycle. Cons: 50% usable capacity (DoD limit). Requires maintenance (water, equalization). Heavy weight. Temp sensitive. Best for: Budget-conscious off-grid. Infrequent use. Familiar with maintenance. AGM/Gel Lead-Acid: Pros: Sealed, no maintenance. Better cycle life than flooded. Handles higher discharge rates. Cons: Higher cost ($150-250/kWh). Still limited to 50-80% DoD. Temp sensitive. Best for: RV/marine (vibration resistant). Backup power (set and forget). Lithium (LiFePO4): Pros: 80-90% usable capacity. 3000+ cycles at 80% DoD. Lightweight, compact. Minimal temp sensitivity. No maintenance. Cons: High upfront cost ($400-800/kWh). Requires BMS. Some models sensitive to freezing. Best for: Daily cycling applications. Long-term lowest TCO. Space/weight constraints. Cost Comparison Example: 10kWh usable energy needed. Lead-acid: 20kWh nominal (50% DoD) = $2000-3000. 1500 cycles, 30MWh lifetime. Cost: $0.10/kWh. Lithium: 12kWh nominal (80% DoD) = $5000-9000. 3000+ cycles, 36MWh+ lifetime. Cost: $0.14-0.25/kWh. Lead-acid cheaper upfront, lithium better long-term if cycling daily."}
+      ]
+    }
+  },
+
+  "battery-internal-resistance": {
+    howToUse: {
+      title: "How to Use Battery Internal Resistance Calculator",
+      steps: ["Measure open circuit voltage (battery at rest, no load)", "Connect a known load and measure voltage under load", "Measure the load current", "Enter all three values", "Click 'Calculate Internal Resistance'"]
+    },
+    metrics: {
+      title: "Battery Internal Resistance Metrics",
+      items: [
+        {term: "Open Circuit Voltage", definition: "Battery voltage with no load. Measure after 2+ hours rest for lead-acid, 30+ min for lithium. Indicates state of charge. Should be stable if battery healthy."},
+        {term: "Load Voltage", definition: "Battery voltage while delivering current. Always lower than open circuit due to internal resistance drop. Larger drop = higher resistance or heavier load."},
+        {term: "Internal Resistance", definition: "Opposition to current flow inside battery. Calculated: (V_open - V_load) / Current. Lower is better. Increases with age, sulfation, corrosion. Typical: 5-20mΩ new, 50-100mΩ end-of-life."},
+        {term: "Power Loss", definition: "Power dissipated as heat inside battery. = I² × R. Reduces efficiency and runtime. Example: 50A through 20mΩ = 50² × 0.02 = 50W heat loss."}
+      ]
+    },
+    guide: {
+      title: "Battery Internal Resistance Complete Guide",
+      sections: [
+        {title: "Understanding Internal Resistance", content: "Internal resistance (ESR - Equivalent Series Resistance) is the opposition to current flow inside a battery. Composed of: Electrode resistance. Electrolyte resistance. Contact resistance. Separator resistance. Measured: Voltage drop under load / Current. Or: AC impedance (frequency-dependent). Typical values: New lead-acid 12V 100Ah: 5-10mΩ. New lithium 12V 100Ah: 2-5mΩ. End-of-life (either): 50-200mΩ. Lower resistance = Better power delivery. Less voltage sag under load. Higher efficiency. Less heat generation. Resistance increases with: Age and cycling. Sulfation (lead-acid). Corrosion of terminals/connections. Cold temperature. Low state of charge."},
+        {title: "Measuring Internal Resistance", content: "DC Load Test Method: Measure open circuit voltage after rest period. Apply known load (resistor or device). Measure voltage under load. Measure current flowing. Calculate: R = (V_open - V_load) / I. Example: V_open = 12.6V, V_load = 12.0V, I = 30A. R = (12.6 - 12.0) / 30 = 0.02Ω = 20mΩ. AC Impedance Method: Apply small AC signal (typically 1kHz). Measure impedance. More accurate but requires special equipment. Used in battery analyzers. Practical Tips: Use substantial load (0.5-1C) for meaningful measurement. Ensure good connections (clean terminals). Measure when battery is at room temperature. Allow rest period before measuring open circuit voltage. Compare measurements over time to track degradation."},
+        {title: "Internal Resistance and Battery Health", content: "Resistance as health indicator: New battery: Low, stable resistance. Mid-life: Gradual increase (10-20% per year). End-of-life: Rapid increase (2-3× new value). When to replace: Lead-acid: >50mΩ for 12V 100Ah. Lithium: >10mΩ for 12V 100Ah. Or: >2× initial resistance. Or: Noticeable voltage sag under normal loads. Causes of high resistance: Lead-acid: Sulfation: Hard lead sulfate crystals on plates. Corrosion: Internal plate corrosion. Dry-out: Lost electrolyte (flooded cells). Grid corrosion: Positive plate grid oxidation. Lithium: SEI layer growth: Solid Electrolyte Interface thickens with cycles. Dendrite formation: Lithium metal deposits. Electrode degradation: Active material loss. Poor connections: Contact resistance increases. Prevention: Lead-acid: Avoid deep discharge. Maintain proper charge voltage. Keep electrolyte levels (flooded). Equalize regularly (flooded). Lithium: Avoid high charge/discharge currents. Keep in moderate temperature range. Use proper BMS. Store at 30-50% SOC if unused. Both: Keep terminals clean and tight. Avoid prolonged high temperature. Don't over-discharge."}
+      ]
+    }
   }
 };
 

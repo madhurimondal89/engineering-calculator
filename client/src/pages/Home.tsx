@@ -3,7 +3,7 @@ import { CalculatorCard } from "@/components/CalculatorCard";
 import { Header } from "@/components/Header";
 
 export default function Home() {
-  const categories: CalculatorCategory[] = ["Electrical", "AC Circuits", "Electronics", "Wire & Cable", "Power System", "Motor", "Mechanical", "Civil", "General Science"];
+  const categories: CalculatorCategory[] = ["Electrical", "AC Circuits", "Electronics", "Wire & Cable", "Power System", "Motor", "Battery & Energy", "Mechanical", "Civil", "General Science"];
   
   const getCalculatorsByCategory = (category: CalculatorCategory) => {
     return calculators.filter(calc => calc.category === category);

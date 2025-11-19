@@ -8,6 +8,7 @@ export const calculatorCategories = [
   "Wire & Cable",
   "Power System",
   "Motor",
+  "Battery & Energy",
   "Mechanical", 
   "Civil",
   "General Science"
@@ -564,6 +565,72 @@ export const calculators: Calculator[] = [
     category: "Motor",
     path: "/calculators/motor-hp-kw",
     icon: "ArrowLeftRight"
+  },
+  
+  // Battery & Energy
+  {
+    id: "battery-capacity",
+    title: "Battery Capacity Calculator",
+    description: "Convert between amp-hours (Ah) and watt-hours (Wh) and calculate battery capacity",
+    category: "Battery & Energy",
+    path: "/calculators/battery-capacity",
+    icon: "Battery"
+  },
+  {
+    id: "battery-life",
+    title: "Battery Life Calculator",
+    description: "Calculate battery runtime based on capacity, load current, and discharge rate",
+    category: "Battery & Energy",
+    path: "/calculators/battery-life",
+    icon: "Clock"
+  },
+  {
+    id: "battery-charge-time",
+    title: "Battery Charge Time Calculator",
+    description: "Estimate charging time based on battery capacity and charger current",
+    category: "Battery & Energy",
+    path: "/calculators/battery-charge-time",
+    icon: "BatteryCharging"
+  },
+  {
+    id: "battery-series-parallel",
+    title: "Battery Series Parallel Calculator",
+    description: "Calculate voltage and capacity for series and parallel battery configurations",
+    category: "Battery & Energy",
+    path: "/calculators/battery-series-parallel",
+    icon: "GitBranch"
+  },
+  {
+    id: "solar-panel-output",
+    title: "Solar Panel Output Calculator",
+    description: "Calculate solar panel power output based on panel specs and environmental conditions",
+    category: "Battery & Energy",
+    path: "/calculators/solar-panel-output",
+    icon: "Sun"
+  },
+  {
+    id: "ups-backup-time",
+    title: "UPS Backup Time Calculator",
+    description: "Calculate UPS runtime based on battery capacity and connected load",
+    category: "Battery & Energy",
+    path: "/calculators/ups-backup-time",
+    icon: "Shield"
+  },
+  {
+    id: "energy-storage",
+    title: "Energy Storage Calculator",
+    description: "Size energy storage systems for off-grid or backup power applications",
+    category: "Battery & Energy",
+    path: "/calculators/energy-storage",
+    icon: "Database"
+  },
+  {
+    id: "battery-internal-resistance",
+    title: "Battery Internal Resistance Calculator",
+    description: "Calculate battery internal resistance from voltage drop under load",
+    category: "Battery & Energy",
+    path: "/calculators/battery-internal-resistance",
+    icon: "Activity"
   },
   
   // Mechanical

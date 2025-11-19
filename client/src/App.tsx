@@ -91,6 +91,16 @@ import MotorSpeed from "@/pages/calculators/MotorSpeed";
 import MotorTorque from "@/pages/calculators/MotorTorque";
 import MotorHPKW from "@/pages/calculators/MotorHPKW";
 
+// Battery & Energy Calculators
+import BatteryCapacity from "@/pages/calculators/BatteryCapacity";
+import BatteryLife from "@/pages/calculators/BatteryLife";
+import BatteryChargeTime from "@/pages/calculators/BatteryChargeTime";
+import BatterySeriesParallel from "@/pages/calculators/BatterySeriesParallel";
+import SolarPanelOutput from "@/pages/calculators/SolarPanelOutput";
+import UPSBackupTime from "@/pages/calculators/UPSBackupTime";
+import EnergyStorage from "@/pages/calculators/EnergyStorage";
+import BatteryInternalResistance from "@/pages/calculators/BatteryInternalResistance";
+
 function Router() {
   return (
     <Switch>
@@ -179,6 +189,16 @@ function Router() {
       <Route path="/calculators/motor-speed" component={MotorSpeed} />
       <Route path="/calculators/motor-torque" component={MotorTorque} />
       <Route path="/calculators/motor-hp-kw" component={MotorHPKW} />
+      
+      {/* Battery & Energy Calculators */}
+      <Route path="/calculators/battery-capacity" component={BatteryCapacity} />
+      <Route path="/calculators/battery-life" component={BatteryLife} />
+      <Route path="/calculators/battery-charge-time" component={BatteryChargeTime} />
+      <Route path="/calculators/battery-series-parallel" component={BatterySeriesParallel} />
+      <Route path="/calculators/solar-panel-output" component={SolarPanelOutput} />
+      <Route path="/calculators/ups-backup-time" component={UPSBackupTime} />
+      <Route path="/calculators/energy-storage" component={EnergyStorage} />
+      <Route path="/calculators/battery-internal-resistance" component={BatteryInternalResistance} />
       
       {/* Fallback to 404 */}
       <Route component={NotFound} />
