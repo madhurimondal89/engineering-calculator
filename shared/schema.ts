@@ -3,6 +3,7 @@ import { z } from "zod";
 // Calculator category types
 export const calculatorCategories = [
   "Electrical",
+  "AC Circuits",
   "Mechanical", 
   "Civil",
   "General Science"
@@ -173,6 +174,112 @@ export const calculators: Calculator[] = [
     category: "Electrical",
     path: "/calculators/reactance",
     icon: "Radio"
+  },
+  
+  // AC Circuits
+  {
+    id: "ac-power",
+    title: "AC Power Calculator",
+    description: "Calculate real power (P), reactive power (Q), apparent power (S), and power factor",
+    category: "AC Circuits",
+    path: "/calculators/ac-power",
+    icon: "Zap"
+  },
+  {
+    id: "power-factor",
+    title: "Power Factor Calculator",
+    description: "Calculate power factor from real and apparent power or phase angle",
+    category: "AC Circuits",
+    path: "/calculators/power-factor",
+    icon: "TrendingUp"
+  },
+  {
+    id: "rlc-series",
+    title: "RLC Series Circuit Calculator",
+    description: "Calculate impedance, current, and voltage drops in series RLC circuits",
+    category: "AC Circuits",
+    path: "/calculators/rlc-series",
+    icon: "GitMerge"
+  },
+  {
+    id: "rlc-parallel",
+    title: "RLC Parallel Circuit Calculator",
+    description: "Calculate impedance, current, and branch currents in parallel RLC circuits",
+    category: "AC Circuits",
+    path: "/calculators/rlc-parallel",
+    icon: "GitBranch"
+  },
+  {
+    id: "resonant-frequency",
+    title: "Resonant Frequency Calculator",
+    description: "Calculate resonant frequency of LC circuits (fr = 1/(2π√LC))",
+    category: "AC Circuits",
+    path: "/calculators/resonant-frequency",
+    icon: "Radio"
+  },
+  {
+    id: "q-factor",
+    title: "Quality Factor (Q) Calculator",
+    description: "Calculate Q-factor for resonant circuits and bandwidth",
+    category: "AC Circuits",
+    path: "/calculators/q-factor",
+    icon: "Target"
+  },
+  {
+    id: "phase-angle",
+    title: "Phase Angle Calculator",
+    description: "Calculate phase angle between voltage and current in AC circuits",
+    category: "AC Circuits",
+    path: "/calculators/phase-angle",
+    icon: "RotateCcw"
+  },
+  {
+    id: "time-constant",
+    title: "Time Constant Calculator",
+    description: "Calculate time constant for RC (τ = RC) and RL (τ = L/R) circuits",
+    category: "AC Circuits",
+    path: "/calculators/time-constant",
+    icon: "Clock"
+  },
+  {
+    id: "ac-voltage-divider",
+    title: "AC Voltage Divider Calculator",
+    description: "Calculate output voltage in AC voltage divider with impedances",
+    category: "AC Circuits",
+    path: "/calculators/ac-voltage-divider",
+    icon: "Split"
+  },
+  {
+    id: "ac-current-divider",
+    title: "AC Current Divider Calculator",
+    description: "Calculate current distribution in parallel AC branches with impedances",
+    category: "AC Circuits",
+    path: "/calculators/ac-current-divider",
+    icon: "GitBranch"
+  },
+  {
+    id: "impedance-matching",
+    title: "Impedance Matching Calculator",
+    description: "Calculate components needed for impedance matching networks",
+    category: "AC Circuits",
+    path: "/calculators/impedance-matching",
+    icon: "Layers"
+  },
+  {
+    id: "transformer",
+    title: "Transformer Calculator",
+    description: "Calculate transformer voltage, current, turns ratio, and power",
+    category: "AC Circuits",
+    path: "/calculators/transformer",
+    icon: "Repeat"
+  },
+  {
+    id: "three-phase-power",
+    title: "Three Phase Power Calculator",
+    description: "Calculate three-phase power, line and phase voltages, and currents",
+    category: "AC Circuits",
+    path: "/calculators/three-phase-power",
+    icon: "Layers"
   },
   
   // Mechanical
