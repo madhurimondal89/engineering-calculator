@@ -20,6 +20,21 @@ import Conductance from "@/pages/calculators/Conductance";
 import Impedance from "@/pages/calculators/Impedance";
 import Reactance from "@/pages/calculators/Reactance";
 
+// AC Circuit Calculators
+import ACPower from "@/pages/calculators/ACPower";
+import PowerFactor from "@/pages/calculators/PowerFactor";
+import RLCSeries from "@/pages/calculators/RLCSeries";
+import RLCParallel from "@/pages/calculators/RLCParallel";
+import ResonantFrequency from "@/pages/calculators/ResonantFrequency";
+import QFactor from "@/pages/calculators/QFactor";
+import PhaseAngle from "@/pages/calculators/PhaseAngle";
+import TimeConstant from "@/pages/calculators/TimeConstant";
+import ACVoltageDivider from "@/pages/calculators/ACVoltageDivider";
+import ACCurrentDivider from "@/pages/calculators/ACCurrentDivider";
+import ImpedanceMatching from "@/pages/calculators/ImpedanceMatching";
+import Transformer from "@/pages/calculators/Transformer";
+import ThreePhasePower from "@/pages/calculators/ThreePhasePower";
+
 // Mechanical Calculators
 import Force from "@/pages/calculators/Force";
 import Torque from "@/pages/calculators/Torque";
@@ -51,6 +66,21 @@ function Router() {
       <Route path="/calculators/conductance" component={Conductance} />
       <Route path="/calculators/impedance" component={Impedance} />
       <Route path="/calculators/reactance" component={Reactance} />
+      
+      {/* AC Circuit Calculators */}
+      <Route path="/calculators/ac-power" component={ACPower} />
+      <Route path="/calculators/power-factor" component={PowerFactor} />
+      <Route path="/calculators/rlc-series" component={RLCSeries} />
+      <Route path="/calculators/rlc-parallel" component={RLCParallel} />
+      <Route path="/calculators/resonant-frequency" component={ResonantFrequency} />
+      <Route path="/calculators/q-factor" component={QFactor} />
+      <Route path="/calculators/phase-angle" component={PhaseAngle} />
+      <Route path="/calculators/time-constant" component={TimeConstant} />
+      <Route path="/calculators/ac-voltage-divider" component={ACVoltageDivider} />
+      <Route path="/calculators/ac-current-divider" component={ACCurrentDivider} />
+      <Route path="/calculators/impedance-matching" component={ImpedanceMatching} />
+      <Route path="/calculators/transformer" component={Transformer} />
+      <Route path="/calculators/three-phase-power" component={ThreePhasePower} />
       
       {/* Mechanical Calculators */}
       <Route path="/calculators/force" component={Force} />
