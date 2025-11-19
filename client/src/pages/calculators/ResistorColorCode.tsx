@@ -108,13 +108,16 @@ export default function ResistorColorCode() {
       return null;
     }
 
-    // Find the appropriate multiplier
-    let digit1 = 0, digit2 = 0, multiplier = 1;
+    // Available multiplier values from the color bands
+    const availableMultipliers = multiplierColors.map(c => c.value).sort((a, b) => a - b);
+    const minMultiplier = Math.min(...availableMultipliers); // 0.01
+    const maxMultiplier = Math.max(...availableMultipliers); // 10000000
     
     // Normalize to two significant digits
     let normalized = resistance;
     let mult = 1;
     
+    // First, get normalized to range [10, 100)
     while (normalized >= 100) {
       normalized /= 10;
       mult *= 10;
@@ -125,16 +128,61 @@ export default function ResistorColorCode() {
       mult /= 10;
     }
 
-    digit1 = Math.floor(normalized / 10);
-    digit2 = Math.floor(normalized % 10);
-    multiplier = mult;
+    // Now constrain multiplier to available range
+    // If multiplier is below minimum, adjust digits upward
+    if (mult < minMultiplier) {
+      const scaleFactor = minMultiplier / mult;
+      normalized *= scaleFactor;
+      mult = minMultiplier;
+      
+      // If normalized went above 100, scale back
+      while (normalized >= 100) {
+        normalized /= 10;
+        mult *= 10;
+      }
+    }
+    
+    // If multiplier is above maximum, adjust digits downward
+    if (mult > maxMultiplier) {
+      const scaleFactor = mult / maxMultiplier;
+      normalized *= scaleFactor;
+      mult = maxMultiplier;
+      
+      // If normalized went below 10, scale up
+      while (normalized < 10 && mult > minMultiplier) {
+        normalized *= 10;
+        mult /= 10;
+      }
+    }
 
-    // Find closest matching colors
+    // Extract digits (with rounding to avoid floating point precision issues)
+    // Round to avoid 46.9999999 being interpreted as 46 instead of 47
+    const roundedNormalized = Math.round(normalized * 10) / 10;
+    let digit1 = Math.floor(roundedNormalized / 10);
+    let digit2 = Math.round(roundedNormalized % 10);
+
+    // Ensure digits are in valid range [0-9]
+    if (digit1 > 9) {
+      // Round up to next decade
+      digit1 = 1;
+      digit2 = 0;
+      mult *= 10;
+    }
+    
+    // Ensure digit2 is also in valid range
+    if (digit2 > 9) {
+      digit2 = 9;
+    }
+
+    // Find closest matching multiplier from available colors
+    const closestMultiplier = availableMultipliers.reduce((prev, curr) => 
+      Math.abs(curr - mult) < Math.abs(prev - mult) ? curr : prev
+    );
+
+    // Find colors
     const color1 = digitColors.find(c => c.value === digit1)?.name ?? "Black";
     const color2 = digitColors.find(c => c.value === digit2)?.name ?? "Black";
-    const color3 = multiplierColors.reduce((prev, curr) => 
-      Math.abs(curr.value - multiplier) < Math.abs(prev.value - multiplier) ? curr : prev
-    ).name;
+    const color3 = multiplierColors.find(c => c.value === closestMultiplier)?.name ?? "Black";
 
     return { color1, color2, color3 };
   };
