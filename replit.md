@@ -4,16 +4,38 @@ A professional web application providing engineering and science calculators org
 
 ## Overview
 
-This is a full-stack calculator hub built with React, TypeScript, Express, and Tailwind CSS. It provides 45 specialized calculators across six engineering/science categories:
+This is a full-stack calculator hub built with React, TypeScript, Express, and Tailwind CSS. It provides 50 specialized calculators across seven engineering/science categories:
 
 - **Electrical - Basic** (12 calculators): Ohm's Law, Power Calculator, Resistor Calculator, Resistor Color Code, Voltage Divider, Current Divider, Series & Parallel Resistance, Series & Parallel Capacitor, Series & Parallel Inductor, Conductance, Impedance, Reactance
 - **AC Circuits** (13 calculators): AC Power, Power Factor, RLC Series, RLC Parallel, Resonant Frequency, Q-Factor, Phase Angle, Time Constant, AC Voltage Divider, AC Current Divider, Impedance Matching, Transformer, Three Phase Power
 - **Electronics** (12 calculators): LED Resistor, Voltage Regulator, BJT Biasing, MOSFET, Op-Amp, 555 Timer, RC Filter, Capacitor Charge/Discharge, Zener Diode, Transistor Amplifier Gain, Wheatstone Bridge, Decibel
+- **Wire & Cable** (5 calculators): Wire Gauge, Wire Current Capacity, Voltage Drop, Wire Resistance, Conduit Fill
 - **Mechanical** (3 calculators): Force, Torque, Pressure Calculators  
 - **Civil** (2 calculators): Beam Deflection, Concrete Volume Calculators
 - **General Science** (3 calculators): Velocity, Density, Acceleration Calculators
 
 ## Recent Changes
+
+**November 19, 2025 - Batch 4: Wire & Cable Calculators ✅ COMPLETE**
+- Added 5 new Wire & Cable calculators creating a new category for electrical wiring applications
+- Wire Gauge Calculator: AWG ↔ metric conversion (diameter, area, resistance). Bidirectional: AWG→metrics or diameter→AWG. Supports 4/0 through 40 AWG with "X/0" format parsing (4/0, 3/0, 2/0, 1/0). Formula: R = ρ×L/A, Area = π(d/2)²
+- Wire Current Capacity Calculator: NEC Table 310.16 ampacity based on gauge (14 AWG to 4/0) and installation method (Conduit/Raceway, Chassis Wiring, Open Air). 75°C copper conductors with temperature derating factors
+- Voltage Drop Calculator: Single-phase (Vd = 2×I×R×L/1000) and three-phase (Vd = √3×I×R×L/1000) calculations. Shows voltage drop (V), percentage drop (%), and voltage at load. NEC recommends max 3% for branch circuits
+- Wire Resistance Calculator: Material-based resistance (Copper, Aluminum, Silver, Gold) using R = ρ×L/A. Multiple units for length (m/ft/cm/mm) and diameter (mm/cm/in). Copper resistivity: 1.68×10⁻⁸ Ω·m at 20°C
+- Conduit Fill Calculator: NEC Chapter 9 compliant fill percentages (40% for 3+ conductors, 31% for 2, 53% for 1). EMT, PVC Schedule 40, Rigid Metal Conduit types. Shows max conductors, fill %, conduit area, wire area
+- Created 1,600+ lines of comprehensive SEO-optimized educational content covering AWG standards, NEC requirements, ampacity tables, voltage drop limits, material resistivity, conduit fill rules
+- All 5 calculators include full accordion sections (How to Use, Understanding the Metrics, Detailed Guide)
+- Updated Home.tsx and footer to 7-column layout with dedicated "Wire & Cable" column
+- Architect initial review identified two critical issues in Wire Gauge calculator
+- **Fixed Issue 1**: Added all missing AWG values (25, 27, 29, 31-40) and 3/0, 2/0, 1/0 for complete 4/0-40 coverage
+- **Fixed Issue 2**: Implemented "X/0" format parsing with parseAWGInput() and formatAWGDisplay() functions to handle "4/0", "3/0", "2/0", "1/0" inputs
+- All E2E tests passed (55+ test steps including edge cases: 4/0→0.4600", 3/0→0.4096", 40→0.0031", 25→0.0179", 31→0.0089")
+- Voltage drop calculations verified: Single-phase 120V/15A/100ft = 4.83%, Three-phase 480V/50A/200ft = 1.77%
+- Current capacity verified: 12 AWG Conduit = 20A, Open Air = 35A
+- Conduit fill verified: 3/4" EMT with 12 AWG = 16 conductors (39.9%), 10 AWG = 10 conductors (39.6%)
+- Architect final review: All calculators approved as production-ready
+- Total calculators expanded from 45 to 50 across 7 categories
+- Formulas verified: AWG logarithmic progression, NEC ampacity tables, voltage drop equations, material resistivity, conduit fill percentages
 
 **November 19, 2025 - Resistor Color Code Calculator (4/5/6-Band Support) ✅ COMPLETE**
 - Enhanced Resistor Color Code Calculator with full 4/5/6-band resistor support
