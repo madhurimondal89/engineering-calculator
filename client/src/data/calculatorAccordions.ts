@@ -1234,6 +1234,868 @@ const accordionContent: Record<string, CalculatorAccordionContent> = {
         }
       ]
     }
+  },
+
+  // AC Circuit Calculators
+  "ac-power": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter the RMS voltage (Vrms) in volts.",
+        "Enter the RMS current (Irms) in amperes.",
+        "Enter the power factor (cos θ) as a value between 0 and 1.",
+        "The calculator computes real power (P), reactive power (Q), apparent power (S), and phase angle (θ).",
+        "Results show power values in watts and var, with automatic unit conversion for large values."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Real Power (P)",
+          definition: "The actual power consumed by the load and converted to useful work, measured in watts (W). It represents energy consumption that appears on your electricity bill."
+        },
+        {
+          term: "Reactive Power (Q)",
+          definition: "Power that oscillates between source and load without being consumed, measured in volt-amperes reactive (VAR). It's required for magnetic fields in motors and transformers."
+        },
+        {
+          term: "Apparent Power (S)",
+          definition: "The product of RMS voltage and RMS current, measured in volt-amperes (VA). It represents the total power flowing in the circuit regardless of phase angle."
+        },
+        {
+          term: "Power Factor (cos θ)",
+          definition: "The ratio of real power to apparent power, ranging from 0 to 1. Higher power factor means more efficient power usage with less reactive power."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to AC Power",
+      sections: [
+        {
+          title: "Understanding AC Power",
+          content: "In AC circuits, power has three components: real power (P), reactive power (Q), and apparent power (S). Unlike DC circuits where P = V × I, AC circuits require considering the phase angle between voltage and current. Real power does actual work, reactive power maintains magnetic/electric fields, and apparent power is the vector sum of both. The power triangle (S² = P² + Q²) visualizes these relationships."
+        },
+        {
+          title: "Power Formulas",
+          content: "Apparent power: S = Vrms × Irms. Real power: P = S × cos θ = Vrms × Irms × cos θ. Reactive power: Q = S × sin θ = Vrms × Irms × sin θ. The phase angle θ represents the angular difference between voltage and current waveforms. Inductive loads (motors, transformers) have lagging power factor (current lags voltage), while capacitive loads have leading power factor."
+        },
+        {
+          title: "Practical Applications",
+          content: [
+            "Sizing electrical equipment: generators, transformers, and cables rated in VA or kVA",
+            "Power factor correction: reducing reactive power improves efficiency and reduces costs",
+            "Electrical bill analysis: utilities charge for both real and reactive power in industrial settings",
+            "Motor efficiency: understanding power factor helps optimize motor performance",
+            "Renewable energy systems: inverters and grid-tie systems must manage power factor"
+          ]
+        },
+        {
+          title: "Power Factor Importance",
+          content: "Low power factor means high current for the same real power, causing increased losses in cables and transformers. Utilities may impose power factor penalties below 0.8-0.9. Power factor correction using capacitors reduces reactive power, lowering apparent power and current. Industrial facilities often install capacitor banks for this purpose. Unity power factor (1.0) is ideal but rarely achieved except with resistive loads."
+        },
+        {
+          title: "Common Mistakes",
+          content: [
+            "Confusing RMS and peak values: AC power calculations require RMS (root mean square) values",
+            "Ignoring power factor: assuming P = V × I without cos θ leads to significant errors",
+            "Wrong units: mixing watts, VA, and VAR without proper conversion",
+            "Forgetting three-phase: single-phase formulas don't apply to three-phase systems",
+            "Neglecting harmonics: non-linear loads create harmonic distortion affecting power measurements"
+          ]
+        }
+      ]
+    }
+  },
+
+  "power-factor": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter the real power (P) in watts or kilowatts.",
+        "Enter the reactive power (Q) in VAR or kVAR.",
+        "The calculator computes power factor (cos θ), apparent power (S), and phase angle (θ).",
+        "Alternatively, enter apparent power and phase angle to find real and reactive power.",
+        "Results classify power factor quality: excellent (>0.95), good (0.85-0.95), or needs improvement (<0.85)."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Power Factor (PF)",
+          definition: "The cosine of the phase angle between voltage and current (cos θ), ranging from 0 to 1. It indicates how effectively electrical power is being converted to useful work."
+        },
+        {
+          term: "Displacement Power Factor",
+          definition: "The power factor caused by the phase shift between fundamental voltage and current. It's correctable using capacitors or inductors for reactive compensation."
+        },
+        {
+          term: "Phase Angle (θ)",
+          definition: "The angular difference between voltage and current waveforms, measured in degrees. Positive angles indicate inductive loads (lagging), negative angles indicate capacitive loads (leading)."
+        },
+        {
+          term: "Power Factor Classification",
+          definition: "Leading (capacitive, θ < 0°), Unity (resistive, θ = 0°), or Lagging (inductive, θ > 0°). Most industrial loads are inductive with lagging power factor."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Power Factor",
+      sections: [
+        {
+          title: "What is Power Factor?",
+          content: "Power factor is the ratio of real power (doing useful work) to apparent power (total power). It represents electrical efficiency: PF = P/S = cos θ. A power factor of 1.0 means all power is used effectively. Lower power factor means more current flows for the same useful power, causing losses and requiring larger equipment. Inductive loads (motors, transformers, fluorescent lights) typically have power factor between 0.6-0.9."
+        },
+        {
+          title: "Why Power Factor Matters",
+          content: "Low power factor increases current for the same real power, causing higher I²R losses in cables and transformers. It requires larger wire sizes and electrical equipment rated for higher apparent power. Utilities impose power factor penalties because low PF loads stress the grid and reduce capacity. Improving power factor from 0.7 to 0.95 can reduce current by 26%, significantly lowering energy costs and equipment stress. Industrial facilities save thousands annually through power factor correction."
+        },
+        {
+          title: "Power Factor Correction",
+          content: [
+            "Capacitor Banks: Most common method, adds capacitive reactance to offset inductive loads",
+            "Synchronous Condensers: Rotating machines that provide dynamic power factor correction",
+            "Static VAR Compensators (SVC): Electronic systems for fast, precise reactive power control",
+            "Active Harmonic Filters: Address both power factor and harmonic distortion simultaneously",
+            "Proper Motor Sizing: Oversized motors run at low power factor; correct sizing improves PF"
+          ]
+        },
+        {
+          title: "Calculating Correction Capacitance",
+          content: "To improve power factor from PF₁ to PF₂, required capacitive reactive power: Qc = P × (tan θ₁ - tan θ₂). For example, improving a 100 kW load from 0.7 to 0.95 PF requires Qc = 100 × (1.02 - 0.329) = 69 kVAR of capacitance. At 400V, C = Qc / (2πfV²) gives the capacitor value. This calculation helps size power factor correction equipment accurately."
+        },
+        {
+          title: "Power Factor in Practice",
+          content: "Typical power factors: Incandescent lamps (~1.0), LED drivers (0.9-0.95), Fluorescent lights (0.5-0.95 depending on ballast), Induction motors at full load (0.85-0.9), Induction motors at light load (0.5-0.7), Welding equipment (0.5-0.7), Transformers (0.9-0.95). Industrial plants target 0.95 or higher. Residential power factor is generally good (0.9+) due to balanced loads. Commercial buildings with many motors may need correction."
+        }
+      ]
+    }
+  },
+
+  "rlc-series": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter the resistance (R) in ohms.",
+        "Enter the inductance (L) in henries or millihenries.",
+        "Enter the capacitance (C) in farads or microfarads.",
+        "Enter the frequency (f) in hertz.",
+        "The calculator computes inductive reactance (XL), capacitive reactance (XC), total impedance (Z), phase angle, and circuit type.",
+        "Results indicate whether the circuit is resistive, inductive, or capacitive dominant."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Inductive Reactance (XL)",
+          definition: "Opposition to current flow caused by inductance, calculated as XL = 2πfL. It increases with frequency and inductance, measured in ohms."
+        },
+        {
+          term: "Capacitive Reactance (XC)",
+          definition: "Opposition to current flow caused by capacitance, calculated as XC = 1/(2πfC). It decreases with frequency and capacitance, measured in ohms."
+        },
+        {
+          term: "Total Impedance (Z)",
+          definition: "The combined opposition to AC current from resistance and reactances, calculated as Z = √(R² + (XL - XC)²). It determines current magnitude in the circuit."
+        },
+        {
+          term: "Phase Angle (θ)",
+          definition: "The angular phase shift between voltage and current, calculated as θ = arctan((XL - XC)/R). Positive means inductive (lagging), negative means capacitive (leading)."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to RLC Series Circuits",
+      sections: [
+        {
+          title: "Understanding Series RLC Circuits",
+          content: "In a series RLC circuit, resistance (R), inductance (L), and capacitance (C) are connected in a single path, sharing the same current. The voltage across each component depends on its impedance. Total impedance Z = R + j(XL - XC) combines resistance and net reactance. At low frequencies, capacitive reactance dominates; at high frequencies, inductive reactance dominates. At resonance (XL = XC), only resistance remains, and impedance is minimum."
+        },
+        {
+          title: "Impedance and Phase Relationships",
+          content: "Voltage across resistor is in phase with current. Inductor voltage leads current by 90°, capacitor voltage lags by 90°. These 90° phase-shifted voltages partially cancel. The phase angle θ = arctan((XL - XC)/R) determines whether voltage leads (inductive) or lags (capacitive) the current. At resonance, θ = 0° and circuit is purely resistive. The impedance triangle relates R, (XL - XC), and Z geometrically."
+        },
+        {
+          title: "Frequency Response",
+          content: [
+            "Below Resonance (f < f₀): XC > XL, circuit is capacitive, voltage lags current",
+            "At Resonance (f = f₀): XC = XL, circuit is resistive, minimum impedance Z = R",
+            "Above Resonance (f > f₀): XL > XC, circuit is inductive, voltage leads current",
+            "Bandwidth: Range of frequencies where current exceeds 70.7% of maximum",
+            "Quality Factor Q: Determines sharpness of resonance peak, Q = (XL or XC)/R at resonance"
+          ]
+        },
+        {
+          title: "Practical Applications",
+          content: "Series RLC circuits form the basis of radio tuners, selecting desired frequency while rejecting others. They're used in filter circuits for signal processing and noise reduction. Antenna matching networks use series RLC to maximize power transfer. Power supply filters smooth rectified DC by blocking AC ripple. Impedance matching networks transform load impedance for maximum power transfer. Understanding series RLC is fundamental to RF design, audio engineering, and power electronics."
+        },
+        {
+          title: "Design Considerations",
+          content: "Component tolerance affects resonant frequency; 1% capacitor variation shifts f₀ by 0.5%. Q factor trades off selectivity versus bandwidth: high Q gives narrow bandwidth (sharp tuning). Resistor losses (including inductor DC resistance) limit minimum impedance. Parasitic capacitance and inductance affect high-frequency behavior. Temperature changes component values, shifting resonance. For stable circuits, use low-temperature-coefficient components and allow frequency adjustment."
+        }
+      ]
+    }
+  },
+
+  "rlc-parallel": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter the resistance (R) in ohms.",
+        "Enter the inductance (L) in henries or millihenries.",
+        "Enter the capacitance (C) in farads or microfarads.",
+        "Enter the frequency (f) in hertz.",
+        "The calculator computes branch currents, total impedance, admittance, and phase angle.",
+        "Results show whether the circuit is resistive, inductive, or capacitive at the given frequency."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Admittance (Y)",
+          definition: "The reciprocal of impedance, Y = 1/Z, measured in siemens (S). It represents how easily current flows in the circuit."
+        },
+        {
+          term: "Conductance (G)",
+          definition: "The reciprocal of resistance, G = 1/R, measured in siemens. It's the real part of admittance."
+        },
+        {
+          term: "Susceptance (B)",
+          definition: "The imaginary part of admittance, B = BL - BC, measured in siemens. Inductive susceptance BL = 1/XL, capacitive susceptance BC = 1/XC."
+        },
+        {
+          term: "Total Impedance (Z)",
+          definition: "For parallel RLC, Z = 1/√(G² + (BC - BL)²). At resonance, impedance is maximum (not minimum like series RLC)."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to RLC Parallel Circuits",
+      sections: [
+        {
+          title: "Understanding Parallel RLC Circuits",
+          content: "In parallel RLC circuits, R, L, and C share the same voltage but have different currents. Total current is the vector sum of branch currents. Unlike series RLC where impedance is minimum at resonance, parallel RLC has maximum impedance at resonance. This makes parallel RLC circuits ideal for reject filters and tank circuits. At resonance, inductive and capacitive branch currents cancel, leaving only resistive current."
+        },
+        {
+          title: "Current and Phase Relationships",
+          content: "Voltage is common across all branches. Resistor current is in phase with voltage. Inductor current lags voltage by 90°, capacitor current leads by 90°. These reactive currents partially cancel. Total current I = √(IR² + (IC - IL)²) has magnitude less than arithmetic sum. Phase angle θ = arctan((IC - IL)/IR) shows whether total current leads or lags voltage. At resonance, IC = IL and total current equals IR."
+        },
+        {
+          title: "Resonance in Parallel RLC",
+          content: [
+            "Resonant Frequency: f₀ = 1/(2π√(LC)), same formula as series RLC",
+            "At Resonance: Maximum impedance (Z = R), minimum current for given voltage",
+            "Current Magnification: Branch currents can exceed total current by factor Q",
+            "Quality Factor: Q = R√(C/L) = R/(2πf₀L) determines resonance sharpness",
+            "Tank Circuit: At resonance, energy oscillates between L and C with minimal external current"
+          ]
+        },
+        {
+          title: "Applications of Parallel RLC",
+          content: "Parallel RLC circuits are used extensively in RF oscillators and frequency-selective circuits. They form tank circuits in radio transmitters and receivers, storing energy and determining oscillation frequency. Parallel resonant circuits act as band-reject (notch) filters, blocking signals near resonance while passing others. They're used in impedance matching networks and antenna tuners. Power factor correction capacitors create parallel resonance with grid inductance if not properly designed."
+        },
+        {
+          title: "Design and Practical Considerations",
+          content: "High-Q parallel circuits have very high impedance at resonance, useful for oscillators but can cause voltage spikes. Component ESR (equivalent series resistance) reduces Q and maximum impedance. Parasitics become significant: inductor winding capacitance, capacitor lead inductance. For power applications, consider component current ratings; branch currents can be much larger than line current at resonance. Anti-resonance can occur at unintended frequencies due to parasitics."
+        }
+      ]
+    }
+  },
+
+  "resonant-frequency": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter the inductance (L) in henries, millihenries, or microhenries.",
+        "Enter the capacitance (C) in farads, microfarads, or picofarads.",
+        "The calculator computes resonant frequency (f₀) in Hz, kHz, or MHz.",
+        "Results show angular frequency (ω₀), characteristic impedance (Z₀), and wavelength.",
+        "Use this for designing tuned circuits, filters, and oscillators."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Resonant Frequency (f₀)",
+          definition: "The frequency at which inductive and capacitive reactances are equal (XL = XC), calculated as f₀ = 1/(2π√(LC)). At this frequency, the circuit exhibits special behavior."
+        },
+        {
+          term: "Angular Frequency (ω₀)",
+          definition: "Resonant frequency in radians per second, ω₀ = 2πf₀ = 1/√(LC). It's used in complex impedance calculations."
+        },
+        {
+          term: "Characteristic Impedance (Z₀)",
+          definition: "The ratio of inductive reactance to capacitive susceptance at resonance, Z₀ = √(L/C). It represents the impedance level of the resonant circuit."
+        },
+        {
+          term: "Wavelength (λ)",
+          definition: "The physical distance corresponding to one complete wave cycle, λ = c/f₀, where c is the speed of light (3×10⁸ m/s). It's important for antenna design."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Resonant Frequency",
+      sections: [
+        {
+          title: "Understanding Resonance",
+          content: "Resonance occurs when the energy storage in inductance equals energy storage in capacitance, causing them to exchange energy. At resonant frequency f₀ = 1/(2π√(LC)), inductive reactance XL = 2πf₀L equals capacitive reactance XC = 1/(2πf₀C). In series RLC, impedance is minimum (Z = R); in parallel RLC, impedance is maximum (Z = R). This frequency-selective behavior is fundamental to radio, filters, and oscillators."
+        },
+        {
+          title: "The LC Resonance Formula",
+          content: "The formula f₀ = 1/(2π√(LC)) shows that resonant frequency decreases with larger L or C values. Doubling either L or C reduces f₀ by factor of √2 (0.707). To shift resonance from 100 MHz to 50 MHz, increase L or C by factor of 4. This square root relationship means precise frequency control requires tight component tolerances. A 1% change in L or C causes 0.5% change in f₀."
+        },
+        {
+          title: "Applications of Resonant Circuits",
+          content: [
+            "Radio Tuning: LC circuits select desired station frequency while rejecting others",
+            "Oscillators: Resonant circuits determine oscillation frequency in transmitters and clocks",
+            "Filters: Band-pass filters pass frequencies near resonance, reject others",
+            "Antenna Matching: Quarter-wave antennas resonate at design frequency for efficient radiation",
+            "Wireless Power Transfer: Coupled resonant coils enable efficient energy transfer",
+            "Crystal Oscillators: Quartz crystals act as very high-Q LC resonators"
+          ]
+        },
+        {
+          title: "Quality Factor and Bandwidth",
+          content: "Quality factor Q = f₀/BW relates resonant frequency to bandwidth. High Q means sharp, selective resonance; low Q means broad response. For series RLC, Q = (1/R)√(L/C); for parallel RLC, Q = R√(C/L). Bandwidth BW = f₀/Q is the frequency range where response exceeds 70.7% (-3dB) of maximum. Radio receivers use high Q for station selectivity. Wideband applications need low Q. Component losses limit achievable Q."
+        },
+        {
+          title: "Practical Design Considerations",
+          content: "Component tolerance directly affects resonant frequency accuracy. Use 1% or better tolerance for precise applications. Temperature changes component values, causing frequency drift; use COG/NP0 capacitors for stability. Inductor core saturation at high currents shifts L value and resonance. Parasitic capacitance (wiring, board) adds to intentional C. Parasitic inductance (capacitor leads) adds to intentional L. For VHF/UHF, parasitics dominate and must be minimized or calculated into design."
+        }
+      ]
+    }
+  },
+
+  "q-factor": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Choose calculation mode: from bandwidth, from component values, or from energy.",
+        "For bandwidth method: Enter resonant frequency (f₀) and bandwidth (BW).",
+        "For component method: Enter R, L, C, and frequency for series or parallel RLC.",
+        "For energy method: Enter energy stored and energy dissipated per cycle.",
+        "The calculator computes Q factor, bandwidth (if applicable), and circuit selectivity rating."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Quality Factor (Q)",
+          definition: "A dimensionless parameter indicating resonance sharpness. Q = f₀/BW = (energy stored)/(energy dissipated per cycle). Higher Q means sharper, more selective resonance."
+        },
+        {
+          term: "Bandwidth (BW)",
+          definition: "The frequency range where response exceeds 70.7% (-3dB) of maximum, calculated as BW = f₀/Q. Narrow bandwidth means high selectivity."
+        },
+        {
+          term: "Loaded Q",
+          definition: "The Q factor of a resonant circuit with external load connected, always lower than unloaded Q. It determines practical bandwidth and selectivity."
+        },
+        {
+          term: "Unloaded Q",
+          definition: "The Q factor determined solely by component losses, representing the best-case scenario without external loading."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Q Factor",
+      sections: [
+        {
+          title: "Understanding Q Factor",
+          content: "Quality factor (Q) quantifies how underdamped a resonator is, indicating energy storage efficiency versus energy loss. Mathematically, Q = 2π × (energy stored)/(energy dissipated per cycle). For RLC circuits, Q = f₀/BW relates resonant frequency to bandwidth. High-Q circuits have sharp resonance peaks and good frequency selectivity. Low-Q circuits have broad response and poor selectivity. Typical values: Quartz crystals (Q = 10,000-100,000), LC tank circuits (Q = 50-500), loaded resonators (Q = 10-100)."
+        },
+        {
+          title: "Q Factor Formulas",
+          content: "Series RLC: Q = (1/R)√(L/C) = XL/R = XC/R at resonance. Parallel RLC: Q = R√(C/L) = R/XL = R/XC at resonance. Inductor Q: QL = XL/Rs where Rs is series resistance. Capacitor Q: QC = XC/Rs (usually very high, >1000). From bandwidth: Q = f₀/BW where BW is the -3dB bandwidth. Loaded Q: 1/QL = 1/QU + 1/Qext where QU is unloaded Q and Qext is external Q from loading."
+        },
+        {
+          title: "Q Factor and Bandwidth",
+          content: [
+            "High Q (>100): Narrow bandwidth, sharp selectivity, sensitive to tuning, low loss",
+            "Medium Q (10-100): Moderate bandwidth, good selectivity, typical for RF filters",
+            "Low Q (<10): Wide bandwidth, poor selectivity, high damping, fast transient response",
+            "Bandwidth Calculation: BW = f₀/Q; for Q=100 at 10 MHz, BW = 100 kHz",
+            "Half-Power Points: Frequencies where power is half (-3dB) the maximum, separated by BW"
+          ]
+        },
+        {
+          title: "Applications of Q Factor",
+          content: "Q factor determines filter selectivity in radio receivers; higher Q provides better adjacent channel rejection. Oscillators require sufficient Q for stable oscillation; Q > 5 typically needed. High-Q resonators in crystal oscillators provide frequency stability. Antenna matching networks use moderate Q for balance between selectivity and bandwidth. Cavity resonators in microwave systems achieve very high Q. Low-Q circuits provide wide bandwidth for broadband applications. Q factor affects transient response: high-Q circuits ring longer after excitation."
+        },
+        {
+          title: "Practical Q Factor Considerations",
+          content: "Component losses limit achievable Q. Inductor Q limited by wire resistance and core losses; air-core inductors have higher Q than ferrite. Capacitor Q usually very high (>1000); use COG/NP0 or mica for high Q. External loading reduces Q: connecting 50Ω to high-Z resonator drops Q significantly. Temperature affects Q through component value changes and loss variations. Skin effect at high frequencies increases resistance and lowers inductor Q. Impedance matching trades Q for power transfer; critical coupling achieves maximum power transfer."
+        }
+      ]
+    }
+  },
+
+  "phase-angle": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Choose input method: from power values, from impedance components, or from time delay.",
+        "For power method: Enter real power (P) and reactive power (Q) or apparent power (S).",
+        "For impedance method: Enter resistance (R) and reactance (X).",
+        "For time method: Enter time difference (Δt) between voltage and current, and frequency.",
+        "The calculator computes phase angle in degrees and radians, with circuit classification."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Phase Angle (θ)",
+          definition: "The angular difference between voltage and current waveforms, measured in degrees or radians. Positive means inductive (current lags), negative means capacitive (current leads)."
+        },
+        {
+          term: "Leading Phase Angle",
+          definition: "Negative phase angle (θ < 0°) indicating capacitive circuit where current waveform leads voltage waveform. Common in capacitor-dominant circuits."
+        },
+        {
+          term: "Lagging Phase Angle",
+          definition: "Positive phase angle (θ > 0°) indicating inductive circuit where current waveform lags voltage waveform. Common in motor and transformer circuits."
+        },
+        {
+          term: "Phase Shift",
+          definition: "The time difference between corresponding points on voltage and current waveforms, related to phase angle by Δt = θ/(2πf)."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Phase Angle",
+      sections: [
+        {
+          title: "Understanding Phase Angle",
+          content: "Phase angle (θ) describes the temporal relationship between voltage and current in AC circuits. In resistive circuits, voltage and current are in phase (θ = 0°). Inductors cause current to lag voltage by up to 90° (θ = +90°). Capacitors cause current to lead voltage by up to 90° (θ = -90°). In RLC circuits, phase angle depends on relative magnitudes of resistance and net reactance: θ = arctan((XL - XC)/R). Phase angle directly affects power factor: PF = cos θ."
+        },
+        {
+          title: "Calculating Phase Angle",
+          content: "From impedance: θ = arctan(X/R) where X is net reactance (XL - XC). From power: θ = arctan(Q/P) = arccos(P/S). From time delay: θ = 360° × Δt × f = 2π × Δt × f (radians). For example, at 60 Hz, if current lags voltage by 2.78 ms, θ = 360° × 0.00278 × 60 = 60°. Positive θ indicates inductive circuit, negative θ indicates capacitive circuit. The tangent function gives angle between -90° and +90°."
+        },
+        {
+          title: "Phase Angle in Different Loads",
+          content: [
+            "Purely Resistive (R): θ = 0°, current in phase with voltage, PF = 1.0",
+            "Purely Inductive (L): θ = +90°, current lags by quarter cycle, PF = 0",
+            "Purely Capacitive (C): θ = -90°, current leads by quarter cycle, PF = 0",
+            "Induction Motor (typical): θ = +30° to +45°, PF = 0.85-0.90",
+            "Fluorescent Lamp (uncorrected): θ = +60°, PF = 0.5",
+            "Power Supply (capacitive input): θ = -20° to -40°, PF = 0.75-0.90"
+          ]
+        },
+        {
+          title: "Practical Implications",
+          content: "Large phase angles (far from 0°) indicate poor power factor, causing increased current for same real power. This leads to higher I²R losses, voltage drop, and equipment heating. Power factor correction aims to reduce phase angle toward 0°. Three-phase systems require balanced phase angles across all three phases. Phase angle affects power measurement: wattmeters must account for phase to measure true power. Protective relays use phase angle information to detect faults and abnormal conditions."
+        },
+        {
+          title: "Measuring Phase Angle",
+          content: "Oscilloscopes display voltage and current waveforms, allowing visual phase angle measurement from time difference. Power analyzers directly measure and display phase angle. The formula θ = 360° × (Δt/T) converts time shift to degrees, where T is the period. Phase angle meters compare voltage and current zero-crossings. In three-phase systems, phase sequence (ABC vs ACB) affects motor rotation direction. Digital signal processing uses Fourier transforms to extract phase information from complex waveforms."
+        }
+      ]
+    }
+  },
+
+  "time-constant": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Choose circuit type: RC (resistor-capacitor) or RL (resistor-inductor).",
+        "For RC circuits: Enter resistance (R) and capacitance (C).",
+        "For RL circuits: Enter resistance (R) and inductance (L).",
+        "The calculator computes time constant (τ), rise time, and time to reach various percentages.",
+        "Results show how long the circuit takes to charge/discharge and reach steady state."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Time Constant (τ)",
+          definition: "The time required to reach 63.2% of final value during charging, or decay to 36.8% during discharging. For RC: τ = R×C, for RL: τ = L/R."
+        },
+        {
+          term: "Rise Time",
+          definition: "Time to rise from 10% to 90% of final value, approximately 2.2τ. It indicates how quickly the circuit responds to a step input."
+        },
+        {
+          term: "Settling Time",
+          definition: "Time to reach and stay within a specified percentage of final value, typically 5τ (99.3%) is considered fully settled."
+        },
+        {
+          term: "Charging/Discharging Curve",
+          definition: "Exponential function describing voltage or current versus time: V(t) = Vf(1 - e^(-t/τ)) charging, V(t) = Vi × e^(-t/τ) discharging."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Time Constants",
+      sections: [
+        {
+          title: "Understanding Time Constants",
+          content: "The time constant (τ) characterizes how quickly first-order RC or RL circuits respond to changes. It's the time for the response to reach 63.2% of its final value when charging, or decay to 36.8% when discharging. These percentages come from e^(-1) ≈ 0.368. After 5τ, the circuit is 99.3% settled, effectively reaching steady state. Time constant determines circuit speed: smaller τ means faster response, larger τ means slower response."
+        },
+        {
+          title: "RC Time Constant",
+          content: "For RC circuits, τ = R × C. Increasing either R or C increases time constant, slowing the circuit. The charging equation: Vc(t) = Vf × (1 - e^(-t/τ)) shows capacitor voltage rising exponentially toward final voltage Vf. Discharging: Vc(t) = Vi × e^(-t/τ) shows exponential decay from initial voltage Vi. Current leads voltage changes: Ic(t) = (Vf/R) × e^(-t/τ) during charging. RC circuits are used in timers, filters, and pulse shapers."
+        },
+        {
+          title: "RL Time Constant",
+          content: "For RL circuits, τ = L/R. Larger inductance or smaller resistance increases time constant. The current equation: IL(t) = If × (1 - e^(-t/τ)) shows exponential rise toward final current If = Vf/R. Voltage across inductor: VL(t) = Vf × e^(-t/τ) decays exponentially as current builds. During turn-off, inductor generates voltage spike trying to maintain current. RL circuits are common in motor control, solenoids, and relay coils. Freewheeling diodes protect against inductive kickback."
+        },
+        {
+          title: "Time Constant Applications",
+          content: [
+            "Timer Circuits: 555 timers use RC to set pulse width and frequency",
+            "Low-Pass Filters: Cutoff frequency fc = 1/(2πτ) for RC or RL filters",
+            "Signal Conditioning: Time constants shape pulse edges and filter noise",
+            "Power Supplies: Output capacitors with load resistance set transient response",
+            "Motor Control: RL time constants determine current rise time in motor windings",
+            "Touch Sensors: Capacitive sensing uses RC time constant changes to detect touch"
+          ]
+        },
+        {
+          title: "Practical Considerations",
+          content: "Time constant values range from nanoseconds (fast logic circuits) to hours (timing applications). For 1 kΩ and 1 μF, τ = 1 ms. For faster circuits, reduce R or C; for slower, increase them. Component tolerance affects τ: 10% tolerance in R and C gives ~20% variation in τ. Temperature changes component values, especially C and L. Parasitic capacitance/inductance matters at high speeds. Multiple time constants in complex circuits create higher-order responses. Always verify time constant with oscilloscope in critical applications."
+        }
+      ]
+    }
+  },
+
+  "ac-voltage-divider": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter input voltage (Vin) for the AC voltage divider.",
+        "Enter resistance (R1) and reactance (X1) for the first impedance Z1.",
+        "Enter resistance (R2) and reactance (X2) for the second impedance Z2.",
+        "The calculator computes output voltage (Vout) across Z2.",
+        "Results show impedance magnitudes, total impedance, current, and voltage division ratio."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Output Voltage (Vout)",
+          definition: "The voltage across the second impedance Z2, calculated as Vout = Vin × |Z2|/(|Z1| + |Z2|). It's the divided-down voltage in the AC divider."
+        },
+        {
+          term: "Impedance Magnitude |Z|",
+          definition: "The magnitude of complex impedance Z = R + jX, calculated as |Z| = √(R² + X²). It represents total opposition to AC current."
+        },
+        {
+          term: "Voltage Division Ratio",
+          definition: "The ratio Vout/Vin showing what fraction of input voltage appears at output. Unlike resistive dividers, AC dividers have frequency-dependent ratios."
+        },
+        {
+          term: "Circuit Current (I)",
+          definition: "The current flowing through the series impedances, I = Vin/Ztotal. Same current flows through both Z1 and Z2 in series connection."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to AC Voltage Dividers",
+      sections: [
+        {
+          title: "Understanding AC Voltage Dividers",
+          content: "AC voltage dividers use impedances instead of just resistances, making them frequency-dependent. The output voltage Vout = Vin × Z2/(Z1 + Z2) depends on complex impedance ratio. Unlike resistive dividers where Vout = Vin × R2/(R1 + R2), AC dividers must account for both magnitude and phase. If Z1 and Z2 have different phase angles, output voltage phase shifts relative to input. This frequency dependence makes AC dividers useful for filtering and frequency-selective applications."
+        },
+        {
+          title: "AC Divider Formulas",
+          content: "For complex impedances Z1 = R1 + jX1 and Z2 = R2 + jX2, the division ratio is H = Z2/(Z1 + Z2). Magnitude: |H| = |Z2|/|Z1 + Z2|. Phase: ∠H = ∠Z2 - ∠(Z1 + Z2). Output voltage: Vout = Vin × |H| with phase shift ∠H. For purely resistive dividers, this reduces to familiar Vout = Vin × R2/(R1 + R2). Reactive components introduce frequency dependence through XL = 2πfL and XC = 1/(2πfC)."
+        },
+        {
+          title: "Types of AC Voltage Dividers",
+          content: [
+            "RC Divider: Resistor and capacitor, creates high-pass or low-pass frequency response",
+            "RL Divider: Resistor and inductor, less common due to inductor size and losses",
+            "LC Divider: Inductor and capacitor, frequency-selective with resonance effects",
+            "Capacitive Divider: Two capacitors, common in high-voltage measurement (low loss)",
+            "Compensated Divider: Designed for flat frequency response (oscilloscope probes)"
+          ]
+        },
+        {
+          title: "Applications",
+          content: "AC voltage dividers are used in oscilloscope probes (10:1 compensated dividers) to reduce loading and extend bandwidth. High-voltage measurement uses capacitive dividers to safely scale down dangerous voltages. Sensor interfaces employ RC dividers to filter noise and set input impedance. Phase shifters use reactive dividers to shift signal phase. Audio crossover networks divide signal by frequency to separate speakers. Impedance matching networks often incorporate divider principles."
+        },
+        {
+          title: "Design Considerations",
+          content: "Frequency response depends on component values; changing frequency changes division ratio. Parasitic capacitance/inductance affects high-frequency accuracy. Loading effect: output impedance of divider is not simple Z2; it's Z1||Z2. For accurate division, load impedance should be >> output impedance. Temperature affects component values, especially capacitors. Use COG/NP0 capacitors for stable AC dividers. Resistor noise contributes to output noise; lower impedances reduce thermal noise."
+        }
+      ]
+    }
+  },
+
+  "ac-current-divider": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter total current (Itotal) flowing into the parallel branches.",
+        "Enter resistance (R1) and reactance (X1) for the first branch impedance Z1.",
+        "Enter resistance (R2) and reactance (X2) for the second branch impedance Z2.",
+        "The calculator computes current through each branch (I1 and I2).",
+        "Results show impedance magnitudes and current division ratio."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Branch Currents (I1, I2)",
+          definition: "Currents flowing through each parallel impedance. They divide inversely with impedance magnitude: higher impedance gets less current."
+        },
+        {
+          term: "Current Division Rule",
+          definition: "For two parallel impedances: I1 = Itotal × |Z2|/(|Z1| + |Z2|) and I2 = Itotal × |Z1|/(|Z1| + |Z2|). Notice each current is proportional to the other branch's impedance."
+        },
+        {
+          term: "Current Division Ratio",
+          definition: "The fraction of total current flowing through each branch, I1/Itotal or I2/Itotal. Sum of ratios equals 1 for two branches."
+        },
+        {
+          term: "Phase Differences",
+          definition: "Branch currents can have different phase angles if impedances have different phase angles, even though all branches share the same voltage."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to AC Current Dividers",
+      sections: [
+        {
+          title: "Understanding AC Current Dividers",
+          content: "In parallel AC circuits, current divides among branches based on impedance magnitude and phase. Unlike resistive current dividers where current divides proportionally to conductance (I = Itotal × G/Gtotal), AC current dividers must account for complex impedance. The key principle: current takes path of least impedance. Branch with lower impedance magnitude gets more current. Since voltage across all branches is identical, branch currents are I = V/Z for each branch."
+        },
+        {
+          title: "Current Division Formulas",
+          content: "For two parallel impedances Z1 and Z2, current division: I1 = Itotal × (Z2/(Z1 + Z2)) and I2 = Itotal × (Z1/(Z1 + Z2)). Notice the 'opposite' impedance in numerator - this is inverse division. For admittances (Y = 1/Z): I1 = Itotal × (Y1/(Y1 + Y2)), which looks like resistive division. Vector sum: Itotal = I1 + I2 (complex addition accounting for phase). Magnitude: |Itotal| ≤ |I1| + |I2| due to phase differences."
+        },
+        {
+          title: "Parallel Impedance Combinations",
+          content: [
+            "R || R: Currents divide resistively, no phase difference between branches",
+            "R || L: Inductor current lags resistor current by up to 90°",
+            "R || C: Capacitor current leads resistor current by up to 90°",
+            "L || C: At resonance, branch currents can be much larger than line current (tank circuit)",
+            "Complex || Complex: Both magnitude and phase determine division"
+          ]
+        },
+        {
+          title: "Applications",
+          content: "AC current dividers appear in power distribution where loads connect in parallel. Each load draws current based on its impedance. Parallel resonant circuits (tank circuits) use LC current division at resonance. Power factor correction capacitors create parallel paths where capacitor current leads and partially cancels inductive current. Multi-way speaker crossovers divide audio signal current by frequency. Current transformers and current sensing circuits use current division principles."
+        },
+        {
+          title: "Practical Considerations",
+          content: "In parallel resonance (L||C), branch currents can exceed line current by factor Q, creating high circulating currents. This requires careful component current rating. Voltage across parallel impedances is constant, so calculate I = V/Z for each branch to verify. Phase angle between branch currents affects total current magnitude. Power factor correction must account for current division to size capacitors correctly. Harmonic currents divide differently than fundamental, affecting filter design."
+        }
+      ]
+    }
+  },
+
+  "impedance-matching": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter source impedance (Zs) in ohms.",
+        "Enter load impedance (Zl) in ohms.",
+        "The calculator computes matching impedance, reflection coefficient, VSWR, and efficiency.",
+        "Results indicate match quality: excellent, good, fair, or poor.",
+        "Return loss in dB shows power reflected back to source."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Reflection Coefficient (Γ)",
+          definition: "The ratio of reflected wave amplitude to incident wave amplitude, Γ = (Zl - Zs)/(Zl + Zs). Perfect match gives Γ = 0, complete mismatch gives |Γ| = 1."
+        },
+        {
+          term: "VSWR",
+          definition: "Voltage Standing Wave Ratio, VSWR = (1 + |Γ|)/(1 - |Γ|). It ranges from 1:1 (perfect match) to ∞:1 (complete mismatch). Values below 2:1 are generally acceptable."
+        },
+        {
+          term: "Return Loss (RL)",
+          definition: "Power reflected expressed in decibels, RL = -20 log(|Γ|). Higher return loss means better match. RL > 20 dB indicates excellent match (< 1% reflected power)."
+        },
+        {
+          term: "Power Transfer Efficiency",
+          definition: "Percentage of available power delivered to load, η = 4ZsZl/(Zs + Zl)². Maximum (100%) occurs when Zl = Zs (conjugate match)."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Impedance Matching",
+      sections: [
+        {
+          title: "Why Impedance Matching Matters",
+          content: "Impedance matching maximizes power transfer from source to load and minimizes reflections in transmission lines. When source and load impedances differ, some power reflects back, wasting energy and potentially damaging the source. In RF systems, reflections create standing waves, causing voltage/current peaks that can damage components. Maximum power transfer theorem states: maximum power occurs when load impedance equals complex conjugate of source impedance (Zl = Zs*). For resistive impedances, this simplifies to Zl = Zs."
+        },
+        {
+          title: "Matching Techniques",
+          content: "L-Network: Uses one inductor and one capacitor to match two different impedances. Can step up or step down impedance. Simple but single-frequency. Transformer matching: Turns ratio n = √(Zs/Zl) transforms impedances by n². Broadband but bulky. Quarter-wave transformer: λ/4 transmission line with Z₀ = √(ZsZl) matches at specific frequency and odd harmonics. Stub matching: Shunt or series stubs adjust impedance at specific distance from load. Common in microwave circuits."
+        },
+        {
+          title: "Reflection and Standing Waves",
+          content: [
+            "Perfect Match (Zl = Zs): Γ = 0, VSWR = 1:1, all power absorbed by load",
+            "Slight Mismatch (VSWR 1.5:1): ~4% power reflected, generally acceptable",
+            "Moderate Mismatch (VSWR 2:1): ~11% power reflected, acceptable for some applications",
+            "Poor Match (VSWR 3:1): ~25% power reflected, often unacceptable",
+            "Open/Short (VSWR ∞:1): 100% reflection, complete mismatch"
+          ]
+        },
+        {
+          title: "Practical Applications",
+          content: "Antenna systems require matching to transmitter output impedance (typically 50Ω or 75Ω) for efficient radiation. RF amplifiers need input/output matching for maximum power transfer and stability. Audio systems match amplifier to speaker impedance (4Ω, 8Ω) for maximum power. Transmission line matching prevents ghosting in video and data corruption in digital signals. Power distribution networks use impedance matching to minimize losses. Biomedical sensors match electrode impedance to amplifier inputs."
+        },
+        {
+          title: "Design Considerations",
+          content: "Matching networks introduce some loss; minimize component count for lower loss. Bandwidth: narrowband matching is easier than wideband. High-Q matching networks have narrow bandwidth. Component tolerance affects match quality; use 1% or better for critical applications. Frequency dependence: matching is perfect at only one frequency unless complex networks used. Temperature changes component values, detuning the match. In high-power systems, matching network components must handle voltage/current stress from standing waves."
+        }
+      ]
+    }
+  },
+
+  "transformer": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Enter primary voltage (Vp) in volts.",
+        "Enter primary current (Ip) in amperes.",
+        "Enter number of primary turns (Np).",
+        "Enter number of secondary turns (Ns).",
+        "The calculator computes secondary voltage, secondary current, turns ratio, and transformer type.",
+        "Results indicate if transformer is step-up, step-down, or isolation type."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Turns Ratio (n)",
+          definition: "The ratio of secondary turns to primary turns, n = Ns/Np. It determines voltage transformation ratio and inversely affects current ratio."
+        },
+        {
+          term: "Step-Up Transformer",
+          definition: "Transformer with more secondary turns than primary (n > 1), increasing voltage while decreasing current. Used to boost voltage for transmission."
+        },
+        {
+          term: "Step-Down Transformer",
+          definition: "Transformer with fewer secondary turns than primary (n < 1), decreasing voltage while increasing current. Common in power supplies."
+        },
+        {
+          term: "Isolation Transformer",
+          definition: "Transformer with equal turns ratio (n = 1:1), providing electrical isolation without changing voltage level. Used for safety and noise reduction."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Transformers",
+      sections: [
+        {
+          title: "How Transformers Work",
+          content: "Transformers transfer electrical energy between circuits through electromagnetic induction. AC current in primary winding creates changing magnetic flux in the core. This flux links the secondary winding, inducing voltage according to Faraday's law: V = -N(dΦ/dt). The turns ratio determines voltage transformation: Vs/Vp = Ns/Np. Ideal transformers conserve power: VpIp = VsIs, so Is/Ip = Np/Ns. Real transformers have losses from resistance, core magnetization, eddy currents, and flux leakage."
+        },
+        {
+          title: "Transformer Equations",
+          content: "Voltage transformation: Vs = Vp × (Ns/Np). Current transformation: Is = Ip × (Np/Ns). Turns ratio: n = Ns/Np. Impedance transformation: Zs = Zp × n². Power (ideal): Pp = Ps, VpIp = VsIs. Efficiency: η = Pout/Pin × 100%. Regulation: Percentage voltage drop from no-load to full-load. These equations assume ideal transformer; real transformers include leakage inductance, winding resistance, and core losses."
+        },
+        {
+          title: "Types of Transformers",
+          content: [
+            "Power Transformers: 50/60 Hz, transfer large power in distribution systems",
+            "Isolation Transformers: Provide electrical isolation and noise rejection",
+            "Auto-transformers: Single winding with tap, more compact but no isolation",
+            "Step-Up Transformers: Increase voltage for long-distance transmission",
+            "Step-Down Transformers: Reduce voltage for residential/commercial use",
+            "Current Transformers: Measure high currents, secondary typically 5A or 1A",
+            "Instrument Transformers: Provide safe voltage/current levels for measurement"
+          ]
+        },
+        {
+          title: "Transformer Applications",
+          content: "Power distribution uses transformers to step up voltage for transmission (reduces I²R losses) and step down for end use. Power supplies use transformers to provide required voltage levels and isolation. Audio transformers match impedances and provide galvanic isolation. Isolation transformers protect equipment from ground loops and provide safety isolation. Switched-mode power supplies use high-frequency transformers for compact size. Current transformers measure high currents safely in metering and protection. Distribution transformers feed power from grid to homes and businesses."
+        },
+        {
+          title: "Practical Considerations",
+          content: "Core material affects transformer efficiency and size: silicon steel for power, ferrite for high frequency. Copper losses (I²R) increase with load current. Core losses (hysteresis and eddy currents) are constant, dominating at light load. Leakage inductance causes voltage regulation and limits short-circuit current. Winding capacitance affects high-frequency response and can cause resonances. Temperature rise limits transformer rating; thermal management is critical. Cooling methods: self-cooled (air), oil-immersed, forced-air, forced-oil. Proper sizing prevents overheating and ensures rated voltage under load."
+        }
+      ]
+    }
+  },
+
+  "three-phase-power": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Select connection type: Star (Y) or Delta (Δ).",
+        "Enter line voltage (VL) - voltage between any two line conductors.",
+        "Enter line current (IL) - current in any line conductor.",
+        "Enter power factor (cos θ) as a value between 0 and 1.",
+        "The calculator computes real power (P), reactive power (Q), apparent power (S), and phase quantities.",
+        "Results show power in watts, var, and VA with automatic unit scaling."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Line Voltage (VL)",
+          definition: "The voltage measured between any two line conductors in a three-phase system. For star connection: VL = √3 × Vph. For delta: VL = Vph."
+        },
+        {
+          term: "Phase Voltage (Vph)",
+          definition: "The voltage across one phase of the load. In star connection, it's voltage from line to neutral. In delta, it equals line voltage."
+        },
+        {
+          term: "Line Current (IL)",
+          definition: "The current flowing in any line conductor. For star connection: IL = Iph. For delta: IL = √3 × Iph."
+        },
+        {
+          term: "Three-Phase Power",
+          definition: "The total power in all three phases. Apparent power: S = √3 × VL × IL. Real power: P = √3 × VL × IL × cos θ. Three times single-phase power."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Three-Phase Power",
+      sections: [
+        {
+          title: "Understanding Three-Phase Systems",
+          content: "Three-phase power uses three AC voltages of equal magnitude and frequency, offset by 120° in phase. This creates a constant, smooth power flow unlike single-phase's pulsating power. Three-phase systems deliver √3 times more power than single-phase for same conductor size. They're more efficient for power transmission and distribution. Motors run smoother and more efficiently on three-phase. The power formula S = √3 × VL × IL comes from vector addition of three 120°-offset sinusoids."
+        },
+        {
+          title: "Star (Wye) vs Delta Connections",
+          content: "Star (Y) Connection: Three loads connect to common neutral point. Line voltage VL = √3 × Vph (1.732 times phase voltage). Line current equals phase current (IL = Iph). Provides two voltage levels (line-to-line and line-to-neutral). Neutral carries unbalanced current. Delta (Δ) Connection: Three loads connected in triangle. Line voltage equals phase voltage (VL = Vph). Line current IL = √3 × Iph. No neutral point. Cannot supply line-to-neutral loads. More common in motors and high-power applications."
+        },
+        {
+          title: "Three-Phase Power Formulas",
+          content: [
+            "Apparent Power: S = √3 × VL × IL (VA, kVA, MVA)",
+            "Real Power: P = √3 × VL × IL × cos θ (W, kW, MW)",
+            "Reactive Power: Q = √3 × VL × IL × sin θ (VAR, kVAR, MVAR)",
+            "Star Connection: VL = √3 × Vph, IL = Iph",
+            "Delta Connection: VL = Vph, IL = √3 × Iph",
+            "Balanced Load: All three phase powers are equal, P = 3 × Pph"
+          ]
+        },
+        {
+          title: "Applications of Three-Phase Power",
+          content: "Electric utility distribution: high-voltage three-phase for efficient long-distance transmission. Industrial motors: three-phase induction motors are simpler, cheaper, and more efficient than single-phase. Large buildings: three-phase service for HVAC, elevators, and heavy machinery. Data centers: three-phase PDUs (power distribution units) for high-density server racks. Manufacturing: three-phase for consistent, high-power machinery operation. Renewable energy: three-phase inverters for solar farms and wind turbines connecting to grid."
+        },
+        {
+          title: "Practical Considerations",
+          content: "Load balancing is critical: unbalanced loads cause neutral current in star systems and overheating. Phase sequence (ABC vs ACB) determines motor rotation direction; reversing any two phases reverses rotation. Harmonics from non-linear loads (VFDs, switching power supplies) require oversized neutrals in star systems. Power measurement requires wattmeters on at least two phases; single wattmeter insufficient. Protection systems must detect faults on all three phases. Voltage unbalance (>2%) reduces motor life and efficiency. Three-phase calculations assume balanced loads; unbalanced loads require per-phase analysis."
+        }
+      ]
+    }
   }
 };
 
