@@ -49,6 +49,20 @@ import Velocity from "@/pages/calculators/Velocity";
 import Density from "@/pages/calculators/Density";
 import Acceleration from "@/pages/calculators/Acceleration";
 
+// Electronics Calculators
+import LEDResistor from "@/pages/calculators/LEDResistor";
+import VoltageRegulator from "@/pages/calculators/VoltageRegulator";
+import BJTBiasing from "@/pages/calculators/BJTBiasing";
+import MOSFET from "@/pages/calculators/MOSFET";
+import OpAmp from "@/pages/calculators/OpAmp";
+import Timer555 from "@/pages/calculators/Timer555";
+import RCFilter from "@/pages/calculators/RCFilter";
+import CapacitorCharge from "@/pages/calculators/CapacitorCharge";
+import ZenerDiode from "@/pages/calculators/ZenerDiode";
+import TransistorAmplifier from "@/pages/calculators/TransistorAmplifier";
+import WheatStoneBridge from "@/pages/calculators/WheatStoneBridge";
+import Decibel from "@/pages/calculators/Decibel";
+
 function Router() {
   return (
     <Switch>
@@ -95,6 +109,20 @@ function Router() {
       <Route path="/calculators/velocity" component={Velocity} />
       <Route path="/calculators/density" component={Density} />
       <Route path="/calculators/acceleration" component={Acceleration} />
+      
+      {/* Electronics Calculators */}
+      <Route path="/calculators/led-resistor" component={LEDResistor} />
+      <Route path="/calculators/voltage-regulator" component={VoltageRegulator} />
+      <Route path="/calculators/bjt-biasing" component={BJTBiasing} />
+      <Route path="/calculators/mosfet" component={MOSFET} />
+      <Route path="/calculators/op-amp" component={OpAmp} />
+      <Route path="/calculators/555-timer" component={Timer555} />
+      <Route path="/calculators/rc-filter" component={RCFilter} />
+      <Route path="/calculators/capacitor-charge" component={CapacitorCharge} />
+      <Route path="/calculators/zener-diode" component={ZenerDiode} />
+      <Route path="/calculators/transistor-amplifier" component={TransistorAmplifier} />
+      <Route path="/calculators/wheatstone-bridge" component={WheatStoneBridge} />
+      <Route path="/calculators/decibel" component={Decibel} />
       
       {/* Fallback to 404 */}
       <Route component={NotFound} />
