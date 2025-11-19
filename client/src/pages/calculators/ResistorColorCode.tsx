@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
 import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 // Color code definitions
 const digitColors = [
@@ -565,7 +566,12 @@ export default function ResistorColorCode() {
         </Card>
 
         {/* Educational Accordion */}
-        <CalculatorAccordion calculatorId="resistor-color-code" />
+        {getCalculatorAccordion("resistor-color-code") && (
+          <CalculatorAccordion 
+            content={getCalculatorAccordion("resistor-color-code")!} 
+            calculatorId="resistor-color-code" 
+          />
+        )}
       </div>
     </div>
   );

@@ -3006,6 +3006,109 @@ const accordionContent: Record<string, CalculatorAccordionContent> = {
         }
       ]
     }
+  },
+
+  "resistor-color-code": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "For Color to Value: Select the color of each band on your resistor from the dropdown menus.",
+        "The calculator displays a visual representation of the resistor with your selected colors.",
+        "The resistance value, tolerance, and acceptable range are calculated automatically.",
+        "For Value to Color: Enter the desired resistance value in ohms in the input field.",
+        "The calculator will display the appropriate color bands needed for that resistance.",
+        "Refer to the color code reference chart at the bottom for quick reference.",
+        "The calculator supports standard 4-band resistors with ±5% tolerance (Gold) as default."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "1st Band (First Digit)",
+          definition: "The first significant digit of the resistance value. Colors range from Black (0) to White (9). This forms the tens place of the base resistance number."
+        },
+        {
+          term: "2nd Band (Second Digit)",
+          definition: "The second significant digit of the resistance value. Also ranges from Black (0) to White (9). This forms the ones place of the base resistance number."
+        },
+        {
+          term: "3rd Band (Multiplier)",
+          definition: "The multiplier that determines the magnitude of resistance. Black = ×1, Brown = ×10, Red = ×100, up to Violet = ×10M. Gold and Silver represent decimal multipliers (×0.1 and ×0.01)."
+        },
+        {
+          term: "4th Band (Tolerance)",
+          definition: "Indicates the precision or acceptable deviation from the nominal value. Gold = ±5%, Silver = ±10%, Brown = ±1%, Red = ±2%. No band (or just resistor body color) = ±20%."
+        },
+        {
+          term: "Resistance Value",
+          definition: "The calculated resistance in ohms (Ω), kilohms (kΩ), or megohms (MΩ). Calculated as: (First Digit × 10 + Second Digit) × Multiplier."
+        },
+        {
+          term: "Acceptable Range",
+          definition: "The minimum and maximum resistance values considering the tolerance. A 1kΩ ±5% resistor can measure anywhere from 950Ω to 1050Ω and still be within specification."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Resistor Color Codes",
+      sections: [
+        {
+          title: "What is a Resistor Color Code?",
+          content: "The resistor color code is a standardized marking system used to indicate the resistance value, tolerance, and sometimes the temperature coefficient of resistors. Since resistors are often too small to print numbers on, colored bands provide a compact, reliable way to encode this information. The system was developed in the 1920s and standardized by the Electronic Industries Alliance (EIA). The most common format uses 4 colored bands, though 5-band and 6-band resistors exist for higher precision applications."
+        },
+        {
+          title: "How to Read Color Bands",
+          content: [
+            "Hold the resistor so the tolerance band (usually Gold or Silver) is on the right",
+            "The first band (leftmost) represents the first significant digit (0-9)",
+            "The second band represents the second significant digit (0-9)",
+            "The third band is the multiplier (power of 10 to multiply by)",
+            "The fourth band is the tolerance (precision of the resistor)",
+            "If there's a fifth band, it indicates temperature coefficient in ppm/°C"
+          ]
+        },
+        {
+          title: "Common Resistance Values (E-Series)",
+          content: "Resistors are manufactured in standardized value series. E12 series (10% tolerance): 10, 12, 15, 18, 22, 27, 33, 39, 47, 56, 68, 82 (and multiples of 10). E24 series (5% tolerance): Includes E12 plus 11, 13, 16, 20, 24, 30, 36, 43, 51, 62, 75, 91 (and multiples). E96 series (1% tolerance): 96 standard values between 100 and 976. These values follow logarithmic spacing to provide even coverage across decades. When designing circuits, always use standard E-series values for component availability."
+        },
+        {
+          title: "Practical Applications and Tips",
+          content: [
+            "Circuit Design: Choose standard E-series values for easy procurement and cost-effectiveness",
+            "Troubleshooting: Measure resistors with a multimeter to verify they're within tolerance",
+            "Heat Damage: Resistors that have overheated often show discolored or burnt bands",
+            "Series/Parallel: Combine standard values to achieve non-standard resistances when needed",
+            "Power Rating: Color bands don't indicate power rating - check resistor physical size",
+            "Orientation: Some precision resistors have an extra wide band indicating the first band"
+          ]
+        },
+        {
+          title: "5-Band and 6-Band Resistors",
+          content: "5-band resistors provide three significant digits instead of two, offering more precise values (typically 1% or better tolerance). Reading pattern: 1st digit, 2nd digit, 3rd digit, multiplier, tolerance. Common in precision circuits and instrumentation. 6-band resistors add a temperature coefficient band (in ppm/°C): Brown = 100ppm/°C, Red = 50ppm/°C, Orange = 15ppm/°C, Yellow = 25ppm/°C. Military-grade resistors often use 6 bands. Example: Brown-Black-Black-Brown-Brown-Red = 100Ω ±1% 50ppm/°C."
+        },
+        {
+          title: "Special Cases and Exceptions",
+          content: "Zero-ohm resistors (jumpers): Single black band, used as PCB jumpers for automated assembly. High-value resistors (>10MΩ): Often use non-standard color combinations or printed values. Surface-mount resistors: Use numerical codes (e.g., 103 = 10×10³ = 10kΩ) instead of color bands. Fusible resistors: May have special markings indicating their current rating. Wirewound resistors: Often have printed values due to their larger size. When in doubt, always verify with a multimeter."
+        },
+        {
+          title: "Common Mistakes to Avoid",
+          content: [
+            "Reading bands from the wrong end - tolerance band should be on the right (usually Gold/Silver)",
+            "Confusing Brown and Red under poor lighting - use bright light and magnification if needed",
+            "Assuming all 4-band resistors are 5% tolerance - older ones may be 10% or 20%",
+            "Ignoring tolerance in critical circuits - use 1% resistors where precision matters",
+            "Not accounting for power rating - small resistors typically 1/4W, larger ones 1/2W or more",
+            "Trusting color codes on damaged resistors - heat can change band colors",
+            "Mixing up Orange (3) and Yellow (4) - they can look similar in some lighting"
+          ]
+        },
+        {
+          title: "Memory Aids and Mnemonics",
+          content: "Many technicians use mnemonics to remember the color sequence. Popular ones include: 'Big Brown Rabbits Often Yield Great Big Vegetables Growing Wild' (Black-Brown-Red-Orange-Yellow-Green-Blue-Violet-Grey-White). Or: 'Better Be Right Or Your Great Big Venture Goes Wrong'. The key is: Black=0, Brown=1, Red=2, Orange=3, Yellow=4, Green=5, Blue=6, Violet=7, Grey=8, White=9. For tolerance: Gold=5%, Silver=10%, None=20%. Practice reading various resistors to build muscle memory."
+        }
+      ]
+    }
   }
 };
 

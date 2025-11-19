@@ -19,6 +19,7 @@ import SeriesParallelInductor from "@/pages/calculators/SeriesParallelInductor";
 import Conductance from "@/pages/calculators/Conductance";
 import Impedance from "@/pages/calculators/Impedance";
 import Reactance from "@/pages/calculators/Reactance";
+import ResistorColorCode from "@/pages/calculators/ResistorColorCode";
 
 // AC Circuit Calculators
 import ACPower from "@/pages/calculators/ACPower";
@@ -80,6 +81,7 @@ function Router() {
       <Route path="/calculators/conductance" component={Conductance} />
       <Route path="/calculators/impedance" component={Impedance} />
       <Route path="/calculators/reactance" component={Reactance} />
+      <Route path="/calculators/resistor-color-code" component={ResistorColorCode} />
       
       {/* AC Circuit Calculators */}
       <Route path="/calculators/ac-power" component={ACPower} />
