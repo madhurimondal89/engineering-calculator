@@ -3116,6 +3116,534 @@ const accordionContent: Record<string, CalculatorAccordionContent> = {
         }
       ]
     }
+  },
+
+  "wire-gauge": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Choose your conversion direction: From AWG or From Diameter.",
+        "For AWG to metric: Enter the AWG number (e.g., 12, 14, 18) and click Calculate.",
+        "For diameter to AWG: Enter the wire diameter in inches and click Find Closest AWG.",
+        "The calculator displays AWG, diameter (in/mm), cross-sectional area (kcmil/mm²), and resistance (Ω/kft and Ω/km).",
+        "All values are for bare copper wire at 20°C (68°F).",
+        "Use the Reset button to clear all inputs and start over."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "AWG (American Wire Gauge)",
+          definition: "A standardized wire gauge system used in North America. Smaller AWG numbers indicate thicker wires. AWG 0000 (4/0) is the thickest common size, while AWG 40 is very thin. Common building wire sizes: 14, 12, 10 AWG."
+        },
+        {
+          term: "Wire Diameter",
+          definition: "The physical diameter of the bare conductor (without insulation). Given in both inches (imperial) and millimeters (metric). For example, 12 AWG = 0.0808 inches = 2.053 mm. Insulation adds thickness beyond this."
+        },
+        {
+          term: "Cross-Sectional Area",
+          definition: "The area of the wire's circular cross-section. Measured in kcmil (thousand circular mils) or mm². Directly affects current capacity and resistance. Area = π × (diameter/2)². Larger area = lower resistance, higher current capacity."
+        },
+        {
+          term: "kcmil (Thousand Circular Mils)",
+          definition: "Traditional imperial unit for wire area. 1 circular mil = area of a circle 1 mil (0.001 inch) in diameter. 1 kcmil = 1000 circular mils = 0.5067 mm². Used primarily in North American electrical codes."
+        },
+        {
+          term: "Wire Resistance (Ω/kft or Ω/km)",
+          definition: "DC resistance per unit length at 20°C. Important for voltage drop calculations. Lower AWG (thicker wire) = lower resistance. Copper resistivity: 1.68×10⁻⁸ Ω·m. Resistance increases ~0.4% per °C for copper."
+        },
+        {
+          term: "AWG Number Progression",
+          definition: "Every 3 AWG steps doubles the area and halves the resistance. Every 10 AWG steps multiplies area by 10. For example: 10 AWG has twice the area of 13 AWG, and 10 times the area of 20 AWG."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Wire Gauge Systems",
+      sections: [
+        {
+          title: "What is AWG?",
+          content: "The American Wire Gauge (AWG) system is a logarithmic stepped standardized wire gauge system used since 1857, primarily in North America, for the diameters of round, solid, nonferrous, electrically conducting wire. Originating in the number of drawing operations used to produce a given gauge of wire, the AWG system has an inverse relationship: as gauge numbers increase, wire diameter decreases. This system allows for precise specification of wire sizes in electrical and electronic applications."
+        },
+        {
+          title: "AWG Number System",
+          content: "The AWG system uses whole numbers and aught (0) sizes. Common sizes range from 0000 (4/0, pronounced 'four-ought') to 40 AWG. Building wire typically uses 14-10 AWG. Electronics use 22-30 AWG. The gauge number derives from the number of drawing dies originally required to produce the wire. The mathematical relationship: diameter decreases by a factor of 92^(1/39) ≈ 1.1229 for each gauge increment."
+        },
+        {
+          title: "Common Wire Sizes and Applications",
+          content: [
+            "14 AWG: 15A circuits, lighting, outlets (residential minimum for power circuits)",
+            "12 AWG: 20A circuits, kitchen appliances, bathrooms (most common residential)",
+            "10 AWG: 30A circuits, electric water heaters, central AC units",
+            "8 AWG: 40-50A circuits, electric ranges, large AC units",
+            "6 AWG: 55-65A circuits, large appliances, sub-panels",
+            "4 AWG: 70-85A circuits, electric vehicle chargers, sub-panels",
+            "2 AWG: 95-115A circuits, service entrance cables",
+            "1/0 AWG: 150A+ circuits, main service panels, large motors"
+          ]
+        },
+        {
+          title: "Metric vs. Imperial Systems",
+          content: "While AWG dominates in North America, most of the world uses metric wire sizing based on cross-sectional area in mm². Common metric sizes: 1.5mm² ≈ 15 AWG, 2.5mm² ≈ 13 AWG, 4mm² ≈ 11 AWG, 6mm² ≈ 9 AWG, 10mm² ≈ 7 AWG. The conversion: Area(mm²) = 0.5067 × Area(kcmil). Metric sizing directly indicates current capacity, while AWG requires lookup tables. Both systems use copper or aluminum conductors with similar properties."
+        },
+        {
+          title: "Resistance and Conductivity",
+          content: "Wire resistance is inversely proportional to cross-sectional area. Doubling the area (going down 3 AWG numbers) halves the resistance. Copper has resistivity of 1.68×10⁻⁸ Ω·m at 20°C. Temperature coefficient is +0.393%/°C, meaning resistance increases with temperature. Aluminum has 61% of copper's conductivity, requiring larger wire for same current. Resistance formula: R = ρ × L / A, where ρ = resistivity, L = length, A = area. High resistance causes voltage drop and heat generation."
+        },
+        {
+          title: "Practical Considerations",
+          content: [
+            "Stranded vs Solid: Same AWG, but stranded is more flexible, solid carries slightly more current",
+            "Insulation: Adds diameter, common types: THHN, THWN, XHHW rated for different temperatures",
+            "Current Capacity: Depends on insulation temperature rating (60°C, 75°C, 90°C)",
+            "Derating: Multiple conductors in conduit require derating (typically 80% for 4-6 wires)",
+            "Voltage Drop: NEC recommends max 3% drop for branch circuits, 5% total including feeders",
+            "Material: Copper is standard, aluminum used for large feeders (lighter, cheaper, requires special terminations)",
+            "Cost vs Performance: Oversizing wire reduces voltage drop and heat, improving efficiency and safety"
+          ]
+        },
+        {
+          title: "AWG Selection Guidelines",
+          content: "Select wire gauge based on: 1) Current capacity (ampacity) - must exceed circuit breaker rating with derating factors applied. 2) Voltage drop - calculate for total circuit length, keep under 3% for optimal performance. 3) Mechanical strength - larger wire more durable for permanent installations. 4) Future expansion - oversizing allows circuit upgrades without rewiring. 5) Code compliance - NEC Table 310.16 provides minimum sizes. 6) Cost optimization - balance initial cost vs long-term efficiency. Always consult local electrical codes and qualified electricians for installations."
+        },
+        {
+          title: "Common Mistakes and Misconceptions",
+          content: [
+            "Confusing AWG with wire count - AWG is not the number of strands in stranded wire",
+            "Assuming bigger numbers mean thicker wire - opposite is true in AWG system",
+            "Ignoring temperature effects - wire ampacity decreases at higher ambient temperatures",
+            "Overlooking voltage drop - long wire runs need larger gauges than short runs",
+            "Mixing copper and aluminum - requires special anti-oxidant compounds and compatible connectors",
+            "Using residential wire for automotive - automotive uses different sizing (metric or AWG with different insulation)",
+            "Ignoring insulation rating - 60°C wire can't carry same current as 90°C wire of same gauge"
+          ]
+        }
+      ]
+    }
+  },
+
+  "wire-current-capacity": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Select the wire gauge (AWG) from the dropdown menu (14 AWG to 4/0 AWG).",
+        "Choose the installation method: Conduit/Raceway, Chassis Wiring, or Open Air.",
+        "Click Calculate Ampacity to see the maximum safe current for the selected configuration.",
+        "The results show max current, installation type, and any derating factors applied.",
+        "Values are based on NEC Table 310.16 for 75°C copper conductors.",
+        "For continuous loads, use only 80% of the displayed ampacity."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Ampacity",
+          definition: "The maximum current a conductor can carry continuously under specified conditions without exceeding its temperature rating. Measured in amperes (A). Depends on wire gauge, insulation temperature rating, installation method, and ambient temperature."
+        },
+        {
+          term: "Installation Method",
+          definition: "How the wire is installed affects cooling and ampacity. Conduit/Raceway (lowest ampacity due to limited cooling), Chassis/Cable (moderate), Open Air/Free Air (highest due to maximum cooling). Multiple conductors in conduit require additional derating."
+        },
+        {
+          term: "Temperature Rating",
+          definition: "Maximum operating temperature of wire insulation. Common ratings: 60°C (140°F), 75°C (167°F), 90°C (194°F). Higher-rated insulation allows higher ampacity. THHN/THWN rated 90°C, but connections often limit to 75°C, so 75°C ampacity typically used."
+        },
+        {
+          term: "Derating Factor",
+          definition: "Reduction in ampacity due to multiple conductors bundled together. NEC requires 80% derating for 4-6 current-carrying conductors, 70% for 7-9, 50% for 10-20. Neutral and ground wires don't always count as current-carrying."
+        },
+        {
+          term: "Continuous Load",
+          definition: "Load expected to operate for 3+ hours continuously. NEC requires conductor ampacity be at least 125% of continuous load (or use only 80% of conductor ampacity). Circuit breaker must also be sized for 125% of continuous load."
+        },
+        {
+          term: "Ambient Temperature",
+          definition: "Surrounding air temperature. Standard ampacity tables assume 30°C (86°F). Higher ambient temperatures require further derating. For every 10°C above 30°C, reduce ampacity by approximately 5-10% depending on insulation type."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Wire Current Capacity",
+      sections: [
+        {
+          title: "Understanding Ampacity",
+          content: "Ampacity is the maximum current a conductor can carry continuously without exceeding its insulation temperature rating. When current flows through wire, I²R losses generate heat. If heat generation exceeds heat dissipation, temperature rises. Excessive temperature degrades insulation, shortens wire life, and creates fire hazards. Ampacity accounts for wire size (larger = more current), material (copper vs aluminum), insulation rating (60°C, 75°C, 90°C), installation method (conduit vs open air), ambient temperature, and number of conductors bundled together."
+        },
+        {
+          title: "NEC Ampacity Tables",
+          content: "The National Electrical Code (NEC) provides standardized ampacity tables. Table 310.16 covers most common applications: conductors rated 0-2000V in raceway, cable, or direct burial. Assumes 3 current-carrying conductors and 30°C ambient temperature. Table 310.17 covers single insulated conductors in free air (higher ampacity due to better cooling). Table 310.15(B)(2) provides adjustment factors for more than 3 conductors. Always use tables appropriate for your specific installation and verify with local codes."
+        },
+        {
+          title: "Temperature Considerations",
+          content: [
+            "Insulation Rating: Determines max operating temperature (60°C, 75°C, 90°C common)",
+            "Ambient Temperature: Higher ambient = lower ampacity (use correction factors from NEC 310.15(B)(2)(a))",
+            "Termination Limits: Equipment terminals often rated 60°C or 75°C even with 90°C wire",
+            "Use 75°C column: Most practical for general wiring (matches terminal ratings)",
+            "Correction Example: 12 AWG THWN copper in 40°C ambient: 25A × 0.88 = 22A",
+            "Heat Buildup: Bundled conductors in conduit trap heat, requiring derating",
+            "Continuous vs Non-continuous: Continuous loads generate more sustained heat"
+          ]
+        },
+        {
+          title: "Installation Method Impact",
+          content: "Wire cooling depends on installation. Free air installation (single conductor openly suspended) allows maximum cooling - highest ampacity. Cable assemblies (Romex, MC cable) have moderate cooling. Conduit/raceway installation (multiple conductors in enclosed space) has poorest cooling - lowest ampacity. The difference can be substantial: 12 AWG copper has 25A in conduit, 30A in cable, 35A in free air (75°C rating). Underground direct burial similar to conduit. Overhead spans and aerial cables get better cooling but need mechanical strength consideration."
+        },
+        {
+          title: "Derating for Multiple Conductors",
+          content: "When multiple current-carrying conductors share an enclosure (conduit, cable, or raceway), they must be derated per NEC 310.15(B)(3)(a). 1-3 conductors: No derating (100%). 4-6 conductors: 80% derating. 7-9 conductors: 70% derating. 10-20 conductors: 50% derating. 21-30 conductors: 45% derating. 31-40 conductors: 40% derating. Example: Four 12 AWG in conduit: 25A × 0.80 = 20A each. Note: Neutral conductors carrying only imbalanced current and equipment grounding conductors don't count. Balanced 3-phase circuits have reduced neutral current."
+        },
+        {
+          title: "Practical Application Examples",
+          content: [
+            "20A kitchen circuit: 12 AWG minimum (25A > 20A), allows 80% = 16A continuous",
+            "30A dryer circuit: 10 AWG (35A > 30A), typical 240V installation",
+            "50A range circuit: 6 AWG (65A > 50A), 240V with neutral",
+            "100A sub-panel feeder: 1 AWG aluminum or 2/0 copper, includes derating for conduit",
+            "200A service entrance: 2/0 AWG copper or 4/0 aluminum typical",
+            "EV charger 40A: 8 AWG (50A × 0.8 = 40A continuous rating)",
+            "Always verify local codes and consult licensed electrician for installations"
+          ]
+        },
+        {
+          title: "Safety and Code Compliance",
+          content: "Never exceed wire ampacity - causes overheating, insulation failure, and fire risk. Circuit breaker/fuse must protect wire: breaker rating ≤ wire ampacity (with derating applied). Exception: Motor circuits have special rules per NEC 430. Continuous loads require 125% safety factor. Use 75°C ampacity column even with 90°C wire unless terminals rated higher. Ambient temperature corrections are mandatory above 30°C. Document all derating calculations for inspector review. When in doubt, oversize wire - safer and reduces voltage drop. Regular inspections detect overheated connections (discolored insulation, burnt smell). Ground fault protection essential in wet locations."
+        },
+        {
+          title: "Common Mistakes",
+          content: [
+            "Using 90°C ampacity with 75°C-rated terminals - can overheat connections",
+            "Forgetting to derate for multiple conductors in conduit",
+            "Ignoring ambient temperature above 30°C in hot climates or attics",
+            "Not accounting for continuous loads (must use 125% rule)",
+            "Assuming aluminum and copper have same ampacity (aluminum needs larger gauge)",
+            "Using residential ampacity tables for commercial/industrial applications",
+            "Neglecting voltage drop in long wire runs (ampacity OK but excessive voltage drop)",
+            "Mixing wire gauges in same circuit without proper splice protection"
+          ]
+        }
+      ]
+    }
+  },
+
+  "voltage-drop": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Select Single Phase or Three Phase depending on your circuit type.",
+        "Enter the system voltage (e.g., 120V, 240V, 480V).",
+        "Enter the load current in amperes (A).",
+        "Enter the one-way wire length in feet (distance from source to load).",
+        "Select the wire gauge (AWG) you're using or planning to use.",
+        "Click Calculate to see voltage drop, percentage drop, and voltage at load.",
+        "If voltage drop exceeds 3%, consider using larger wire gauge."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Voltage Drop (V)",
+          definition: "The reduction in voltage as current flows through wire resistance. Calculated as Vd = 2 × I × R × L / 1000 (single-phase) or Vd = √3 × I × R × L / 1000 (three-phase), where I=current, R=resistance/kft, L=length. Larger voltage drop = more energy wasted as heat."
+        },
+        {
+          term: "Percentage Voltage Drop",
+          definition: "Voltage drop expressed as percentage of source voltage: %Vd = (Vdrop / Vsource) × 100. NEC recommends max 3% for branch circuits, 2% for feeders (5% total). Excessive drop causes dim lights, motor overheating, equipment malfunction."
+        },
+        {
+          term: "Voltage at Load",
+          definition: "Actual voltage delivered to the load after accounting for wire losses: Vload = Vsource - Vdrop. Equipment rated for specific voltages (e.g., 120V ±10%) may malfunction if voltage too low. Motors draw higher current at lower voltage, increasing heat."
+        },
+        {
+          term: "Wire Resistance (Ω/kft)",
+          definition: "DC resistance per 1000 feet at 75°C. Resistance = ρ × L / A, where ρ=resistivity, L=length, A=area. Smaller AWG = higher resistance = more voltage drop. Aluminum has 1.63× resistance of copper for same gauge."
+        },
+        {
+          term: "Single-Phase Voltage Drop",
+          definition: "Uses factor of 2 because current flows out and back (two conductors). Formula: Vd = 2 × I × R × L / 1000. Typical for 120V and 240V residential circuits. Both hot wires contribute to voltage drop in 240V single-phase."
+        },
+        {
+          term: "Three-Phase Voltage Drop",
+          definition: "Uses factor of √3 ≈ 1.732 for balanced three-phase loads. Formula: Vd = 1.732 × I × R × L / 1000. Line-to-line voltage drop in balanced systems. Neutral carries minimal current in balanced loads, so mainly affects phase conductors."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Voltage Drop Calculations",
+      sections: [
+        {
+          title: "Why Voltage Drop Matters",
+          content: "Voltage drop is the reduction in voltage as current flows through wire resistance. All conductors have resistance that causes energy loss as heat (P = I²R). This reduces voltage available to equipment. Consequences: Lights dim and flicker. Motors run hot, draw excess current, and fail prematurely. Heaters produce less heat. Electronics malfunction or shut down. Energy wasted in wiring (higher utility bills). Excessive voltage drop violates electrical codes and creates safety hazards. Proper wire sizing minimizes these issues."
+        },
+        {
+          title: "NEC Voltage Drop Guidelines",
+          content: "The National Electrical Code (NEC) provides voltage drop recommendations in FPN (Fine Print Notes) 210.19(A) and 215.2(A)(1). These are recommendations, not mandatory requirements, but following them ensures proper equipment operation. Branch circuits (outlets, lights): Maximum 3% voltage drop. Feeders (sub-panels): Maximum 2% voltage drop. Combined feeder + branch: Maximum 5% total. Critical loads (medical, emergency): Often require 1-2% maximum. Some local codes make these mandatory. Calculate worst-case: maximum current at maximum distance. Size wire to stay under limits even at peak load."
+        },
+        {
+          title: "Voltage Drop Formulas Explained",
+          content: [
+            "Single-Phase: Vd = 2 × I × R × L / 1000 (factor 2 for out-and-back path)",
+            "Three-Phase: Vd = √3 × I × R × L / 1000 (factor 1.732 for balanced loads)",
+            "Where: I = current (A), R = resistance (Ω/kft), L = one-way length (ft)",
+            "Resistance calculation: R = ρ × L / A (ρ=resistivity, L=length, A=area)",
+            "Copper resistivity: 1.68×10⁻⁸ Ω·m at 20°C (increases 0.4%/°C)",
+            "Alternative formula: Vd = (2 × ρ × I × L) / (1000 × A) for any material",
+            "Percentage: %Vd = (Vd / Vsource) × 100"
+          ]
+        },
+        {
+          title: "Factors Affecting Voltage Drop",
+          content: "Wire gauge: Thicker wire (lower AWG) = lower resistance = less voltage drop. Length: Voltage drop doubles if length doubles (linear relationship). Current: Voltage drop doubles if current doubles (linear relationship). Material: Aluminum has 63% of copper's conductivity, needs larger gauge. Temperature: Resistance increases with temperature (~0.4%/°C for copper). Power factor: AC circuits with poor power factor have higher effective voltage drop. Harmonics: Non-linear loads create additional losses not captured by simple formulas. Connections: Poor terminations add resistance and voltage drop."
+        },
+        {
+          title: "Practical Wire Sizing for Voltage Drop",
+          content: "Step 1: Determine maximum current (nameplate rating or NEC Article 430 for motors). Step 2: Measure or estimate wire run length (one-way distance). Step 3: Select acceptable voltage drop (typically 3% for branch, 2% for feeder). Step 4: Calculate maximum allowed resistance: R = (Vd_max × 1000) / (2 × I × L) for single-phase. Step 5: Select wire gauge with resistance ≤ calculated value from wire resistance tables. Step 6: Verify ampacity meets or exceeds circuit requirements. Step 7: If ampacity requires larger wire than voltage drop calculation, use larger gauge. Always round up to next larger gauge for safety margin."
+        },
+        {
+          title: "Real-World Examples",
+          content: [
+            "Example 1: 120V, 15A circuit, 75ft run: Vd = 2×15×1.93×75/1000 = 4.34V = 3.62% (use 10 AWG to reduce below 3%)",
+            "Example 2: 240V, 30A circuit, 150ft: With 10 AWG (1.21 Ω/kft): Vd = 2×30×1.21×150/1000 = 10.89V = 4.54% → use 8 AWG",
+            "Example 3: 480V 3-phase, 50A, 200ft: With 6 AWG (0.491 Ω/kft): Vd = 1.732×50×0.491×200/1000 = 8.50V = 1.77% ✓",
+            "Example 4: 120V LED lights, 8A continuous, 120ft: Target 2% = 2.4V. R_max = 2.4×1000/(2×8×120) = 1.25 Ω/kft → use 10 AWG",
+            "Always verify calculations with local code requirements and qualified electrician"
+          ]
+        },
+        {
+          title: "Special Considerations",
+          content: "Motor circuits: Starting current can be 6-8× running current, but voltage drop calculated at running current per NEC. LED lighting: Low current means smaller wire OK for ampacity, but voltage drop still important for dimming and color consistency. Low-voltage systems (12V, 24V): Voltage drop is critical - even 1V drop is significant. Use much larger wire than ampacity requires. Long runs: Consider higher supply voltage (e.g., 240V instead of 120V) to halve current and reduce voltage drop. Parallel circuits: Splitting load across multiple circuits reduces current per wire. Temperature: Hot environments (attics, outdoors in summer) increase resistance ~20-30% above room temperature. Aluminum wire: Requires 1-2 AWG sizes larger than copper for same voltage drop."
+        },
+        {
+          title: "Common Mistakes",
+          content: [
+            "Using round-trip length instead of one-way length (formula already accounts for return path)",
+            "Forgetting the √3 factor for three-phase calculations",
+            "Ignoring voltage drop when wire ampacity seems adequate",
+            "Not accounting for simultaneous loads in multi-outlet circuits",
+            "Using wrong resistance values (must match temperature rating: 60°C, 75°C, or 90°C)",
+            "Calculating at nominal voltage instead of worst-case (utility ±5% tolerance)",
+            "Neglecting motor starting voltage drop (can cause contactors to drop out)",
+            "Using DC formulas for AC circuits with significant inductance/capacitance"
+          ]
+        }
+      ]
+    }
+  },
+
+  "wire-resistance": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Select the wire material from the dropdown (Copper, Aluminum, Silver, or Gold).",
+        "Enter the wire length and select the unit (m, ft, cm, or mm).",
+        "Enter the wire diameter and select the unit (mm, cm, or in).",
+        "Click Calculate Resistance to compute the DC resistance.",
+        "Results show resistance in ohms (Ω) or milliohms (mΩ), material, and cross-sectional area.",
+        "All calculations are at 20°C (68°F) - resistance increases with temperature."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Wire Resistance (R)",
+          definition: "Opposition to current flow in a conductor. Calculated using R = ρ × L / A, where ρ=resistivity, L=length, A=cross-sectional area. Measured in ohms (Ω) or milliohms (mΩ). Lower resistance = better conductivity = less power loss."
+        },
+        {
+          term: "Resistivity (ρ)",
+          definition: "Material property indicating how strongly it resists current flow. Measured in ohm-meters (Ω·m). At 20°C: Copper=1.68×10⁻⁸, Aluminum=2.82×10⁻⁸, Silver=1.59×10⁻⁸, Gold=2.44×10⁻⁸ Ω·m. Lower resistivity = better conductor. Temperature dependent - increases with heat."
+        },
+        {
+          term: "Cross-Sectional Area (A)",
+          definition: "Area of the wire's circular cross-section perpendicular to current flow. Calculated as A = π × (d/2)², where d=diameter. Larger area = lower resistance. Doubling area halves resistance. Measured in mm² or kcmil (circular mils)."
+        },
+        {
+          term: "Wire Length (L)",
+          definition: "Total conductor length through which current flows. Resistance increases linearly with length: double length = double resistance. For round-trip (out and back), total length = 2 × one-way distance. Measured in meters, feet, or other length units."
+        },
+        {
+          term: "Temperature Coefficient",
+          definition: "Rate at which resistance changes with temperature. For copper: α = 0.00393/°C (0.393%/°C increase). R_T = R_20 × [1 + α(T - 20°C)]. At 75°C, copper resistance is ~20% higher than at 20°C. Critical for accurate ampacity and voltage drop calculations."
+        },
+        {
+          term: "Material Comparison",
+          definition: "Relative conductivity: Silver (best, 105%), Copper (standard, 100%), Gold (73%), Aluminum (61%). Copper is standard due to cost/performance balance. Aluminum lighter and cheaper but requires 1.63× cross-section for same resistance. Silver used in critical RF applications."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Wire Resistance",
+      sections: [
+        {
+          title: "Understanding Electrical Resistance",
+          content: "Electrical resistance is the opposition to current flow in a conductor. When electrons flow through a wire, they collide with atoms in the crystal lattice, losing energy as heat. This opposition is quantified as resistance (R), measured in ohms (Ω). Resistance depends on four factors: Material (conductors like copper, semiconductors like silicon, insulators like rubber). Length (longer wire = more resistance). Cross-sectional area (thicker wire = less resistance). Temperature (hotter wire = more resistance for metals). Ohm's Law relates resistance to voltage and current: V = I × R."
+        },
+        {
+          title: "The Resistance Formula: R = ρ × L / A",
+          content: "This fundamental formula calculates wire resistance from material properties and dimensions. ρ (rho) = resistivity in Ω·m (material constant at given temperature). L = length in meters (total conductor path). A = cross-sectional area in m² (perpendicular to current flow). Derivation: Resistance is proportional to length (R ∝ L) because more material means more electron collisions. Resistance is inversely proportional to area (R ∝ 1/A) because larger area provides more parallel paths for current. Resistivity is the proportionality constant that makes the equation exact: R = ρL/A. Example: 10m of copper wire, 1mm diameter: A = π(0.5mm)² = 0.785mm² = 7.85×10⁻⁷m². R = 1.68×10⁻⁸ × 10 / 7.85×10⁻⁷ = 0.214Ω."
+        },
+        {
+          title: "Material Resistivity Values",
+          content: [
+            "Silver: 1.59×10⁻⁸ Ω·m (lowest, best conductor, expensive - used in critical applications)",
+            "Copper: 1.68×10⁻⁸ Ω·m (industry standard - excellent conductivity, moderate cost)",
+            "Gold: 2.44×10⁻⁸ Ω·m (corrosion resistant - used in contacts and connectors)",
+            "Aluminum: 2.82×10⁻⁸ Ω·m (61% of copper's conductivity - lighter, cheaper, larger wire needed)",
+            "Tungsten: 5.6×10⁻⁸ Ω·m (high resistance - used in incandescent bulb filaments)",
+            "Iron: 1.0×10⁻⁷ Ω·m (poor conductor - used for structural, not electrical)",
+            "All values at 20°C (68°F) - resistivity increases with temperature for metals"
+          ]
+        },
+        {
+          title: "Temperature Effects on Resistance",
+          content: "Resistance of metallic conductors increases with temperature due to increased atomic vibration. The relationship is approximately linear over normal operating ranges: R_T = R_20 × [1 + α(T - 20°C)], where α = temperature coefficient. For copper: α = 0.00393/°C (0.393% increase per °C). Example: 1Ω copper wire at 20°C becomes 1.22Ω at 75°C (typical operating temperature). For aluminum: α = 0.00403/°C (slightly higher than copper). Practical impact: Wire ampacity tables specify resistance at 75°C, not 20°C. Voltage drop calculations should use operating temperature, not room temperature. Temperature rise from current flow increases resistance, which increases heat, creating positive feedback. Thermal runaway can occur if heat generation exceeds dissipation."
+        },
+        {
+          title: "Practical Wire Resistance Examples",
+          content: [
+            "12 AWG copper wire: 1.93 Ω/kft at 75°C, 0.0063 Ω/m. 100ft run = 0.193Ω",
+            "10 AWG copper wire: 1.21 Ω/kft at 75°C, 0.00397 Ω/m. Carries 30A, 100ft drop = 5.8V",
+            "4/0 AWG copper: 0.0482 Ω/kft at 75°C. Heavy feeder cable, very low resistance",
+            "Same gauge aluminum: 1.63× copper resistance. 10 AWG aluminum = 1.97 Ω/kft",
+            "Speaker wire 18 AWG: 6.5 Ω/kft. 50ft run = 0.325Ω. For 8Ω speaker, adds 4% to impedance",
+            "Car battery cable 2 AWG: 0.16 Ω/kft. 6ft total = 0.001Ω. Minimal drop at high current",
+            "Ethernet CAT6 24 AWG: 28.5 Ω/kft. 300ft = 8.55Ω. PoE limited by resistance and heat"
+          ]
+        },
+        {
+          title: "Copper vs Aluminum Wiring",
+          content: "Copper has been the standard conductor for over a century, but aluminum gained popularity in the 1960s-70s due to lower cost and weight. Conductivity: Aluminum is 61% as conductive as copper - requires 1.6× the cross-sectional area for same current. Weight: Aluminum is 30% the weight of copper - important for overhead power lines and aircraft. Cost: Aluminum typically 25-50% cheaper than copper (fluctuates with commodity prices). Connections: Aluminum requires special anti-oxidant compounds and AL-rated connectors. Aluminum oxide is insulating and increases resistance at connections. Thermal expansion: Aluminum expands/contracts 30% more than copper - loosens connections over time. Building codes: Aluminum wiring in homes (1960s-70s) now recognized fire hazard. Requires specialized connectors (CO/ALR rated) and periodic inspection. Modern use: Aluminum used for large feeders, service entrances, and utility transmission where weight and cost matter more than space."
+        },
+        {
+          title: "Resistance in AC Circuits",
+          content: "This calculator computes DC resistance (R). AC circuits have additional complexity: Skin Effect: At high frequencies, current concentrates near conductor surface, effectively reducing cross-sectional area and increasing resistance. Significant above 10 kHz. 60 Hz power frequency has minimal skin effect for building wire sizes. Proximity Effect: AC current in parallel conductors creates magnetic fields that concentrate current on facing sides, increasing resistance. Important in large conductor bundles. Impedance: AC circuits have impedance Z = √(R² + X²), where X is reactance from inductance and capacitance. At power frequencies (50-60 Hz), resistance dominates for wire runs under 1000ft. Stranded wire: For same AWG, stranded has slightly higher DC resistance than solid, but better AC performance due to reduced skin effect and increased flexibility. Use DC resistance for: Voltage drop calculations at power frequencies (50-60 Hz). Ampacity calculations. Short wire runs (< 1000ft). Resistive heating calculations."
+        },
+        {
+          title: "Common Mistakes and Misconceptions",
+          content: [
+            "Using room temperature (20°C) resistance instead of operating temperature (75°C) - actual resistance 20% higher",
+            "Assuming thicker insulation means thicker conductor - insulation adds no conductivity",
+            "Confusing AWG number with wire diameter - lower AWG = thicker wire (counterintuitive)",
+            "Ignoring strand count - 19-strand and 37-strand same AWG have slightly different resistance",
+            "Using one-way length for round-trip circuit - total resistance = 2 × one-way",
+            "Comparing copper and aluminum without area adjustment - must account for 61% conductivity",
+            "Neglecting temperature rise from current flow - operating temp > ambient temp",
+            "Assuming wire resistance is negligible - even short runs have measurable drop at high current",
+            "Using DC formulas for high-frequency AC - skin effect significant above 10 kHz"
+          ]
+        }
+      ]
+    }
+  },
+
+  "conduit-fill": {
+    howToUse: {
+      title: "How to Use This Calculator",
+      steps: [
+        "Select the conduit type: EMT (Electrical Metallic Tubing), PVC (Schedule 40), or Rigid Metal Conduit.",
+        "Select the conduit size from 1/2\" to 4\" nominal diameter.",
+        "Select the wire gauge (AWG) including insulation that will be installed.",
+        "Click Calculate Fill to see the maximum number of conductors allowed.",
+        "Results show max conductor count, fill percentage, conduit area, and wire area.",
+        "Values based on NEC Chapter 9, Table 1 (40% fill for 3+ conductors)."
+      ]
+    },
+    metrics: {
+      title: "Understanding the Metrics",
+      items: [
+        {
+          term: "Maximum Conductors",
+          definition: "Maximum number of current-carrying conductors allowed in conduit per NEC fill limits. Based on 40% maximum fill for 3+ wires, 31% for 2 wires, 53% for 1 wire. Ground wires count toward fill. Neutrals carrying current count. Bare ground wires still count but use different tables."
+        },
+        {
+          term: "Fill Percentage",
+          definition: "Percentage of conduit internal area occupied by conductor insulation. NEC limits: 53% for 1 conductor, 31% for 2 conductors, 40% for 3+ conductors. Limits prevent heat buildup and ensure wires can be pulled without damage. Higher fill = harder to pull, more heat, increased ampacity derating."
+        },
+        {
+          term: "Conduit Internal Area",
+          definition: "Usable cross-sectional area inside conduit. Varies by conduit type due to wall thickness: EMT (thin wall), PVC (medium), Rigid (thick wall). Measured in square inches. Larger conduit = more area = more conductors. NEC Chapter 9, Table 4 provides exact areas."
+        },
+        {
+          term: "Conductor Area",
+          definition: "Cross-sectional area of insulated conductor including insulation thickness. Larger than bare conductor area. Depends on wire gauge and insulation type (THHN/THWN). NEC Chapter 9, Table 5 lists areas for each conductor type. Same AWG can have different areas depending on insulation."
+        },
+        {
+          term: "Conduit Types",
+          definition: "EMT: Thin-wall, most interior space, lightweight, most common. PVC Schedule 40: Corrosion-proof, underground/wet locations, moderate wall thickness. Rigid Metal: Heavy-duty, thickest wall, least interior space, outdoor/industrial. IMC (Intermediate Metal): Between EMT and Rigid. Each has different fill capacity."
+        },
+        {
+          term: "NEC Fill Requirements",
+          definition: "National Electrical Code Chapter 9 governs conduit fill. Table 1: Maximum fill percentages (40% standard). Table 4: Conduit dimensions and areas. Table 5: Conductor areas with insulation. Annex C: Complete fill tables for common combinations. Local codes may have additional restrictions."
+        }
+      ]
+    },
+    guide: {
+      title: "A Detailed Guide to Conduit Fill Calculations",
+      sections: [
+        {
+          title: "Why Conduit Fill Matters",
+          content: "Conduit fill limits exist for three critical reasons: Heat dissipation - Tightly packed conductors trap heat, reducing ampacity. Overheating causes insulation failure and fire hazards. Wire pulling - Overfilled conduits make pulling wire difficult or impossible, damaging insulation during installation. Jam factors - Beyond certain fill, wires jam and cannot be pulled. Code compliance - Exceeding fill limits violates NEC, fails inspections, and creates liability. The 40% fill limit balances these factors, allowing sufficient space for cooling, reasonable pulling effort, and some future expansion. Different fill limits (53%, 31%, 40%) account for the number of conductors and their interaction."
+        },
+        {
+          title: "NEC Chapter 9 Fill Rules",
+          content: "NEC Chapter 9 provides comprehensive conduit fill requirements. Table 1 specifies maximum fill percentages based on conductor count: 1 conductor: 53% fill allowed (most space for cooling single conductor). 2 conductors: 31% fill allowed (ensures sufficient spacing). 3+ conductors: 40% fill allowed (standard installations). These limits apply to the cross-sectional area, not linear length. Table 4 lists conduit dimensions: internal diameter, usable area for each conduit type and size. Table 5 lists conductor dimensions: area including insulation for each wire type and size. Annex C provides complete fill tables: pre-calculated maximum conductors for common combinations, eliminating manual calculation for standard installations."
+        },
+        {
+          title: "Conduit Types and Internal Areas",
+          content: [
+            "EMT (Electrical Metallic Tubing): Thin wall, lightweight, most common residential/commercial. 1/2\" EMT: 0.304 in² area. 3/4\" EMT: 0.533 in². 1\" EMT: 0.864 in². Most interior space per size.",
+            "PVC Schedule 40: Plastic, corrosion-proof, underground and wet locations. 1/2\" PVC: 0.285 in². 3/4\" PVC: 0.508 in². Less area than EMT due to thicker walls.",
+            "Rigid Metal Conduit: Heavy-duty, outdoor/industrial, thick walls. 1/2\" Rigid: 0.314 in². Least interior area but strongest protection.",
+            "IMC (Intermediate Metal Conduit): Between EMT and Rigid in wall thickness. PVC Schedule 80: Thicker than Schedule 40, for harsh environments.",
+            "Flexible conduit: Special rules apply, generally avoid for long runs due to increased pulling difficulty."
+          ]
+        },
+        {
+          title: "Conductor Area with Insulation",
+          content: "Conductor area includes wire metal plus insulation. NEC Table 5 lists areas for various insulation types. THHN/THWN: Most common, compact insulation, 90°C rating. XHHW: Cross-linked polyethylene, moisture-resistant, 90°C wet/75°C dry. TW: Older thermoplastic, 60°C rating, larger area than THHN. THW: Moisture-resistant thermoplastic, 75°C rating. Example 12 AWG: Bare copper = 0.0081 in². THHN insulated = 0.0133 in² (64% larger due to insulation). Stranded vs Solid: Same AWG stranded slightly larger area due to interstices between strands. Compact strand: Special construction, slightly smaller than standard strand. Always use areas from NEC Table 5 for fill calculations, not bare conductor area."
+        },
+        {
+          title: "Calculating Maximum Fill",
+          content: "Step-by-step calculation: 1) Determine number of conductors (3+ for typical circuits). 2) Find maximum fill percentage: 40% for 3+ wires, 31% for 2, 53% for 1. 3) Look up conduit internal area from NEC Table 4 for your conduit type and size. 4) Calculate maximum fill area: Max Area = Conduit Area × Fill Percentage. 5) Look up conductor area from NEC Table 5 for your wire type and gauge. 6) Calculate maximum conductors: Max Count = Max Area / Conductor Area (round down). Example: 3/4\" EMT, 12 AWG THHN, 6 conductors. Conduit area = 0.533 in². Max fill = 0.533 × 0.40 = 0.213 in². Conductor area = 0.0133 in². Max conductors = 0.213 / 0.0133 = 16 wires. 6 conductors OK ✓. Or use Annex C Table C.1 for pre-calculated values: Shows 16 conductors allowed."
+        },
+        {
+          title: "Special Considerations and Exceptions",
+          content: [
+            "Equipment Grounding Conductors: Count toward fill using Table 5 dimensions. Bare ground can use Table 8 (smaller area).",
+            "Neutral Conductors: Must count if carrying current. Balanced 3-phase neutrals carrying only imbalance may have reduced count rules.",
+            "Control and Signal Wires: Count normally, use their insulation type from Table 5.",
+            "Nipples (< 24\"): May exceed normal fill if conductors don't exceed 60% fill. Short runs reduce heat buildup.",
+            "Splices and Taps: Not allowed in conduit (except junction boxes). Conduit is for through-conductors only.",
+            "Mixed Wire Sizes: Add up individual areas. Can mix 12 AWG and 10 AWG if total area < 40% fill.",
+            "Derating for Fill: If more than 3 current-carrying conductors, ampacity must be derated per NEC 310.15(B)(3)(a).",
+            "Cable Assemblies in Conduit: Romex, MC cable generally not allowed in conduit. Use individual THHN conductors."
+          ]
+        },
+        {
+          title: "Practical Examples and Applications",
+          content: "Example 1: Residential 20A circuit: 3 conductors (2 hot, 1 ground) 12 AWG THHN in 1/2\" EMT. Conductor area = 0.0133 in² × 3 = 0.0399 in². Conduit area (31% for 2 current-carrying) = 0.304 × 0.31 = 0.094 in². 0.0399 < 0.094 ✓ OK (could fit up to 7). Example 2: Commercial sub-panel feeder: 4 conductors (3 phase + neutral) 2 AWG THHN in 1-1/4\" EMT. Conductor area = 0.1158 in² × 4 = 0.463 in². Conduit area (40%) = 1.496 × 0.40 = 0.598 in². 0.463 < 0.598 ✓ OK. Example 3: Multiple circuits in one conduit: Eight 12 AWG THHN (four circuits: 4 hot, 4 neutral) in 3/4\" EMT. Total area = 8 × 0.0133 = 0.106 in². Max fill = 0.533 × 0.40 = 0.213 in². 0.106 < 0.213 ✓ OK. But must derate ampacity: 7-9 conductors = 70% derating. Example 4: Home run to panel: Six 12 AWG (3 circuits) + three 12 AWG grounds in 1\" EMT. 9 conductors × 0.0133 = 0.120 in². Max fill = 0.864 × 0.40 = 0.346 in². 0.120 < 0.346 ✓ OK."
+        },
+        {
+          title: "Common Mistakes and Best Practices",
+          content: [
+            "Mistake: Using bare conductor area instead of insulated area - significantly underestimates fill",
+            "Mistake: Forgetting to count ground wires - they contribute to fill even if not current-carrying",
+            "Mistake: Using 40% fill for 1-2 conductors - must use 53% for 1, 31% for 2",
+            "Mistake: Exceeding fill thinking 'it's close enough' - fails inspection, makes pulling impossible",
+            "Mistake: Not accounting for derating - 4+ conductors require ampacity reduction",
+            "Mistake: Mixing different insulation types without checking - TW larger than THHN",
+            "Best Practice: Use Annex C tables when possible - eliminates calculation errors",
+            "Best Practice: Size up conduit if close to limit - easier pulling, allows future additions",
+            "Best Practice: Pull rope/tape through before pulling wire - confirms conduit clear",
+            "Best Practice: Use wire pulling lubricant - reduces friction, prevents insulation damage",
+            "Best Practice: Limit bends to 360° total between boxes - prevents jamming",
+            "Best Practice: Document conduit fill - helps future electricians with additions"
+          ]
+        }
+      ]
+    }
   }
 };
 

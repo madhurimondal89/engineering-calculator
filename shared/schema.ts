@@ -5,6 +5,7 @@ export const calculatorCategories = [
   "Electrical",
   "AC Circuits",
   "Electronics",
+  "Wire & Cable",
   "Mechanical", 
   "Civil",
   "General Science"
@@ -387,6 +388,48 @@ export const calculators: Calculator[] = [
     category: "Electronics",
     path: "/calculators/decibel",
     icon: "Radio"
+  },
+  
+  // Wire & Cable
+  {
+    id: "wire-gauge",
+    title: "Wire Gauge Calculator",
+    description: "Convert between AWG and metric wire sizes (diameter, area, resistance)",
+    category: "Wire & Cable",
+    path: "/calculators/wire-gauge",
+    icon: "Cable"
+  },
+  {
+    id: "wire-current-capacity",
+    title: "Wire Current Capacity Calculator",
+    description: "Calculate maximum safe current (ampacity) for wires based on gauge and installation",
+    category: "Wire & Cable",
+    path: "/calculators/wire-current-capacity",
+    icon: "Zap"
+  },
+  {
+    id: "voltage-drop",
+    title: "Voltage Drop Calculator",
+    description: "Calculate voltage drop in wire runs for single-phase and three-phase circuits",
+    category: "Wire & Cable",
+    path: "/calculators/voltage-drop",
+    icon: "TrendingDown"
+  },
+  {
+    id: "wire-resistance",
+    title: "Wire Resistance Calculator",
+    description: "Calculate wire resistance based on material, length, and cross-sectional area",
+    category: "Wire & Cable",
+    path: "/calculators/wire-resistance",
+    icon: "Activity"
+  },
+  {
+    id: "conduit-fill",
+    title: "Conduit Fill Calculator",
+    description: "Calculate maximum number of wires in conduit per NEC fill requirements",
+    category: "Wire & Cable",
+    path: "/calculators/conduit-fill",
+    icon: "Cylinder"
   },
   
   // Mechanical

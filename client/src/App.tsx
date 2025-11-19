@@ -64,6 +64,13 @@ import TransistorAmplifier from "@/pages/calculators/TransistorAmplifier";
 import WheatStoneBridge from "@/pages/calculators/WheatStoneBridge";
 import Decibel from "@/pages/calculators/Decibel";
 
+// Wire & Cable Calculators
+import WireGauge from "@/pages/calculators/WireGauge";
+import WireCurrentCapacity from "@/pages/calculators/WireCurrentCapacity";
+import VoltageDrop from "@/pages/calculators/VoltageDrop";
+import WireResistance from "@/pages/calculators/WireResistance";
+import ConduitFill from "@/pages/calculators/ConduitFill";
+
 function Router() {
   return (
     <Switch>
@@ -125,6 +132,13 @@ function Router() {
       <Route path="/calculators/transistor-amplifier" component={TransistorAmplifier} />
       <Route path="/calculators/wheatstone-bridge" component={WheatStoneBridge} />
       <Route path="/calculators/decibel" component={Decibel} />
+      
+      {/* Wire & Cable Calculators */}
+      <Route path="/calculators/wire-gauge" component={WireGauge} />
+      <Route path="/calculators/wire-current-capacity" component={WireCurrentCapacity} />
+      <Route path="/calculators/voltage-drop" component={VoltageDrop} />
+      <Route path="/calculators/wire-resistance" component={WireResistance} />
+      <Route path="/calculators/conduit-fill" component={ConduitFill} />
       
       {/* Fallback to 404 */}
       <Route component={NotFound} />
