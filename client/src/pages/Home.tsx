@@ -3,7 +3,7 @@ import { CalculatorCard } from "@/components/CalculatorCard";
 import { Header } from "@/components/Header";
 
 export default function Home() {
-  const categories: CalculatorCategory[] = ["Electrical", "Mechanical", "Civil", "General Science"];
+  const categories: CalculatorCategory[] = ["Electrical", "AC Circuits", "Mechanical", "Civil", "General Science"];
   
   const getCalculatorsByCategory = (category: CalculatorCategory) => {
     return calculators.filter(calc => calc.category === category);
@@ -55,11 +55,23 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t py-12 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             <div>
               <h3 className="font-semibold mb-3">Electrical</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 {getCalculatorsByCategory("Electrical").map(calc => (
+                  <li key={calc.id}>
+                    <a href={calc.path} className="hover:text-foreground">
+                      {calc.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-3">AC Circuits</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                {getCalculatorsByCategory("AC Circuits").map(calc => (
                   <li key={calc.id}>
                     <a href={calc.path} className="hover:text-foreground">
                       {calc.title}
