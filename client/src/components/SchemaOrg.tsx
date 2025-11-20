@@ -138,3 +138,24 @@ export const createFAQSchema = (faqs: Array<{ question: string; answer: string }
     }
   }))
 });
+
+export const createCollectionPageSchema = (params: {
+  name: string;
+  description: string;
+  url: string;
+  itemCount: number;
+}) => ({
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: params.name,
+  description: params.description,
+  url: params.url,
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: params.itemCount,
+    itemListElement: []
+  },
+  breadcrumb: {
+    '@type': 'BreadcrumbList'
+  }
+});

@@ -4,6 +4,7 @@ import { CalculatorCard } from "@/components/CalculatorCard";
 import { Header } from "@/components/Header";
 import { ChevronRight } from "lucide-react";
 import { Link } from "wouter";
+import { CategorySEO } from "@/components/CategorySEO";
 
 const categoryMap: Record<string, CalculatorCategory> = {
   "electrical": "Electrical",
@@ -45,6 +46,9 @@ export default function CategoryPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* SEO Meta Tags & Structured Data */}
+      <CategorySEO categorySlug={categorySlug} />
+      
       <Header />
       
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-8">

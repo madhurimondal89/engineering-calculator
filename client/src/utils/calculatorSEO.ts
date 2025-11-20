@@ -4,7 +4,7 @@ const BASE_URL = 'https://www.calculatorfree.in';
 
 export interface CalculatorMetadata {
   id: string;
-  name: string;
+  title: string;
   description: string;
   category: string;
   path: string;
@@ -19,7 +19,7 @@ export function getCalculatorMeta(calculatorId: string): CalculatorMetadata | nu
 
   return {
     id: calc.id,
-    name: calc.name,
+    title: calc.title,
     description: calc.description,
     category: calc.category,
     path: calc.path,
@@ -96,10 +96,11 @@ export function getFullCalculatorSEO(calculatorId: string) {
   return {
     ...baseMeta,
     ...extended,
-    title: generateCalculatorTitle(baseMeta.name, baseMeta.category),
-    seoDescription: extended.fullDescription || generateCalculatorDescription(baseMeta.name, baseMeta.description, baseMeta.category),
-    keywords: extended.keywords || generateCalculatorKeywords(baseMeta.name, baseMeta.category),
+    name: baseMeta.title,
+    title: generateCalculatorTitle(baseMeta.title, baseMeta.category),
+    seoDescription: extended.fullDescription || generateCalculatorDescription(baseMeta.title, baseMeta.description, baseMeta.category),
+    keywords: extended.keywords || generateCalculatorKeywords(baseMeta.title, baseMeta.category),
     canonical: generateCalculatorCanonical(baseMeta.path),
-    breadcrumbs: generateCalculatorBreadcrumbs(baseMeta.name, baseMeta.category, baseMeta.path)
+    breadcrumbs: generateCalculatorBreadcrumbs(baseMeta.title, baseMeta.category, baseMeta.path)
   };
 }
