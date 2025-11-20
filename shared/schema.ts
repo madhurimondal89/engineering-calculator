@@ -11,6 +11,7 @@ export const calculatorCategories = [
   "Battery & Energy",
   "Renewable Energy",
   "PCB",
+  "RF",
   "Mechanical", 
   "Civil",
   "General Science"
@@ -803,5 +804,61 @@ export const calculators: Calculator[] = [
     category: "PCB",
     path: "/calculators/pcb-cost-estimator",
     icon: "DollarSign"
+  },
+  {
+    id: "antenna-length",
+    title: "Antenna Length Calculator",
+    description: "Calculate antenna length for dipole, monopole, and full-wave antennas",
+    category: "RF",
+    path: "/calculators/antenna-length",
+    icon: "Radio"
+  },
+  {
+    id: "wavelength-frequency",
+    title: "Wavelength-Frequency Converter",
+    description: "Convert between wavelength and frequency for electromagnetic waves",
+    category: "RF",
+    path: "/calculators/wavelength-frequency",
+    icon: "Activity"
+  },
+  {
+    id: "dbm-watts",
+    title: "dBm to Watts Converter",
+    description: "Convert between dBm and watts power measurements",
+    category: "RF",
+    path: "/calculators/dbm-watts",
+    icon: "Zap"
+  },
+  {
+    id: "vswr",
+    title: "VSWR Calculator",
+    description: "Calculate VSWR, reflection coefficient, and return loss",
+    category: "RF",
+    path: "/calculators/vswr",
+    icon: "BarChart"
+  },
+  {
+    id: "coax-cable-loss",
+    title: "Coax Cable Loss Calculator",
+    description: "Calculate signal loss in coaxial cables at various frequencies",
+    category: "RF",
+    path: "/calculators/coax-cable-loss",
+    icon: "TrendingDown"
+  },
+  {
+    id: "link-budget",
+    title: "Link Budget Calculator",
+    description: "Calculate wireless link budget with transmit power, gains, and losses",
+    category: "RF",
+    path: "/calculators/link-budget",
+    icon: "Signal"
+  },
+  {
+    id: "resonant-frequency-lc",
+    title: "Resonant Frequency LC Calculator",
+    description: "Calculate resonant frequency of LC tank circuits",
+    category: "RF",
+    path: "/calculators/resonant-frequency-lc",
+    icon: "Waves"
   }
 ];

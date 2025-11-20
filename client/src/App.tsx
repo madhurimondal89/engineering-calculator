@@ -117,6 +117,15 @@ import DifferentialPairImpedance from "@/pages/calculators/DifferentialPairImped
 import PCBThermal from "@/pages/calculators/PCBThermal";
 import PCBCostEstimator from "@/pages/calculators/PCBCostEstimator";
 
+// RF Calculators
+import AntennaLength from "@/pages/calculators/AntennaLength";
+import WavelengthFrequency from "@/pages/calculators/WavelengthFrequency";
+import DbmWatts from "@/pages/calculators/DbmWatts";
+import VSWRCalculator from "@/pages/calculators/VSWRCalculator";
+import CoaxCableLoss from "@/pages/calculators/CoaxCableLoss";
+import LinkBudget from "@/pages/calculators/LinkBudget";
+import ResonantFrequencyLC from "@/pages/calculators/ResonantFrequencyLC";
+
 // Category Page
 import CategoryPage from "@/pages/CategoryPage";
 
@@ -235,6 +244,15 @@ function Router() {
       <Route path="/calculators/differential-pair-impedance" component={DifferentialPairImpedance} />
       <Route path="/calculators/pcb-thermal" component={PCBThermal} />
       <Route path="/calculators/pcb-cost-estimator" component={PCBCostEstimator} />
+      
+      {/* RF Calculators */}
+      <Route path="/calculators/antenna-length" component={AntennaLength} />
+      <Route path="/calculators/wavelength-frequency" component={WavelengthFrequency} />
+      <Route path="/calculators/dbm-watts" component={DbmWatts} />
+      <Route path="/calculators/vswr" component={VSWRCalculator} />
+      <Route path="/calculators/coax-cable-loss" component={CoaxCableLoss} />
+      <Route path="/calculators/link-budget" component={LinkBudget} />
+      <Route path="/calculators/resonant-frequency-lc" component={ResonantFrequencyLC} />
       
       {/* Fallback to 404 */}
       <Route component={NotFound} />

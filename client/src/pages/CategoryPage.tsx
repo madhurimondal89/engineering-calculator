@@ -15,6 +15,7 @@ const categoryMap: Record<string, CalculatorCategory> = {
   "battery-energy": "Battery & Energy",
   "renewable-energy": "Renewable Energy",
   "pcb": "PCB",
+  "rf": "RF",
   "mechanical": "Mechanical",
   "civil": "Civil",
   "general-science": "General Science",
