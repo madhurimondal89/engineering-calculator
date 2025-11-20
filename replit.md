@@ -3,7 +3,7 @@
 ## Overview
 This project is a professional web application providing a comprehensive hub of specialized engineering and science calculators. Built with React, TypeScript, Express, and Tailwind CSS, the application aims to be a go-to resource for engineers, students, and enthusiasts, offering accurate calculations and educational content. The business vision is to capture a significant market share in online technical calculators by providing a superior user experience and a vast array of tools.
 
-**Current Status**: 78 calculators across 11 categories (Electrical, AC Circuits, Electronics, Wire & Cable, Power System, Motor, Battery & Energy, Renewable Energy, Mechanical, Civil, General Science)
+**Current Status**: 86 calculators across 12 categories (Electrical, AC Circuits, Electronics, Wire & Cable, Power System, Motor, Battery & Energy, Renewable Energy, PCB, Mechanical, Civil, General Science)
 
 ## User Preferences
 - Uses Inter font for UI, JetBrains Mono for numerical displays
@@ -19,7 +19,7 @@ The application follows a full-stack architecture with a React-based frontend an
 - **Styling**: Tailwind CSS for utility-first styling, complemented by Shadcn UI components.
 - **UI/UX**: Features dark mode support with localStorage persistence, responsive design (mobile, tablet, desktop breakpoints), and a professional, card-based layout.
 - **Navigation Structure**: Three-tier navigation system:
-  1. **Home Page (/)**: Displays 11 category cards with SEO-optimized descriptions and calculator counts
+  1. **Home Page (/)**: Displays 12 category cards with SEO-optimized descriptions and calculator counts
   2. **Category Pages (/category/:slug)**: Shows all calculator cards for a specific category
   3. **Calculator Pages (/calculators/:id)**: Individual calculator interfaces with breadcrumb navigation
 - **Features**: Category-based organization, SEO-optimized content on home page, robust input validation with clear error and empty states, unit displays, and formula presentation for each calculation. Breadcrumb navigation is included on all calculator and category pages.
@@ -53,10 +53,31 @@ Implemented improved three-tier navigation structure for better UX and SEO:
 - Created CategoryPage component with dynamic routing (/category/:slug)
 - Updated Home.tsx with category cards featuring icons, descriptions, and calculator counts
 - Simplified Header component removing navigation clutter
-- All 78 calculators remain accessible through improved navigation flow
+- All calculators remain accessible through improved navigation flow
 - E2E tested: Home → Category → Calculator navigation verified
 
-### Recent Additions (Batch 8 - Renewable Energy Calculators)
+### Recent Additions (Batch 9 - PCB Calculators)
+**Completed**: November 20, 2025
+
+Added 8 comprehensive PCB design calculators for professional PCB layout and manufacturing:
+1. **PCB Trace Width** - Calculate minimum trace width using IPC-2221 standard for current and temperature rise
+2. **PCB Via Current** - Determine current carrying capacity of vias based on hole diameter and plating thickness
+3. **Microstrip Impedance** - Calculate characteristic impedance for microstrip transmission lines
+4. **Stripline Impedance** - Calculate characteristic impedance for stripline transmission lines
+5. **PCB Track Resistance** - Calculate track resistance, voltage drop, and power dissipation
+6. **Differential Pair Impedance** - Calculate differential and single-ended impedance for differential pairs
+7. **PCB Thermal** - Calculate temperature rise and heat dissipation for PCB copper areas
+8. **PCB Cost Estimator** - Estimate PCB manufacturing costs based on specifications and quantity
+
+**Technical Implementation**:
+- All calculators use React Hook Form + Zod validation with z.coerce.number()
+- Complex calculations: IPC-2221 standards for trace width/via current, Wheeler's equations for impedance, thermal modeling
+- Educational content: 5000+ lines covering PCB design principles, transmission line theory, thermal management, IPC standards
+- Critical bug fixes: PCB Via Current annular area calculation, unit conversions (mils to inches), resistance length calculation
+- E2E tested with Playwright - all 8 calculators verified with realistic inputs
+- Data-testid attributes on all interactive elements
+
+### Previous Additions (Batch 8 - Renewable Energy Calculators)
 **Completed**: November 20, 2025
 
 Added 4 comprehensive Renewable Energy calculators covering wind, solar, and grid-tied systems:

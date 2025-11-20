@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Header } from "@/components/Header";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 const formSchema = z.object({
   traceWidth: z.coerce.number().positive("Trace width must be positive"),
@@ -260,7 +261,12 @@ export default function MicrostripImpedance() {
         </div>
 
         <div className="mt-12">
-          <CalculatorAccordion calcId="microstrip-impedance" />
+          {getCalculatorAccordion("microstrip-impedance") && (
+            <CalculatorAccordion
+              content={getCalculatorAccordion("microstrip-impedance")!}
+              calculatorId="microstrip-impedance"
+            />
+          )}
         </div>
       </div>
     </div>

@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Header } from "@/components/Header";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 const formSchema = z.object({
   power: z.coerce.number().positive("Power must be positive"),
@@ -259,7 +260,12 @@ export default function PCBThermal() {
         </div>
 
         <div className="mt-12">
-          <CalculatorAccordion calcId="pcb-thermal" />
+          {getCalculatorAccordion("pcb-thermal") && (
+            <CalculatorAccordion
+              content={getCalculatorAccordion("pcb-thermal")!}
+              calculatorId="pcb-thermal"
+            />
+          )}
         </div>
       </div>
     </div>

@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Header } from "@/components/Header";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 const formSchema = z.object({
   traceWidth: z.coerce.number().positive("Trace width must be positive"),
@@ -265,7 +266,12 @@ export default function DifferentialPairImpedance() {
         </div>
 
         <div className="mt-12">
-          <CalculatorAccordion calcId="differential-pair-impedance" />
+          {getCalculatorAccordion("differential-pair-impedance") && (
+            <CalculatorAccordion
+              content={getCalculatorAccordion("differential-pair-impedance")!}
+              calculatorId="differential-pair-impedance"
+            />
+          )}
         </div>
       </div>
     </div>

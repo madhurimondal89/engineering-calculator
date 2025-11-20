@@ -9,10 +9,11 @@ import { Button } from "@/components/ui/button";
 import { Header } from "@/components/Header";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 const formSchema = z.object({
   holeDiameter: z.coerce.number().positive("Hole diameter must be positive"),
-  thickness: z.coerce.number().positive("Thickness must be positive").default(1),
+  thickness: z.coerce.number().positive("Thickness must be positive").default(62),
   tempRise: z.coerce.number().positive("Temperature rise must be positive").default(10),
   platingThickness: z.coerce.number().positive("Plating thickness must be positive").default(1),
 });
@@ -30,7 +31,7 @@ export default function PCBViaCurrent() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       holeDiameter: undefined,
-      thickness: 1,
+      thickness: 62,
       tempRise: 10,
       platingThickness: 1,
     },
@@ -39,24 +40,23 @@ export default function PCBViaCurrent() {
   function onSubmit(values: FormValues) {
     const { holeDiameter, thickness, tempRise, platingThickness } = values;
     
-    // Calculate via barrel area
-    // Convert mils to inches for calculation
-    const holeDiameterInch = holeDiameter / 1000;
-    const thicknessInch = thickness * 0.00137; // 1 oz = 0.00137 inches
-    const platingThicknessMils = platingThickness; // plating in mils
+    // Calculate via barrel cross-sectional area (annular area)
+    // All dimensions in mils
+    const outerDiameter = holeDiameter + (2 * platingThickness);
+    const innerDiameter = holeDiameter;
     
-    // Via barrel circumference and area
-    const circumference = Math.PI * holeDiameterInch; // inches
-    const barrelArea = circumference * platingThicknessMils; // sq mils
+    // Annular area in sq mils
+    const barrelArea = (Math.PI / 4) * (Math.pow(outerDiameter, 2) - Math.pow(innerDiameter, 2));
     
     // IPC-2221: I = k × ΔT^0.44 × A^0.725
-    const k = 0.048; // for external (via is like external)
+    // Use external layer constant (vias behave like external conductors)
+    const k = 0.048; // for external layers
     const maxCurrent = k * Math.pow(tempRise, 0.44) * Math.pow(barrelArea, 0.725);
     
-    // Calculate resistance (approximate)
+    // Calculate resistance
     // ρ (copper) = 1.68e-8 Ω·m = 0.00066 Ω·mils²/inch
-    const length = values.thickness * 62; // board thickness (1 oz ≈ 62 mils thick board)
-    const resistance = (0.00066 * length) / barrelArea; // mΩ
+    // Keep thickness in mils for this resistivity constant
+    const resistance = (0.00066 * thickness) / barrelArea * 1000; // convert Ω to mΩ
     
     // Power dissipation
     const powerDissipation = Math.pow(maxCurrent, 2) * resistance; // mW
@@ -145,12 +145,12 @@ export default function PCBViaCurrent() {
                     name="thickness"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Board Thickness (oz equivalent)</FormLabel>
+                        <FormLabel>Board Thickness (mils)</FormLabel>
                         <FormControl>
                           <Input
                             type="number"
-                            step="0.5"
-                            placeholder="1"
+                            step="1"
+                            placeholder="62"
                             data-testid="input-thickness"
                             {...field}
                             value={field.value ?? ""}
@@ -255,7 +255,12 @@ export default function PCBViaCurrent() {
         </div>
 
         <div className="mt-12">
-          <CalculatorAccordion calcId="pcb-via-current" />
+          {getCalculatorAccordion("pcb-via-current") && (
+            <CalculatorAccordion
+              content={getCalculatorAccordion("pcb-via-current")!}
+              calculatorId="pcb-via-current"
+            />
+          )}
         </div>
       </div>
     </div>

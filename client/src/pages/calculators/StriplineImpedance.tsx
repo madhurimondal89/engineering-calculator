@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Header } from "@/components/Header";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 const formSchema = z.object({
   traceWidth: z.coerce.number().positive("Trace width must be positive"),
@@ -241,7 +242,12 @@ export default function StriplineImpedance() {
         </div>
 
         <div className="mt-12">
-          <CalculatorAccordion calcId="stripline-impedance" />
+          {getCalculatorAccordion("stripline-impedance") && (
+            <CalculatorAccordion
+              content={getCalculatorAccordion("stripline-impedance")!}
+              calculatorId="stripline-impedance"
+            />
+          )}
         </div>
       </div>
     </div>

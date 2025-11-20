@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Header } from "@/components/Header";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 const formSchema = z.object({
   length: z.coerce.number().positive("Length must be positive"),
@@ -346,7 +347,12 @@ export default function PCBCostEstimator() {
         </div>
 
         <div className="mt-12">
-          <CalculatorAccordion calcId="pcb-cost-estimator" />
+          {getCalculatorAccordion("pcb-cost-estimator") && (
+            <CalculatorAccordion
+              content={getCalculatorAccordion("pcb-cost-estimator")!}
+              calculatorId="pcb-cost-estimator"
+            />
+          )}
         </div>
       </div>
     </div>

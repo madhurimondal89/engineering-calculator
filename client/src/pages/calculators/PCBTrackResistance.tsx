@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Header } from "@/components/Header";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 const formSchema = z.object({
   traceLength: z.coerce.number().positive("Trace length must be positive"),
@@ -228,7 +229,12 @@ export default function PCBTrackResistance() {
         </div>
 
         <div className="mt-12">
-          <CalculatorAccordion calcId="pcb-track-resistance" />
+          {getCalculatorAccordion("pcb-track-resistance") && (
+            <CalculatorAccordion
+              content={getCalculatorAccordion("pcb-track-resistance")!}
+              calculatorId="pcb-track-resistance"
+            />
+          )}
         </div>
       </div>
     </div>

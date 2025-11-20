@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Header } from "@/components/Header";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { CalculatorAccordion } from "@/components/CalculatorAccordion";
+import { getCalculatorAccordion } from "@/data/calculatorAccordions";
 
 const formSchema = z.object({
   current: z.coerce.number().positive("Current must be positive"),
@@ -276,7 +277,12 @@ export default function PCBTraceWidth() {
         </div>
 
         <div className="mt-12">
-          <CalculatorAccordion calcId="pcb-trace-width" />
+          {getCalculatorAccordion("pcb-trace-width") && (
+            <CalculatorAccordion
+              content={getCalculatorAccordion("pcb-trace-width")!}
+              calculatorId="pcb-trace-width"
+            />
+          )}
         </div>
       </div>
     </div>
