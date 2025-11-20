@@ -193,24 +193,66 @@ export default function Home() {
       <footer className="py-8 bg-muted/30 border-t">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="flex flex-col items-center gap-4">
-            <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
+            <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4 text-sm">
               <a 
-                href="https://www.calculatorfree.in/"
+                href="https://www.calculatorfree.in/about-/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover-elevate active-elevate-2 px-3 py-1 rounded-md"
-                data-testid="link-footer-home"
+                className="text-muted-foreground hover-elevate active-elevate-2 px-2 md:px-3 py-1 rounded-md"
+                data-testid="link-footer-about"
               >
-                Home
+                About Us
               </a>
-              <span className="text-muted-foreground">·</span>
-              <Link 
-                href="/"
-                className="text-muted-foreground hover-elevate active-elevate-2 px-3 py-1 rounded-md"
-                data-testid="link-footer-calculators"
+              <span className="text-muted-foreground">|</span>
+              <a 
+                href="https://www.calculatorfree.in/contact-us/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover-elevate active-elevate-2 px-2 md:px-3 py-1 rounded-md"
+                data-testid="link-footer-contact"
               >
-                Calculators
-              </Link>
+                Contact Us
+              </a>
+              <span className="text-muted-foreground">|</span>
+              <a 
+                href="https://www.calculatorfree.in/privacy-policy/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover-elevate active-elevate-2 px-2 md:px-3 py-1 rounded-md"
+                data-testid="link-footer-privacy"
+              >
+                Privacy Policy
+              </a>
+              <span className="text-muted-foreground">|</span>
+              <a 
+                href="https://www.calculatorfree.in/disclaimer/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover-elevate active-elevate-2 px-2 md:px-3 py-1 rounded-md"
+                data-testid="link-footer-disclaimer"
+              >
+                Disclaimer
+              </a>
+              <span className="text-muted-foreground">|</span>
+              <a 
+                href="https://www.calculatorfree.in/terms-conditions/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover-elevate active-elevate-2 px-2 md:px-3 py-1 rounded-md"
+                data-testid="link-footer-terms"
+              >
+                Terms & Conditions
+              </a>
+              <span className="text-muted-foreground">|</span>
+              <a 
+                href="https://www.calculatorfree.in/dmca-policy/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover-elevate active-elevate-2 px-2 md:px-3 py-1 rounded-md"
+                data-testid="link-footer-dmca"
+              >
+                DMCA
+              </a>
             </div>
             <p className="text-sm text-muted-foreground text-center" data-testid="text-copyright">
               © {new Date().getFullYear()} Copyright calculatorfree.in | All rights reserved.
