@@ -238,17 +238,36 @@ export default function Home() {
       </section>
 
       {/* Hero Section */}
-      <section className="py-16 md:py-24 border-b">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4" data-testid="text-hero-title">
-            Engineering & Science Calculator Hub
+      <section className="relative py-20 md:py-32 overflow-hidden border-b">
+        {/* Animated Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(120,119,198,0.15),transparent_50%)]" />
+        
+        {/* Decorative Elements */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl opacity-20 animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '1s' }} />
+        
+        <div className="max-w-7xl mx-auto px-4 md:px-6 text-center relative">
+          {/* Mega Headline with Gradient */}
+          <h1 className="text-5xl md:text-7xl font-black mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/60 bg-clip-text text-transparent leading-tight" data-testid="text-hero-title">
+            Engineering & Science
+            <br />
+            <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+              Calculator Hub
+            </span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-6" data-testid="text-hero-subtitle">
+          
+          {/* Subtitle with Enhanced Typography */}
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed font-light" data-testid="text-hero-subtitle">
             Professional calculation tools for engineers, students, and scientists
           </p>
-          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-            <Calculator className="w-4 h-4" />
-            <span data-testid="text-total-calculators">
+          
+          {/* Premium Stats Badge */}
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 border border-primary/30 backdrop-blur-sm shadow-lg shadow-primary/20">
+            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-primary/40 to-primary/20">
+              <Calculator className="w-5 h-5 text-primary" />
+            </div>
+            <span className="text-base md:text-lg font-semibold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent" data-testid="text-total-calculators">
               {calculators.length} Free Calculators across {categories.length} Categories
             </span>
           </div>
