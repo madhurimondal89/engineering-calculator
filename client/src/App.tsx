@@ -107,6 +107,16 @@ import SolarArraySizing from "@/pages/calculators/SolarArraySizing";
 import RenewablePayback from "@/pages/calculators/RenewablePayback";
 import GridTieSystem from "@/pages/calculators/GridTieSystem";
 
+// PCB Calculators
+import PCBTraceWidth from "@/pages/calculators/PCBTraceWidth";
+import PCBViaCurrent from "@/pages/calculators/PCBViaCurrent";
+import MicrostripImpedance from "@/pages/calculators/MicrostripImpedance";
+import StriplineImpedance from "@/pages/calculators/StriplineImpedance";
+import PCBTrackResistance from "@/pages/calculators/PCBTrackResistance";
+import DifferentialPairImpedance from "@/pages/calculators/DifferentialPairImpedance";
+import PCBThermal from "@/pages/calculators/PCBThermal";
+import PCBCostEstimator from "@/pages/calculators/PCBCostEstimator";
+
 // Category Page
 import CategoryPage from "@/pages/CategoryPage";
 
@@ -215,6 +225,16 @@ function Router() {
       <Route path="/calculators/solar-array-sizing" component={SolarArraySizing} />
       <Route path="/calculators/renewable-payback" component={RenewablePayback} />
       <Route path="/calculators/grid-tie-system" component={GridTieSystem} />
+      
+      {/* PCB Calculators */}
+      <Route path="/calculators/pcb-trace-width" component={PCBTraceWidth} />
+      <Route path="/calculators/pcb-via-current" component={PCBViaCurrent} />
+      <Route path="/calculators/microstrip-impedance" component={MicrostripImpedance} />
+      <Route path="/calculators/stripline-impedance" component={StriplineImpedance} />
+      <Route path="/calculators/pcb-track-resistance" component={PCBTrackResistance} />
+      <Route path="/calculators/differential-pair-impedance" component={DifferentialPairImpedance} />
+      <Route path="/calculators/pcb-thermal" component={PCBThermal} />
+      <Route path="/calculators/pcb-cost-estimator" component={PCBCostEstimator} />
       
       {/* Fallback to 404 */}
       <Route component={NotFound} />
