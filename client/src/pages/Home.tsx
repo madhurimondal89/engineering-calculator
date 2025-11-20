@@ -146,32 +146,93 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Stats Section */}
-      <section className="py-8 md:py-12 bg-muted/30 border-b">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <div className="bg-card border rounded-lg p-6 md:p-8">
-            <h3 className="text-xl md:text-2xl font-semibold mb-4 text-center">
-              Perfect for Engineers, Students & Professionals
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-              <div>
-                <div className="text-3xl font-bold text-primary mb-2">{calculators.length}+</div>
-                <p className="text-muted-foreground">Professional Calculators</p>
+      {/* Stats Section - Prestige Spotlight */}
+      <section className="relative py-12 md:py-16 overflow-hidden border-b">
+        {/* Layered Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-background pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" />
+        
+        <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
+          {/* Glassmorphic Hero Card */}
+          <div className="backdrop-blur-sm bg-card/70 border border-primary/30 rounded-2xl shadow-2xl shadow-primary/10 overflow-hidden">
+            {/* Accent Glow Top Border */}
+            <div className="h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
+            
+            <div className="p-8 md:p-12">
+              {/* Premium Badge */}
+              <div className="flex justify-center mb-6">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/20 to-primary/10 border border-primary/30">
+                  <Award className="w-4 h-4 text-primary" />
+                  <span className="text-sm font-medium tracking-wide uppercase text-primary">Premium Platform</span>
+                </div>
               </div>
-              <div>
-                <div className="text-3xl font-bold text-primary mb-2">{categories.length}</div>
-                <p className="text-muted-foreground">Engineering Categories</p>
+
+              {/* Headline with Gradient Text */}
+              <h3 className="text-3xl md:text-4xl font-semibold mb-8 text-center bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
+                Perfect for Engineers, Students & Professionals
+              </h3>
+
+              {/* Glassmorphic Stats Cards Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                {/* Stat 1 */}
+                <div className="group relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Card className="relative hover-elevate active-elevate-2 transition-all border-primary/20 bg-gradient-to-br from-card to-card/50">
+                    <CardContent className="p-6 text-center">
+                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-primary/30 to-primary/10 mb-4 group-hover:scale-110 transition-transform">
+                        <Calculator className="w-8 h-8 text-primary" />
+                      </div>
+                      <div className="text-5xl md:text-6xl font-black bg-gradient-to-br from-primary to-primary/70 bg-clip-text text-transparent mb-2 group-hover:scale-105 transition-transform">
+                        {calculators.length}+
+                      </div>
+                      <p className="text-sm font-medium text-muted-foreground">Professional Calculators</p>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Stat 2 */}
+                <div className="group relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Card className="relative hover-elevate active-elevate-2 transition-all border-primary/20 bg-gradient-to-br from-card to-card/50">
+                    <CardContent className="p-6 text-center">
+                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-primary/30 to-primary/10 mb-4 group-hover:scale-110 transition-transform">
+                        <Settings className="w-8 h-8 text-primary" />
+                      </div>
+                      <div className="text-5xl md:text-6xl font-black bg-gradient-to-br from-primary to-primary/70 bg-clip-text text-transparent mb-2 group-hover:scale-105 transition-transform">
+                        {categories.length}
+                      </div>
+                      <p className="text-sm font-medium text-muted-foreground">Engineering Categories</p>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Stat 3 */}
+                <div className="group relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Card className="relative hover-elevate active-elevate-2 transition-all border-primary/20 bg-gradient-to-br from-card to-card/50">
+                    <CardContent className="p-6 text-center">
+                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-primary/30 to-primary/10 mb-4 group-hover:scale-110 transition-transform">
+                        <CheckCircle2 className="w-8 h-8 text-primary" />
+                      </div>
+                      <div className="text-5xl md:text-6xl font-black bg-gradient-to-br from-primary to-primary/70 bg-clip-text text-transparent mb-2 group-hover:scale-105 transition-transform">
+                        100%
+                      </div>
+                      <p className="text-sm font-medium text-muted-foreground">Free & Accurate</p>
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
-              <div>
-                <div className="text-3xl font-bold text-primary mb-2">100%</div>
-                <p className="text-muted-foreground">Free & Accurate</p>
+
+              {/* Supporting Narrative with Accent Border */}
+              <div className="relative">
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/60 via-primary/40 to-primary/20 rounded-full" />
+                <p className="text-center text-muted-foreground leading-relaxed max-w-2xl mx-auto pl-6">
+                  Whether you're a practicing engineer designing power systems, a student learning circuit theory, 
+                  or a hobbyist building electronics projects, our calculators provide the accuracy and reliability 
+                  you need. All tools include detailed formulas, educational content, and real-time validation.
+                </p>
               </div>
             </div>
-            <p className="text-center text-muted-foreground mt-6 max-w-2xl mx-auto">
-              Whether you're a practicing engineer designing power systems, a student learning circuit theory, 
-              or a hobbyist building electronics projects, our calculators provide the accuracy and reliability 
-              you need. All tools include detailed formulas, educational content, and real-time validation.
-            </p>
           </div>
         </div>
       </section>
