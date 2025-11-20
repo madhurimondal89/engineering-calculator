@@ -85,13 +85,7 @@ export default function LinkBudget() {
     <div className="min-h-screen bg-background">
       <Header />
       <div className="max-w-4xl mx-auto px-4 md:px-6 py-8">
-        <Breadcrumb 
-          items={[
-            { label: "Home", href: "/" },
-            { label: "RF", href: "/category/rf" },
-            { label: "Link Budget" }
-          ]}
-        />
+        <Breadcrumb category="RF" calculatorName="Link Budget Calculator" />
 
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold mb-3" data-testid="calc-title">

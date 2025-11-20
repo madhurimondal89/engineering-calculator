@@ -7,22 +7,26 @@ export function Header() {
   const [location] = useLocation();
   const isCalculatorPage = location.startsWith("/calculators/");
 
+  const handleBackClick = () => {
+    window.history.back();
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="flex h-16 md:h-20 items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             {isCalculatorPage && (
-              <Link href="/" data-testid="link-back">
-                <Button 
-                  variant="ghost" 
-                  size="sm"
-                  className="gap-2"
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                  <span className="hidden sm:inline">Back</span>
-                </Button>
-              </Link>
+              <Button 
+                variant="ghost" 
+                size="sm"
+                className="gap-2"
+                onClick={handleBackClick}
+                data-testid="link-back"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                <span className="hidden sm:inline">Back</span>
+              </Button>
             )}
             <Link 
               href="/"

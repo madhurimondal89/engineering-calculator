@@ -7,6 +7,9 @@ interface BreadcrumbProps {
 }
 
 export function Breadcrumb({ category, calculatorName }: BreadcrumbProps) {
+  // Convert category name to slug (e.g., "AC Circuits" -> "ac-circuits")
+  const categorySlug = category.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and');
+  
   return (
     <nav className="flex items-center space-x-2 text-sm text-muted-foreground mb-6" data-testid="breadcrumb">
       <Link 
@@ -17,7 +20,13 @@ export function Breadcrumb({ category, calculatorName }: BreadcrumbProps) {
         <Home className="h-4 w-4" />
       </Link>
       <ChevronRight className="h-4 w-4" />
-      <span className="text-foreground font-medium">{category}</span>
+      <Link
+        href={`/category/${categorySlug}`}
+        className="hover:text-foreground font-medium hover-elevate active-elevate-2 rounded px-2 py-1"
+        data-testid="breadcrumb-category"
+      >
+        {category}
+      </Link>
       <ChevronRight className="h-4 w-4" />
       <span className="text-foreground">{calculatorName}</span>
     </nav>
