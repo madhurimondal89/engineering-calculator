@@ -3,6 +3,8 @@ import { Header } from "@/components/Header";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "wouter";
 import { ChevronRight, Calculator, Zap, Settings, Plug, Battery, Sun, Wrench, Building, Beaker, Cpu, Radio, ArrowRightLeft, CheckCircle2, Sparkles, Gauge, Award } from "lucide-react";
+import { SEOHead } from "@/components/SEOHead";
+import { SchemaOrg, createWebSiteSchema, createOrganizationSchema } from "@/components/SchemaOrg";
 
 interface CategoryInfo {
   name: CalculatorCategory;
@@ -142,8 +144,27 @@ export default function Home() {
     return <Plug className={className} />;
   }
 
+  const baseUrl = 'https://www.calculatorfree.in';
+
   return (
     <div className="min-h-screen bg-background">
+      {/* SEO Meta Tags */}
+      <SEOHead
+        title="Free Engineering & Science Calculators - 100+ Professional Tools | CalculatorFree.in"
+        description="Access 100+ free engineering calculators for electrical, electronics, PCB design, renewable energy, and more. Professional-grade calculation tools for engineers, students, and scientists."
+        canonical={baseUrl}
+        keywords="engineering calculator, electrical calculator, electronics calculator, PCB calculator, ohms law calculator, power calculator, voltage calculator, free calculator"
+        ogImage={`${baseUrl}/og-image.jpg`}
+      />
+      
+      {/* Schema.org Structured Data */}
+      <SchemaOrg
+        schema={[
+          createWebSiteSchema(baseUrl),
+          createOrganizationSchema(baseUrl)
+        ]}
+      />
+      
       <Header />
       
       {/* Stats Section - Prestige Spotlight */}

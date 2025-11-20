@@ -9,6 +9,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 import { CalculatorAccordion } from "@/components/CalculatorAccordion";
 import { getCalculatorAccordion } from "@/data/calculatorAccordions";
+import { CalculatorSEO } from "@/components/CalculatorSEO";
 
 interface Results {
   voltage?: number;
@@ -89,6 +90,9 @@ export default function OhmsLaw() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* SEO Meta Tags & Structured Data */}
+      <CalculatorSEO calculatorId="ohms-law" />
+      
       <Header />
       <main className="max-w-4xl mx-auto px-4 md:px-6 py-8">
         <Breadcrumb category="Electrical" calculatorName="Ohm's Law Calculator" />
