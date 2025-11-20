@@ -213,7 +213,7 @@ export default function Home() {
               </Link>
             </div>
             <p className="text-sm text-muted-foreground text-center" data-testid="text-copyright">
-              © {new Date().getFullYear()} CalcHub. All rights reserved.
+              © {new Date().getFullYear()} Copyright calculatorfree.in | All rights reserved.
             </p>
           </div>
         </div>
