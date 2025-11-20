@@ -32,7 +32,6 @@ export default function WavelengthFrequency() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       inputType: "frequency",
-      value: undefined,
       unit: "MHz",
     },
   });

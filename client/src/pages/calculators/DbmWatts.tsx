@@ -30,7 +30,6 @@ export default function DbmWatts() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       inputType: "dbm",
-      value: undefined,
     },
   });
 
