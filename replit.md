@@ -18,7 +18,11 @@ The application follows a full-stack architecture with a React-based frontend an
 - **Technology**: React SPA with wouter for routing, TypeScript for type safety.
 - **Styling**: Tailwind CSS for utility-first styling, complemented by Shadcn UI components.
 - **UI/UX**: Features dark mode support with localStorage persistence, responsive design (mobile, tablet, desktop breakpoints), and a professional, card-based layout.
-- **Features**: Category-based organization, robust input validation with clear error and empty states, unit displays, and formula presentation for each calculation. Breadcrumb navigation is included on all calculator pages.
+- **Navigation Structure**: Three-tier navigation system:
+  1. **Home Page (/)**: Displays 11 category cards with SEO-optimized descriptions and calculator counts
+  2. **Category Pages (/category/:slug)**: Shows all calculator cards for a specific category
+  3. **Calculator Pages (/calculators/:id)**: Individual calculator interfaces with breadcrumb navigation
+- **Features**: Category-based organization, SEO-optimized content on home page, robust input validation with clear error and empty states, unit displays, and formula presentation for each calculation. Breadcrumb navigation is included on all calculator and category pages.
 
 ### Backend (`server/`)
 - **Technology**: Express.js server.
@@ -32,6 +36,25 @@ The application follows a full-stack architecture with a React-based frontend an
 - **Educational Content**: Each calculator includes extensive, SEO-optimized educational sections ("How to Use," "Understanding the Metrics," "Detailed Guide") managed through a data-driven architecture using Shadcn Accordion components.
 - **Form Validation**: All calculators use React Hook Form + Zod validation with z.coerce.number() pattern for robust number input handling. Empty inputs map to undefined, preventing NaN errors while allowing users to clear fields.
 - **Key Features**: Dark mode, input validation with real-time error messages, clear unit indicators, responsive design, professional UI, and formula display.
+
+### Recent Changes
+
+#### Navigation Redesign
+**Completed**: November 20, 2025
+
+Implemented improved three-tier navigation structure for better UX and SEO:
+- **Home Page**: Shows only category cards (11 categories) with SEO-rich descriptions, no individual calculator cards
+- **Category Pages**: New dedicated pages showing all calculators for each category with breadcrumb navigation
+- **Simplified Header**: Removed category navigation links, keeping only logo and theme toggle
+- **SEO Optimization**: Each category card includes keyword-rich descriptions targeting search engines
+- **Footer Content**: Added comprehensive SEO section describing the calculator hub and its features
+
+**Technical Details**:
+- Created CategoryPage component with dynamic routing (/category/:slug)
+- Updated Home.tsx with category cards featuring icons, descriptions, and calculator counts
+- Simplified Header component removing navigation clutter
+- All 78 calculators remain accessible through improved navigation flow
+- E2E tested: Home → Category → Calculator navigation verified
 
 ### Recent Additions (Batch 8 - Renewable Energy Calculators)
 **Completed**: November 20, 2025
