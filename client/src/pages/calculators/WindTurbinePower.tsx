@@ -28,8 +28,7 @@ interface Results {
   theoreticalPower: number;
   actualPower: number;
   powerDensity: number;
-  annualEnergy: number;
-  capacityFactor: number;
+  annualEnergyAtSpeed: number;
 }
 
 export default function WindTurbinePower() {
@@ -76,20 +75,17 @@ export default function WindTurbinePower() {
     // Power density (W/m²)
     const powerDensity = actualPower / sweptArea;
 
-    // Assume turbine operates at this wind speed for capacity factor calculation
-    // Typical capacity factor is 25-35% for onshore wind
+    // Estimated annual energy if turbine operated at this wind speed continuously
+    // Note: Actual annual energy depends on wind speed distribution and availability
     const hoursPerYear = 8760;
-    const annualEnergy = (actualPower / 1000) * hoursPerYear; // kWh
-    const ratedPower = actualPower; // Using actual power at this wind speed
-    const capacityFactor = ratedPower > 0 ? (annualEnergy / (ratedPower / 1000 * hoursPerYear)) * 100 : 0;
+    const annualEnergyAtSpeed = (actualPower / 1000) * hoursPerYear; // kWh
 
     setResults({
       sweptArea,
       theoreticalPower,
       actualPower,
       powerDensity,
-      annualEnergy,
-      capacityFactor,
+      annualEnergyAtSpeed,
     });
   }
 
@@ -337,13 +333,13 @@ export default function WindTurbinePower() {
 
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">Annual Energy (at this speed):</span>
+                    <span className="text-sm text-muted-foreground">Estimated Annual Energy:</span>
                     <div className="text-2xl font-bold font-mono" data-testid="text-annual-energy">
-                      {results.annualEnergy.toFixed(0)} kWh
+                      {results.annualEnergyAtSpeed.toFixed(0)} kWh/year
                     </div>
                   </div>
                   <div className="text-xs text-muted-foreground mt-1">
-                    If wind speed remains constant
+                    At constant wind speed (actual varies with wind distribution)
                   </div>
                 </div>
 
