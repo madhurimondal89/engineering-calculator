@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Header } from "@/components/Header";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { getCalculatorAccordion } from "@/data/calculatorAccordions";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
 
 const formSchema = z.object({
   apparentPower: z.coerce.number().positive("Apparent power must be positive"),
@@ -59,8 +59,6 @@ export default function VaToWatts() {
       phaseAngle: parseFloat(phaseAngle.toFixed(2)),
     });
   }
-
-  const accordions = getCalculatorAccordion("va-to-watts");
 
   return (
     <div className="min-h-screen bg-background">
@@ -200,22 +198,8 @@ export default function VaToWatts() {
           </Card>
         </div>
 
-        {accordions.length > 0 && (
-          <div className="mt-12">
-            <h2 className="text-2xl font-bold mb-6">Learn More</h2>
-            <Accordion type="single" collapsible className="w-full">
-              {accordions.map((accordion, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left">
-                    {accordion.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="prose prose-sm dark:prose-invert max-w-none">
-                    <div dangerouslySetInnerHTML={{ __html: accordion.answer }} />
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
+        {getCalculatorAccordion('va-to-watts') && (
+          <CalculatorAccordion content={getCalculatorAccordion('va-to-watts')!} calculatorId="va-to-watts" />
         )}
       </div>
     </div>

@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Header } from "@/components/Header";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { getCalculatorAccordion } from "@/data/calculatorAccordions";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
 
 const formSchema = z.object({
   dcVoltage: z.coerce.number().positive("DC voltage must be positive"),
@@ -80,8 +80,6 @@ export default function DcToAc() {
       peakVoltage: parseFloat(peakVoltage.toFixed(2)),
     });
   }
-
-  const accordions = getCalculatorAccordion("dc-to-ac");
 
   return (
     <div className="min-h-screen bg-background">
@@ -261,22 +259,8 @@ export default function DcToAc() {
           </Card>
         </div>
 
-        {accordions.length > 0 && (
-          <div className="mt-12">
-            <h2 className="text-2xl font-bold mb-6">Learn More</h2>
-            <Accordion type="single" collapsible className="w-full">
-              {accordions.map((accordion, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left">
-                    {accordion.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="prose prose-sm dark:prose-invert max-w-none">
-                    <div dangerouslySetInnerHTML={{ __html: accordion.answer }} />
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
+        {getCalculatorAccordion('dc-to-ac') && (
+          <CalculatorAccordion content={getCalculatorAccordion('dc-to-ac')!} calculatorId="dc-to-ac" />
         )}
       </div>
     </div>

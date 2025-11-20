@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Header } from "@/components/Header";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { getCalculatorAccordion } from "@/data/calculatorAccordions";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { CalculatorAccordion } from "@/components/CalculatorAccordion";
 
 const formSchema = z.object({
   inputValue: z.coerce.number().positive("Input value must be positive"),
@@ -60,8 +60,6 @@ export default function VoltageConverter() {
       conversionFactor: parseFloat(conversionFactor.toExponential(3)),
     });
   }
-
-  const accordions = getCalculatorAccordion("voltage-converter");
 
   return (
     <div className="min-h-screen bg-background">
@@ -204,22 +202,8 @@ export default function VoltageConverter() {
           </Card>
         </div>
 
-        {accordions.length > 0 && (
-          <div className="mt-12">
-            <h2 className="text-2xl font-bold mb-6">Learn More</h2>
-            <Accordion type="single" collapsible className="w-full">
-              {accordions.map((accordion, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left">
-                    {accordion.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="prose prose-sm dark:prose-invert max-w-none">
-                    <div dangerouslySetInnerHTML={{ __html: accordion.answer }} />
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
+        {getCalculatorAccordion('voltage-converter') && (
+          <CalculatorAccordion content={getCalculatorAccordion('voltage-converter')!} calculatorId="voltage-converter" />
         )}
       </div>
     </div>
