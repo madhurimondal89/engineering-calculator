@@ -101,6 +101,12 @@ import UPSBackupTime from "@/pages/calculators/UPSBackupTime";
 import EnergyStorage from "@/pages/calculators/EnergyStorage";
 import BatteryInternalResistance from "@/pages/calculators/BatteryInternalResistance";
 
+// Renewable Energy Calculators
+import WindTurbinePower from "@/pages/calculators/WindTurbinePower";
+import SolarArraySizing from "@/pages/calculators/SolarArraySizing";
+import RenewablePayback from "@/pages/calculators/RenewablePayback";
+import GridTieSystem from "@/pages/calculators/GridTieSystem";
+
 function Router() {
   return (
     <Switch>
@@ -199,6 +205,12 @@ function Router() {
       <Route path="/calculators/ups-backup-time" component={UPSBackupTime} />
       <Route path="/calculators/energy-storage" component={EnergyStorage} />
       <Route path="/calculators/battery-internal-resistance" component={BatteryInternalResistance} />
+      
+      {/* Renewable Energy Calculators */}
+      <Route path="/calculators/wind-turbine-power" component={WindTurbinePower} />
+      <Route path="/calculators/solar-array-sizing" component={SolarArraySizing} />
+      <Route path="/calculators/renewable-payback" component={RenewablePayback} />
+      <Route path="/calculators/grid-tie-system" component={GridTieSystem} />
       
       {/* Fallback to 404 */}
       <Route component={NotFound} />

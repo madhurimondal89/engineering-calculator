@@ -5010,6 +5010,102 @@ const accordionContent: Record<string, CalculatorAccordionContent> = {
         {title: "Internal Resistance and Battery Health", content: "Resistance as health indicator: New battery: Low, stable resistance. Mid-life: Gradual increase (10-20% per year). End-of-life: Rapid increase (2-3× new value). When to replace: Lead-acid: >50mΩ for 12V 100Ah. Lithium: >10mΩ for 12V 100Ah. Or: >2× initial resistance. Or: Noticeable voltage sag under normal loads. Causes of high resistance: Lead-acid: Sulfation: Hard lead sulfate crystals on plates. Corrosion: Internal plate corrosion. Dry-out: Lost electrolyte (flooded cells). Grid corrosion: Positive plate grid oxidation. Lithium: SEI layer growth: Solid Electrolyte Interface thickens with cycles. Dendrite formation: Lithium metal deposits. Electrode degradation: Active material loss. Poor connections: Contact resistance increases. Prevention: Lead-acid: Avoid deep discharge. Maintain proper charge voltage. Keep electrolyte levels (flooded). Equalize regularly (flooded). Lithium: Avoid high charge/discharge currents. Keep in moderate temperature range. Use proper BMS. Store at 30-50% SOC if unused. Both: Keep terminals clean and tight. Avoid prolonged high temperature. Don't over-discharge."}
       ]
     }
+  },
+
+  "wind-turbine-power": {
+    howToUse: {
+      title: "How to Use Wind Turbine Power Calculator",
+      steps: ["Enter wind speed at hub height in your preferred unit", "Input blade diameter (rotor diameter) of turbine", "Specify air density (default 1.225 kg/m³ at sea level)", "Enter power coefficient Cp (0.35-0.45 typical)", "Input generator efficiency (0.85-0.95 typical)", "Click 'Calculate Power Output'"]
+    },
+    metrics: {
+      title: "Wind Turbine Power Metrics",
+      items: [
+        {term: "Swept Area", definition: "Circular area covered by rotating blades. A = π × (D/2)². Larger swept area = more power capture. Doubling diameter = 4× power capacity."},
+        {term: "Theoretical Power", definition: "Total power available in wind passing through swept area. P = 0.5 × ρ × A × V³. Cubic relationship: Doubling wind speed = 8× power."},
+        {term: "Power Coefficient (Cp)", definition: "Efficiency of converting wind power to shaft power. Betz limit: 0.593 (59.3%) maximum theoretical. Practical turbines: 0.35-0.45. Modern large turbines: 0.45-0.50."},
+        {term: "Actual Power Output", definition: "Electrical power generated after all losses. Theoretical × Cp × Generator efficiency. Rated power achieved at design wind speed (typically 12-15 m/s)."}
+      ]
+    },
+    guide: {
+      title: "Complete Wind Turbine Power Guide",
+      sections: [
+        {title: "Wind Power Fundamentals", content: "Wind power is proportional to V³ (cubic relationship): 5 m/s wind: 1× power baseline. 10 m/s wind: 8× power (2³ = 8). 15 m/s wind: 27× power (3³ = 27). This makes wind resource assessment critical - small increase in average wind speed = large increase in energy production. Power formula: P = 0.5 × ρ × A × V³ × Cp × ηg. Where: ρ = air density (1.225 kg/m³ at sea level, 15°C). Decreases with altitude (~1.0 at 2000m). Decreases with temperature. A = swept area (π × r²). V = wind speed (m/s). Cp = power coefficient (0.35-0.50). ηg = generator + gearbox efficiency (0.85-0.95). Example calculation: 100m diameter turbine, 12 m/s wind: A = π × 50² = 7854 m². P_theoretical = 0.5 × 1.225 × 7854 × 12³ = 8.27 MW. P_actual = 8.27 × 0.45 × 0.92 = 3.43 MW. This is the instantaneous power at 12 m/s wind speed."},
+        {title: "Wind Speed Considerations", content: "Hub height matters: Wind speed increases with height above ground. Power law: V_h = V_ref × (h/h_ref)^α. Where α ≈ 0.14 (open terrain) to 0.40 (urban). Example: 8 m/s at 10m height → 10.4 m/s at 80m height (α=0.14). Power increases: (10.4/8)³ = 2.2× at turbine height! Wind resource classes: Class I: Low wind sites (<6.5 m/s avg). Class II: Medium wind (6.5-7.5 m/s). Class III: High wind (7.5-8.5 m/s). Class IV: Very high wind (>8.5 m/s). Capacity factor increases dramatically with class: Class I: 15-20% capacity factor. Class II: 25-30%. Class III: 35-40%. Class IV: 40-50%. Annual energy production: Need wind speed distribution (Weibull). Can't use simple average wind speed. Typically measure hourly for 1+ year. Example: 3 MW turbine, 30% capacity factor: 3000 kW × 8760 hr/yr × 0.30 = 7884 MWh/yr."},
+        {title: "Turbine Sizing and Selection", content: "Residential/Small turbines: 1-10 kW rated power. 3-7m blade diameter. Tower height: 15-40m. Cost: $3,000-$8,000/kW installed. Best for: Off-grid homes, farms, remote sites. Payback: 10-20 years (highly site dependent). Commercial/Community turbines: 100-500 kW rated power. 20-40m blade diameter. Tower height: 40-80m. Cost: $2,000-$4,000/kW installed. Best for: Farms, businesses, small communities. Payback: 8-15 years. Utility-scale turbines: 2-15 MW rated power. 80-220m blade diameter. Tower height: 80-150m. Cost: $1,200-$1,800/kW installed. Best for: Wind farms, utility power generation. Payback: 6-12 years. Selection criteria: Average wind speed (most critical): Need >5 m/s average for small turbines. >6.5 m/s for utility turbines. Site accessibility: Can large equipment reach site? Maintenance access year-round? Grid connection: Distance to grid (if grid-tied). Transmission capacity. Zoning and setbacks: Height restrictions. Distance from buildings/property lines. Noise regulations."}
+      ]
+    }
+  },
+
+  "solar-array-sizing": {
+    howToUse: {
+      title: "How to Use Solar Array Sizing Calculator",
+      steps: ["Enter daily or monthly energy consumption from utility bill", "Input average peak sun hours for your location (3-6 typical)", "Specify solar panel wattage (300-450W typical)", "Set system efficiency (0.75-0.85 typical)", "Enter days of autonomy for battery backup (off-grid)", "Configure battery voltage and depth of discharge", "Click 'Calculate Solar Array Size'"]
+    },
+    metrics: {
+      title: "Solar Array Sizing Metrics",
+      items: [
+        {term: "Number of Panels", definition: "Solar panels needed to meet daily energy demand. Accounts for system efficiency and peak sun hours. More panels = more power capacity."},
+        {term: "Total Array Wattage", definition: "Combined DC power rating of all panels. Sum of individual panel wattages. Inverter must handle this capacity. Typical residential: 5-10 kW."},
+        {term: "Peak Sun Hours", definition: "Equivalent hours of 1000 W/m² solar irradiance per day. Not actual daylight hours. Varies by location and season. Example: 5 peak hours = 5000 Wh/m²/day."},
+        {term: "Battery Capacity", definition: "Amp-hours needed for specified autonomy days. Sized for energy storage, not panel output. Must account for depth of discharge limits."}
+      ]
+    },
+    guide: {
+      title: "Complete Solar Array Sizing Guide",
+      sections: [
+        {title: "System Sizing Methodology", content: "Step-by-step sizing process: 1. Determine daily energy consumption: Review 12 months utility bills. Calculate average daily kWh. Add 10-20% for growth. Example: 900 kWh/month = 30 kWh/day. 2. Find peak sun hours for location: NREL PVWatts or similar tool. Use yearly average or worst-case month. Example: Phoenix 6.5h, Seattle 3.5h, Dallas 5.0h. 3. Calculate system efficiency: DC-to-AC (inverter): 0.96-0.98. Wiring losses: 0.98. Temperature derating: 0.90-0.96 (hotter = worse). Soiling/dirt: 0.95-0.98. Shading: 0.95-1.00 (if applicable). Mismatch: 0.98-0.99. Total typical: 0.75-0.82. Use 0.78 as conservative estimate. 4. Calculate required array size: Daily energy = 30 kWh. Peak hours = 5.0. Efficiency = 0.78. Required DC = 30 / (5.0 × 0.78) = 7.69 kW. 5. Select panel size and quantity: Using 400W panels: 7690W / 400W = 19.2 → 20 panels. Total array: 20 × 400W = 8.0 kW DC. Expected daily: 8.0 × 5.0 × 0.78 = 31.2 kWh (meets need)."},
+        {title: "Grid-Tied vs Off-Grid Sizing", content: "Grid-tied systems: Size to offset utility consumption: 100% offset: Array matches annual consumption. 80% offset: Smaller array, still have utility bill. 120% offset: Net producer (if net metering allowed). No battery typically (grid is 'battery'). Simpler, lower cost. Size based on: Annual consumption / (365 × peak hours × efficiency). Off-grid systems: Must meet 100% of loads: Size for worst-case season (winter typically). Include all loads (no grid backup). Add significant margin (20-30%). Require battery storage: Days of autonomy: 2-3 typical. Battery capacity (Ah): (Daily Wh × Days) / (Voltage × DoD × Efficiency). Example: 30kWh/day, 3 days, 48V system, 50% DoD, 85% eff: Capacity = (30000 × 3) / (48 × 0.5 × 0.85) = 4412 Ah. Using 200Ah batteries: 4412 / 200 = 22 batteries. Cost comparison: Grid-tied 8kW: $12,000-$20,000 (panels + inverter). Off-grid 8kW: $30,000-$50,000 (+ batteries, charge controller)."},
+        {title: "Location and Mounting Considerations", content: "Optimal tilt angle: Latitude-based rule: Tilt ≈ Latitude angle. Seasonal adjustment: Summer: Latitude - 15°. Winter: Latitude + 15°. Fixed optimal: Latitude (compromise). Impact: Optimal vs horizontal: +20-40% energy. Optimal vs ±20° off: -5-10% energy. Mounting types: Fixed tilt (most common): Roof mount: Cheapest, uses existing structure. Ground mount: Better angle, easier access. Carport/awning: Dual purpose. Tracking systems: Single-axis (E-W): +25-35% energy vs fixed. Cost: +$0.50-1.00/W. Dual-axis: +35-45% energy vs fixed. Cost: +$1.00-1.50/W. Rarely economical for residential. Shading analysis: Even 10% shading → 40-80% power loss (due to series strings). Use microinverters or power optimizers if shading. Avoid morning/afternoon shading if possible. Trees grow - plan ahead! Roof requirements: Age: >10 years left minimum. Structure: Must support 3-4 lb/ft² (panels + mounting). Orientation: South-facing ideal (north hemisphere). East/west acceptable (-15-20% energy)."}
+      ]
+    }
+  },
+
+  "renewable-payback": {
+    howToUse: {
+      title: "How to Use Renewable Energy Payback Calculator",
+      steps: ["Enter total system cost before incentives", "Input any incentives, rebates, or grants available", "Specify federal/state tax credit percentage", "Enter annual energy production in kWh", "Input current electricity rate ($/kWh)", "Set expected annual electricity rate increase (2-4% typical)", "Enter annual maintenance cost", "Specify system lifespan (25-30 years for solar)", "Click 'Calculate Payback & ROI'"]
+    },
+    metrics: {
+      title: "Renewable Energy Financial Metrics",
+      items: [
+        {term: "Simple Payback Period", definition: "Years to recover initial investment without considering rate increases. Net Cost / Annual Savings. Shorter = better investment. Residential solar: 6-12 years typical."},
+        {term: "Net System Cost", definition: "Out-of-pocket cost after incentives and tax credits. Gross Cost - Rebates - (Cost × Tax Credit%). This is the actual investment amount."},
+        {term: "Return on Investment (ROI)", definition: "Percentage return over system lifetime. (Lifetime Savings / Net Cost) × 100. Higher = better investment. Should compare to alternative investments."},
+        {term: "Lifetime Savings", definition: "Total savings minus net cost over system life. Accounts for electricity rate increases. Panel degradation (~0.5%/year). Maintenance costs."}
+      ]
+    },
+    guide: {
+      title: "Complete Renewable Energy Financial Guide",
+      sections: [
+        {title: "Understanding Investment Returns", content: "Financial metrics explained: Simple payback: Time to recover investment. Doesn't account for: Time value of money. Rate increases. Degradation. Use for rough comparison only. Net Present Value (NPV): Money value in today's dollars. Accounts for discount rate (opportunity cost). Positive NPV = good investment. Solar often has NPV > $10,000. Internal Rate of Return (IRR): Effective annual return rate. Compare to stock market (7-10% historical). Solar IRR: 8-15% typical (better in high-cost areas). Levelized Cost of Energy (LCOE): Cost per kWh over system lifetime. Total costs / Total kWh produced. Solar LCOE: $0.03-0.08/kWh. Compare to utility: $0.10-0.30/kWh. Example calculation: System cost: $20,000. Incentives: $2,000. Tax credit (30%): $6,000. Net cost: $12,000. Annual production: 10,000 kWh. Electricity rate: $0.12/kWh. Annual savings: $1,200. Simple payback: $12,000 / $1,200 = 10 years. But with 3% annual rate increase: Year 1: $1,200. Year 10: $1,569. Year 25: $2,510. Total 25-year savings: $44,728. Net profit: $44,728 - $12,000 = $32,728. ROI: 273%. IRR: ~12%."},
+        {title: "Incentives and Tax Credits", content: "Federal Investment Tax Credit (ITC): 30% through 2032 (US). Applies to: System equipment cost. Installation labor. Permitting fees. Does not apply to: Battery storage (separate credit). Maintenance. Repairs. How to claim: File IRS Form 5695 with tax return. Can carry forward unused credit. State and local incentives: State tax credits: Varies by state (0-25% typical). Property tax exemptions: System doesn't increase property tax. Sales tax exemptions: No sales tax on equipment. Rebates: Utility or state programs ($0.10-1.00/W). SREC programs (Solar Renewable Energy Credits): Sell certificates for energy produced. Value: $50-300/MWh depending on state. Additional 10-15% return in some markets. Net metering: Sell excess production to grid. Full retail rate vs wholesale rate (varies by utility). Can significantly improve economics. Financing impacts: Cash purchase: Best ROI, fastest payback. Loan: Spreads cost, may increase total spend. Interest reduces ROI. PPA/Lease: $0 upfront, lower total savings. Typically 10-20% less savings than ownership."},
+        {title: "Financial Decision Factors", content: "When solar makes financial sense: High electricity rates: >$0.12/kWh: Usually good investment. >$0.15/kWh: Excellent investment. <$0.10/kWh: Marginal (depends on incentives). Good solar resource: >4.5 peak sun hours average: Good. >5.5 peak sun hours: Excellent. <3.5 peak sun hours: Challenging economics. Available incentives: 30% ITC + state incentives: Payback 6-10 years typical. ITC only: Payback 10-15 years. No incentives: Payback 15-20+ years. Long-term occupancy: Planning to stay >10 years: Usually worth it. May move in <5 years: Consider carefully. Investment vs rental: Payback <8 years: Beat many investments. IRR >10%: Competitive with stock market. LCOE <50% of utility rate: Strong savings. When to wait: Roof needs replacement soon. Major electrical upgrades needed. Trees need removal first. Planning to move soon. Better to wait and avoid complexity. When to proceed now: Incentives expiring soon. Rate increases expected. Can use power now. Good financial position."}
+      ]
+    }
+  },
+
+  "grid-tie-system": {
+    howToUse: {
+      title: "How to Use Grid Tie System Calculator",
+      steps: ["Enter monthly energy consumption from utility bill", "Input desired energy offset percentage (100% = full offset)", "Specify average peak sun hours for your location", "Enter solar panel wattage (300-450W typical)", "Set system efficiency (0.75-0.82 for grid-tie)", "Select grid voltage (120V/240V residential typical)", "Input net metering rate from utility", "Click 'Calculate Grid Tie System'"]
+    },
+    metrics: {
+      title: "Grid Tie System Metrics",
+      items: [
+        {term: "Energy Offset", definition: "Percentage of consumption met by solar. 100% = no electric bill (except grid fees). 120% = net producer with credits. Lower % = smaller system, lower cost."},
+        {term: "Inverter Size", definition: "AC power rating needed for grid connection. Typically 80-90% of DC array wattage. Must match grid voltage and frequency. String inverter vs microinverters."},
+        {term: "Net Metering", definition: "Utility credits for excess solar production. Retail rate: Dollar-for-dollar credit (most common). Wholesale rate: Lower credit for excess (some utilities). Annual true-up: Credits roll year-to-year."},
+        {term: "Annual Production", definition: "Total kWh generated per year. Varies by season (winter lower, summer higher). Should closely match consumption for 100% offset."}
+      ]
+    },
+    guide: {
+      title: "Complete Grid Tie Solar System Guide",
+      sections: [
+        {title: "Grid-Tied System Fundamentals", content: "How grid-tied systems work: Solar panels → Inverter → Home loads: Inverter converts DC to AC. Matches grid voltage and frequency. Powers home loads first. Excess to grid (net metering): Meter runs backwards (or credits account). Utility buys excess at net metering rate. Night/cloudy: Grid supplies power. No batteries needed: Grid acts as infinite battery. Simpler, lower cost than off-grid. Still have power when solar not producing. Pros of grid-tied: Lower cost (no batteries): $2.50-3.50/W typical. Batteries add: $1.00-2.00/W. Net metering credits: Get value for excess production. Can oversize system if beneficial. Simpler installation: No charge controller. No battery management. Easier permitting. Higher ROI: Less equipment = better economics. Payback 6-12 years typical. Cons of grid-tied: No backup power: Power out = solar off (anti-islanding). Utility outage = no power. Utility dependent: Net metering policies can change. Interconnection approval required. Subject to utility rate changes."},
+        {title: "System Sizing for Grid-Tied", content: "Determining system size: Review 12 months consumption: Get total annual kWh. Identify seasonal patterns. Note peak usage months. Calculate daily average: Annual kWh / 365 days. Or monthly average × 12 / 365. Choose offset percentage: 100% offset: Target is annual consumption. Pros: Minimize electric bill. Maximize savings. Cons: May overproduce in summer, underproduce in winter. <100% offset (80-90%): Smaller, cheaper system. Still significant savings. Avoid overproduction issues. >100% offset (110-130%): Net producer with credits. Beneficial if: Expanding home/loads. Electric vehicle planned. Utility has good net metering. Size calculation: Annual consumption: 12,000 kWh. Target offset: 100%. Peak sun hours: 5.0. System efficiency: 0.78. Required DC: 12000 / (365 × 5.0 × 0.78) = 8.43 kW. Using 400W panels: 8430 / 400 = 21.1 → 22 panels. Total: 22 × 400W = 8.8 kW DC. Expected annual: 8800 × 5.0 × 365 × 0.78 = 12,535 kWh. Offset: 104% (slight overproduction)."},
+        {title: "Inverter Selection and Grid Connection", content: "Inverter types: String inverters: One inverter for whole array. Most common, lowest cost. Cons: Shading affects whole string. Single point of failure. Power optimizers: DC-DC optimizers per panel. Central inverter. Benefits: Panel-level optimization. String inverter benefits. Cost: +$0.20-0.40/W vs string. Microinverters: AC inverter per panel. Pros: No single point of failure. Panel-level monitoring. Best for shading. Cons: Higher cost (+$0.30-0.50/W). More electronics on roof. Sizing inverter: DC-to-AC ratio: Residential: 1.10-1.25:1 typical. Commercial: 1.15-1.30:1. Higher ratio = more energy (clipping OK). Example: 8.8 kW DC array. Using 1.20 ratio. Inverter: 8800 / 1.20 = 7.3 kW AC. Select 7.6 kW inverter. Grid connection: Voltage matching: Residential: 120/240V split-phase. Commercial: 208/480V three-phase. Inverter must match. Interconnection: Apply to utility for permission. Engineering review required. May require upgrades. Approval before energizing!  Net metering agreement: Lock in rate schedule. Understand credit rollover. Know excess handling."}
+      ]
+    }
   }
 };
 
