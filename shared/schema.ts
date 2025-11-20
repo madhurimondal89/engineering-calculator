@@ -9,6 +9,7 @@ export const calculatorCategories = [
   "Power System",
   "Motor",
   "Battery & Energy",
+  "Renewable Energy",
   "Mechanical", 
   "Civil",
   "General Science"
@@ -631,6 +632,40 @@ export const calculators: Calculator[] = [
     category: "Battery & Energy",
     path: "/calculators/battery-internal-resistance",
     icon: "Activity"
+  },
+  
+  // Renewable Energy
+  {
+    id: "wind-turbine-power",
+    title: "Wind Turbine Power Calculator",
+    description: "Calculate wind turbine power output based on wind speed and turbine specifications",
+    category: "Renewable Energy",
+    path: "/calculators/wind-turbine-power",
+    icon: "Wind"
+  },
+  {
+    id: "solar-array-sizing",
+    title: "Solar Array Sizing Calculator",
+    description: "Calculate the number of solar panels needed for your energy requirements",
+    category: "Renewable Energy",
+    path: "/calculators/solar-array-sizing",
+    icon: "Sun"
+  },
+  {
+    id: "renewable-payback",
+    title: "Renewable Energy Payback Calculator",
+    description: "Calculate ROI and payback period for renewable energy investments",
+    category: "Renewable Energy",
+    path: "/calculators/renewable-payback",
+    icon: "DollarSign"
+  },
+  {
+    id: "grid-tie-system",
+    title: "Grid Tie System Calculator",
+    description: "Design grid-tied solar systems with net metering calculations",
+    category: "Renewable Energy",
+    path: "/calculators/grid-tie-system",
+    icon: "Plug"
   },
   
   // Mechanical
