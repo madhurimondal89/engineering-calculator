@@ -146,6 +146,36 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Header />
       
+      {/* Stats Section */}
+      <section className="py-8 md:py-12 bg-muted/30 border-b">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="bg-card border rounded-lg p-6 md:p-8">
+            <h3 className="text-xl md:text-2xl font-semibold mb-4 text-center">
+              Perfect for Engineers, Students & Professionals
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+              <div>
+                <div className="text-3xl font-bold text-primary mb-2">{calculators.length}+</div>
+                <p className="text-muted-foreground">Professional Calculators</p>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-primary mb-2">{categories.length}</div>
+                <p className="text-muted-foreground">Engineering Categories</p>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-primary mb-2">100%</div>
+                <p className="text-muted-foreground">Free & Accurate</p>
+              </div>
+            </div>
+            <p className="text-center text-muted-foreground mt-6 max-w-2xl mx-auto">
+              Whether you're a practicing engineer designing power systems, a student learning circuit theory, 
+              or a hobbyist building electronics projects, our calculators provide the accuracy and reliability 
+              you need. All tools include detailed formulas, educational content, and real-time validation.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Hero Section */}
       <section className="py-16 md:py-24 border-b">
         <div className="max-w-7xl mx-auto px-4 md:px-6 text-center">
@@ -314,31 +344,6 @@ export default function Home() {
                 </div>
               </CardContent>
             </Card>
-          </div>
-
-          <div className="bg-card border rounded-lg p-6 md:p-8">
-            <h3 className="text-xl md:text-2xl font-semibold mb-4 text-center">
-              Perfect for Engineers, Students & Professionals
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-              <div>
-                <div className="text-3xl font-bold text-primary mb-2">{calculators.length}+</div>
-                <p className="text-muted-foreground">Professional Calculators</p>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-primary mb-2">{categories.length}</div>
-                <p className="text-muted-foreground">Engineering Categories</p>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-primary mb-2">100%</div>
-                <p className="text-muted-foreground">Free & Accurate</p>
-              </div>
-            </div>
-            <p className="text-center text-muted-foreground mt-6 max-w-2xl mx-auto">
-              Whether you're a practicing engineer designing power systems, a student learning circuit theory, 
-              or a hobbyist building electronics projects, our calculators provide the accuracy and reliability 
-              you need. All tools include detailed formulas, educational content, and real-time validation.
-            </p>
           </div>
         </div>
       </section>
