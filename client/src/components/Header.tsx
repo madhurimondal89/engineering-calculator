@@ -50,6 +50,34 @@ export function Header() {
                 <span className="hidden sm:inline">Home</span>
               </Button>
             </a>
+            <a 
+              href="https://financialhub.calculatorfree.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="link-financial-hub"
+            >
+              <Button 
+                variant="ghost" 
+                size="sm"
+                className="hidden md:flex gap-2"
+              >
+                <span>Financial Hub</span>
+              </Button>
+            </a>
+            <a 
+              href="https://health-hub.calculatorfree.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="link-health-hub"
+            >
+              <Button 
+                variant="ghost" 
+                size="sm"
+                className="hidden md:flex gap-2"
+              >
+                <span>Health Hub</span>
+              </Button>
+            </a>
             <ThemeToggle />
           </div>
         </div>
