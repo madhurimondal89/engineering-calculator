@@ -2,7 +2,7 @@ import { type CalculatorCategory, calculators } from "@shared/schema";
 import { Header } from "@/components/Header";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "wouter";
-import { ChevronRight, Calculator, Zap, Settings, Plug, Battery, Sun, Wrench, Building, Beaker } from "lucide-react";
+import { ChevronRight, Calculator, Zap, Settings, Plug, Battery, Sun, Wrench, Building, Beaker, Cpu } from "lucide-react";
 
 interface CategoryInfo {
   name: CalculatorCategory;
@@ -86,6 +86,14 @@ export default function Home() {
       description: "Solar, wind, and renewable energy system design tools",
       seo: "Design renewable energy systems with calculators for wind turbine power, solar array sizing, investment payback analysis, and grid-tie systems. Calculate ROI and optimize your solar or wind installation.",
       count: getCategoryCount("Renewable Energy")
+    },
+    {
+      name: "PCB",
+      slug: getCategorySlug("PCB"),
+      icon: Cpu,
+      description: "PCB design calculators for trace width, impedance, and thermal management",
+      seo: "Design printed circuit boards with calculators for trace width, via current capacity, microstrip and stripline impedance, differential pairs, thermal management, and cost estimation. Professional PCB design tools for engineers.",
+      count: getCategoryCount("PCB")
     },
     {
       name: "Mechanical",
