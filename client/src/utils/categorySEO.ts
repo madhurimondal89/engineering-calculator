@@ -144,6 +144,20 @@ export function generateCategoryBreadcrumbs(name: string, slug: string) {
   ];
 }
 
+// Get calculators for a category (for structured data)
+export function getCategoryCalculators(categorySlug: string) {
+  const categoryName = slugToCategory(categorySlug);
+  if (!categoryName) return [];
+
+  return calculators
+    .filter(c => c.category === categoryName)
+    .map(calc => ({
+      name: calc.title,
+      description: calc.description,
+      url: `${BASE_URL}${calc.path}`
+    }));
+}
+
 // Get full SEO metadata for a category
 export function getCategorySEO(categorySlug: string) {
   const baseMeta = getCategoryMeta(categorySlug);

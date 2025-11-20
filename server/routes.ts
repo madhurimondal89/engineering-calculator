@@ -12,10 +12,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Robots.txt route
   app.get("/robots.txt", (req, res) => {
+    const protocol = req.protocol;
+    const host = req.get('host');
+    const baseUrl = `${protocol}://${host}`;
+    
     const robotsTxt = `User-agent: *
 Allow: /
 
-Sitemap: https://www.calculatorfree.in/sitemap.xml`;
+Sitemap: ${baseUrl}/sitemap.xml`;
     
     res.header("Content-Type", "text/plain");
     res.send(robotsTxt);

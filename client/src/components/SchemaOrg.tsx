@@ -1,12 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface SchemaOrgProps {
   schema: object | object[];
 }
 
 export function SchemaOrg({ schema }: SchemaOrgProps) {
+  const scriptIdRef = useRef(`schema-org-${Math.random().toString(36).substr(2, 9)}`);
+
   useEffect(() => {
-    const scriptId = 'schema-org-json-ld';
+    const scriptId = scriptIdRef.current;
     
     // Remove existing schema script if present
     const existingScript = document.getElementById(scriptId);
@@ -14,7 +16,7 @@ export function SchemaOrg({ schema }: SchemaOrgProps) {
       existingScript.remove();
     }
 
-    // Create new script element
+    // Create new script element with unique ID
     const script = document.createElement('script');
     script.id = scriptId;
     script.type = 'application/ld+json';
@@ -83,13 +85,6 @@ export const createSoftwareApplicationSchema = (params: {
     price: '0',
     priceCurrency: 'USD'
   },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.8',
-    ratingCount: '1250',
-    bestRating: '5',
-    worstRating: '1'
-  },
   softwareVersion: '1.0',
   softwareHelp: {
     '@type': 'CreativeWork',
@@ -143,19 +138,39 @@ export const createCollectionPageSchema = (params: {
   name: string;
   description: string;
   url: string;
-  itemCount: number;
-}) => ({
-  '@context': 'https://schema.org',
-  '@type': 'CollectionPage',
-  name: params.name,
-  description: params.description,
-  url: params.url,
-  mainEntity: {
-    '@type': 'ItemList',
-    numberOfItems: params.itemCount,
-    itemListElement: []
-  },
-  breadcrumb: {
-    '@type': 'BreadcrumbList'
+  items: Array<{ name: string; description: string; url: string }>;
+}) => {
+  const schema: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: params.name,
+    description: params.description,
+    url: params.url,
+  };
+
+  // Only include mainEntity if there are items
+  if (params.items.length > 0) {
+    schema.mainEntity = {
+      '@type': 'ItemList',
+      numberOfItems: params.items.length,
+      itemListElement: params.items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'SoftwareApplication',
+          name: item.name,
+          description: item.description,
+          url: item.url,
+          applicationCategory: 'UtilitiesApplication',
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD'
+          }
+        }
+      }))
+    };
   }
-});
+
+  return schema;
+};

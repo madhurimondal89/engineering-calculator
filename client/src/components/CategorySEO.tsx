@@ -1,6 +1,6 @@
 import { SEOHead } from "@/components/SEOHead";
 import { SchemaOrg, createCollectionPageSchema, createBreadcrumbSchema } from "@/components/SchemaOrg";
-import { getCategorySEO } from "@/utils/categorySEO";
+import { getCategorySEO, getCategoryCalculators } from "@/utils/categorySEO";
 
 interface CategorySEOProps {
   categorySlug: string;
@@ -14,12 +14,14 @@ export function CategorySEO({ categorySlug }: CategorySEOProps) {
     return null;
   }
 
+  const categoryCalculators = getCategoryCalculators(categorySlug);
+
   const schemas = [
     createCollectionPageSchema({
       name: seoData.name,
       description: seoData.seoDescription,
       url: seoData.canonical,
-      itemCount: seoData.calculatorCount,
+      items: categoryCalculators,
     }),
     createBreadcrumbSchema(seoData.breadcrumbs)
   ];
