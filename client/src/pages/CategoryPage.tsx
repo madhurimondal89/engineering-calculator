@@ -32,10 +32,8 @@ export default function CategoryPage() {
         <Header />
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 text-center">
           <h1 className="text-3xl font-bold mb-4">Category Not Found</h1>
-          <Link href="/">
-            <a className="text-primary hover:underline" data-testid="link-home">
-              Return to Home
-            </a>
+          <Link href="/" className="text-primary hover:underline" data-testid="link-home">
+            Return to Home
           </Link>
         </div>
       </div>
@@ -49,10 +47,8 @@ export default function CategoryPage() {
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-8">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6" data-testid="breadcrumb-nav">
-          <Link href="/">
-            <a className="hover:text-foreground" data-testid="link-breadcrumb-home">
-              Home
-            </a>
+          <Link href="/" className="hover:text-foreground" data-testid="link-breadcrumb-home">
+            Home
           </Link>
           <ChevronRight className="w-4 h-4" />
           <span className="text-foreground font-medium" data-testid="text-breadcrumb-category">

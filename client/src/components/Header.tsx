@@ -35,7 +35,12 @@ export function Header() {
           </div>
           
           <div className="flex items-center gap-1">
-            <Link href="/" data-testid="link-home">
+            <a 
+              href="https://www.calculatorfree.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="link-home"
+            >
               <Button 
                 variant="ghost" 
                 size="sm"
@@ -44,7 +49,7 @@ export function Header() {
                 <Home className="h-4 w-4" />
                 <span className="hidden sm:inline">Home</span>
               </Button>
-            </Link>
+            </a>
             <ThemeToggle />
           </div>
         </div>
