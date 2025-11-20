@@ -10,6 +10,7 @@ export const calculatorCategories = [
   "Motor",
   "Battery & Energy",
   "Renewable Energy",
+  "PCB",
   "Mechanical", 
   "Civil",
   "General Science"
@@ -736,5 +737,71 @@ export const calculators: Calculator[] = [
     category: "General Science",
     path: "/calculators/acceleration",
     icon: "TrendingUp"
+  },
+  
+  // PCB (Printed Circuit Board)
+  {
+    id: "pcb-trace-width",
+    title: "PCB Trace Width Calculator",
+    description: "Calculate minimum trace width for PCB based on current and temperature rise",
+    category: "PCB",
+    path: "/calculators/pcb-trace-width",
+    icon: "Cpu"
+  },
+  {
+    id: "pcb-via-current",
+    title: "PCB Via Current Calculator",
+    description: "Calculate current carrying capacity of PCB vias",
+    category: "PCB",
+    path: "/calculators/pcb-via-current",
+    icon: "Circle"
+  },
+  {
+    id: "microstrip-impedance",
+    title: "Microstrip Impedance Calculator",
+    description: "Calculate characteristic impedance of microstrip transmission lines",
+    category: "PCB",
+    path: "/calculators/microstrip-impedance",
+    icon: "Activity"
+  },
+  {
+    id: "stripline-impedance",
+    title: "Stripline Impedance Calculator",
+    description: "Calculate impedance of stripline transmission lines",
+    category: "PCB",
+    path: "/calculators/stripline-impedance",
+    icon: "Activity"
+  },
+  {
+    id: "pcb-track-resistance",
+    title: "PCB Track Resistance Calculator",
+    description: "Calculate resistance of PCB traces based on dimensions and material",
+    category: "PCB",
+    path: "/calculators/pcb-track-resistance",
+    icon: "Workflow"
+  },
+  {
+    id: "differential-pair-impedance",
+    title: "Differential Pair Impedance Calculator",
+    description: "Calculate differential impedance for high-speed signal pairs",
+    category: "PCB",
+    path: "/calculators/differential-pair-impedance",
+    icon: "GitBranch"
+  },
+  {
+    id: "pcb-thermal",
+    title: "PCB Thermal Calculator",
+    description: "Calculate temperature rise and thermal resistance in PCB",
+    category: "PCB",
+    path: "/calculators/pcb-thermal",
+    icon: "Thermometer"
+  },
+  {
+    id: "pcb-cost-estimator",
+    title: "PCB Cost Estimator",
+    description: "Estimate PCB manufacturing cost based on specifications",
+    category: "PCB",
+    path: "/calculators/pcb-cost-estimator",
+    icon: "DollarSign"
   }
 ];
