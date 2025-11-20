@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Calculator, ArrowLeft, Home } from "lucide-react";
+import { Calculator, ArrowLeft } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
 
@@ -34,49 +34,7 @@ export function Header() {
             </Link>
           </div>
           
-          <div className="flex items-center gap-1">
-            <nav className="hidden md:flex items-center space-x-1">
-              <a 
-                href="https://www.calculatorfree.in/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium hover-elevate active-elevate-2 rounded-md" 
-                data-testid="link-home-external"
-              >
-                <Home className="h-4 w-4" />
-                Home
-              </a>
-              <Link 
-                href="/#electrical"
-                className="px-3 py-2 text-sm font-medium hover-elevate active-elevate-2 rounded-md" 
-                data-testid="link-electrical"
-              >
-                Electrical
-              </Link>
-              <Link 
-                href="/#mechanical"
-                className="px-3 py-2 text-sm font-medium hover-elevate active-elevate-2 rounded-md" 
-                data-testid="link-mechanical"
-              >
-                Mechanical
-              </Link>
-              <Link 
-                href="/#civil"
-                className="px-3 py-2 text-sm font-medium hover-elevate active-elevate-2 rounded-md" 
-                data-testid="link-civil"
-              >
-                Civil
-              </Link>
-              <Link 
-                href="/#general-science"
-                className="px-3 py-2 text-sm font-medium hover-elevate active-elevate-2 rounded-md" 
-                data-testid="link-science"
-              >
-                Science
-              </Link>
-            </nav>
-            <ThemeToggle />
-          </div>
+          <ThemeToggle />
         </div>
       </div>
     </header>

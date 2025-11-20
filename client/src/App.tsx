@@ -107,10 +107,14 @@ import SolarArraySizing from "@/pages/calculators/SolarArraySizing";
 import RenewablePayback from "@/pages/calculators/RenewablePayback";
 import GridTieSystem from "@/pages/calculators/GridTieSystem";
 
+// Category Page
+import CategoryPage from "@/pages/CategoryPage";
+
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/category/:slug" component={CategoryPage} />
       
       {/* Electrical Calculators */}
       <Route path="/calculators/ohms-law" component={OhmsLaw} />
