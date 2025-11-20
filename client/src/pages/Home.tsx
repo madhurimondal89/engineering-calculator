@@ -164,50 +164,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-12 md:py-16 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-3">
-                <CheckCircle2 className="w-6 h-6" />
-              </div>
-              <h3 className="font-semibold mb-2">100% Free</h3>
-              <p className="text-sm text-muted-foreground">
-                All calculators are completely free to use with no hidden charges or subscriptions
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-3">
-                <Gauge className="w-6 h-6" />
-              </div>
-              <h3 className="font-semibold mb-2">Instant Results</h3>
-              <p className="text-sm text-muted-foreground">
-                Get accurate calculations instantly with real-time results as you type
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-3">
-                <Award className="w-6 h-6" />
-              </div>
-              <h3 className="font-semibold mb-2">Professional Grade</h3>
-              <p className="text-sm text-muted-foreground">
-                Industry-standard formulas and calculations trusted by engineers worldwide
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-3">
-                <Sparkles className="w-6 h-6" />
-              </div>
-              <h3 className="font-semibold mb-2">Easy to Use</h3>
-              <p className="text-sm text-muted-foreground">
-                Intuitive interface with clear instructions and educational content for each tool
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Category Grid */}
       <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
@@ -383,6 +339,50 @@ export default function Home() {
               or a hobbyist building electronics projects, our calculators provide the accuracy and reliability 
               you need. All tools include detailed formulas, educational content, and real-time validation.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-12 md:py-16 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-3">
+                <CheckCircle2 className="w-6 h-6" />
+              </div>
+              <h3 className="font-semibold mb-2">100% Free</h3>
+              <p className="text-sm text-muted-foreground">
+                All calculators are completely free to use with no hidden charges or subscriptions
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-3">
+                <Gauge className="w-6 h-6" />
+              </div>
+              <h3 className="font-semibold mb-2">Instant Results</h3>
+              <p className="text-sm text-muted-foreground">
+                Get accurate calculations instantly with real-time results as you type
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-3">
+                <Award className="w-6 h-6" />
+              </div>
+              <h3 className="font-semibold mb-2">Professional Grade</h3>
+              <p className="text-sm text-muted-foreground">
+                Industry-standard formulas and calculations trusted by engineers worldwide
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-3">
+                <Sparkles className="w-6 h-6" />
+              </div>
+              <h3 className="font-semibold mb-2">Easy to Use</h3>
+              <p className="text-sm text-muted-foreground">
+                Intuitive interface with clear instructions and educational content for each tool
+              </p>
+            </div>
           </div>
         </div>
       </section>
