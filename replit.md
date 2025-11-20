@@ -3,7 +3,7 @@
 ## Overview
 This project is a professional web application providing a comprehensive hub of specialized engineering and science calculators. Built with React, TypeScript, Express, and Tailwind CSS, the application aims to be a go-to resource for engineers, students, and enthusiasts, offering accurate calculations and educational content. The business vision is to capture a significant market share in online technical calculators by providing a superior user experience and a vast array of tools.
 
-**Current Status**: 74 calculators across 10 categories (Electrical, AC Circuits, Electronics, Wire & Cable, Power System, Motor, Battery & Energy, Mechanical, Civil, General Science)
+**Current Status**: 78 calculators across 11 categories (Electrical, AC Circuits, Electronics, Wire & Cable, Power System, Motor, Battery & Energy, Renewable Energy, Mechanical, Civil, General Science)
 
 ## User Preferences
 - Uses Inter font for UI, JetBrains Mono for numerical displays
@@ -33,7 +33,24 @@ The application follows a full-stack architecture with a React-based frontend an
 - **Form Validation**: All calculators use React Hook Form + Zod validation with z.coerce.number() pattern for robust number input handling. Empty inputs map to undefined, preventing NaN errors while allowing users to clear fields.
 - **Key Features**: Dark mode, input validation with real-time error messages, clear unit indicators, responsive design, professional UI, and formula display.
 
-### Recent Additions (Batch 7 - Battery & Energy Calculators)
+### Recent Additions (Batch 8 - Renewable Energy Calculators)
+**Completed**: November 20, 2025
+
+Added 4 comprehensive Renewable Energy calculators covering wind, solar, and grid-tied systems:
+1. **Wind Turbine Power** - Calculate power output from wind speed, blade diameter, and turbine specifications
+2. **Solar Array Sizing** - Size solar panel arrays for grid-tied or off-grid systems with battery backup
+3. **Renewable Energy Payback** - Calculate ROI, payback period, and lifetime savings for renewable energy systems
+4. **Grid Tie System** - Design grid-tied solar systems with net metering analysis
+
+**Technical Implementation**:
+- All calculators use React Hook Form + Zod validation with z.coerce.number()
+- Complex calculations: Wind power (cubic relationship P ∝ V³), solar sizing (peak sun hours, system efficiency), financial analysis (rate increases, lifetime savings), grid-tie inverter sizing
+- Educational content: 160+ lines covering wind power fundamentals, solar array design, financial metrics (NPV, IRR, LCOE), grid-tied vs off-grid systems
+- E2E tested with Playwright - all 4 calculators verified with realistic inputs
+- Bug fix: Removed misleading capacity factor metric from Wind Turbine calculator (was always showing 100%)
+- Data-testid attributes on all interactive elements
+
+### Previous Additions (Batch 7 - Battery & Energy Calculators)
 **Completed**: November 19, 2025
 
 Added 8 comprehensive Battery & Energy calculators covering energy storage and battery systems:
