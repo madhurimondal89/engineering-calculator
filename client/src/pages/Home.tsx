@@ -2,7 +2,7 @@ import { type CalculatorCategory, calculators } from "@shared/schema";
 import { Header } from "@/components/Header";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "wouter";
-import { ChevronRight, Calculator, Zap, Settings, Plug, Battery, Sun, Wrench, Building, Beaker, Cpu, Radio } from "lucide-react";
+import { ChevronRight, Calculator, Zap, Settings, Plug, Battery, Sun, Wrench, Building, Beaker, Cpu, Radio, ArrowRightLeft } from "lucide-react";
 
 interface CategoryInfo {
   name: CalculatorCategory;
@@ -126,6 +126,14 @@ export default function Home() {
       description: "Physics and science calculators for velocity, density, and acceleration",
       seo: "Calculate fundamental physics properties including velocity, density, and acceleration. Essential science calculators for students, educators, and researchers.",
       count: getCategoryCount("General Science")
+    },
+    {
+      name: "Converter Tools",
+      slug: getCategorySlug("Converter Tools"),
+      icon: ArrowRightLeft,
+      description: "Unit conversion calculators for voltage, frequency, power, and energy",
+      seo: "Convert between electrical units with our comprehensive conversion tools. Calculate voltage conversions (V, mV, kV), frequency conversions (Hz, kHz, MHz, GHz), AC to DC, DC to AC inverter outputs, Joules to Watts, Watts to Amps, and VA to Watts with power factor analysis.",
+      count: getCategoryCount("Converter Tools")
     },
   ];
 
