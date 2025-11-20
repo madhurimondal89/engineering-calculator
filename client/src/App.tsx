@@ -126,6 +126,15 @@ import CoaxCableLoss from "@/pages/calculators/CoaxCableLoss";
 import LinkBudget from "@/pages/calculators/LinkBudget";
 import ResonantFrequencyLC from "@/pages/calculators/ResonantFrequencyLC";
 
+// Converter Tools Calculators
+import VoltageConverter from "@/pages/calculators/VoltageConverter";
+import FrequencyConverter from "@/pages/calculators/FrequencyConverter";
+import AcToDc from "@/pages/calculators/AcToDc";
+import DcToAc from "@/pages/calculators/DcToAc";
+import JoulesToWatts from "@/pages/calculators/JoulesToWatts";
+import WattsAmps from "@/pages/calculators/WattsAmps";
+import VaToWatts from "@/pages/calculators/VaToWatts";
+
 // Category Page
 import CategoryPage from "@/pages/CategoryPage";
 
@@ -253,6 +262,15 @@ function Router() {
       <Route path="/calculators/coax-cable-loss" component={CoaxCableLoss} />
       <Route path="/calculators/link-budget" component={LinkBudget} />
       <Route path="/calculators/resonant-frequency-lc" component={ResonantFrequencyLC} />
+      
+      {/* Converter Tools Calculators */}
+      <Route path="/calculators/voltage-converter" component={VoltageConverter} />
+      <Route path="/calculators/frequency-converter" component={FrequencyConverter} />
+      <Route path="/calculators/ac-to-dc" component={AcToDc} />
+      <Route path="/calculators/dc-to-ac" component={DcToAc} />
+      <Route path="/calculators/joules-to-watts" component={JoulesToWatts} />
+      <Route path="/calculators/watts-amps" component={WattsAmps} />
+      <Route path="/calculators/va-to-watts" component={VaToWatts} />
       
       {/* Fallback to 404 */}
       <Route component={NotFound} />

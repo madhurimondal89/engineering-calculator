@@ -12,6 +12,7 @@ export const calculatorCategories = [
   "Renewable Energy",
   "PCB",
   "RF",
+  "Converter Tools",
   "Mechanical", 
   "Civil",
   "General Science"
@@ -860,5 +861,63 @@ export const calculators: Calculator[] = [
     category: "RF",
     path: "/calculators/resonant-frequency-lc",
     icon: "Waves"
+  },
+
+  // Converter Tools
+  {
+    id: "voltage-converter",
+    title: "Voltage Converter Calculator",
+    description: "Convert between different voltage units (V, mV, kV, MV)",
+    category: "Converter Tools",
+    path: "/calculators/voltage-converter",
+    icon: "ArrowRightLeft"
+  },
+  {
+    id: "frequency-converter",
+    title: "Frequency Converter",
+    description: "Convert between Hz, kHz, MHz, and GHz frequencies",
+    category: "Converter Tools",
+    path: "/calculators/frequency-converter",
+    icon: "ArrowRightLeft"
+  },
+  {
+    id: "ac-to-dc",
+    title: "AC to DC Conversion Calculator",
+    description: "Calculate DC output voltage from AC input with rectifier efficiency",
+    category: "Converter Tools",
+    path: "/calculators/ac-to-dc",
+    icon: "ArrowDown"
+  },
+  {
+    id: "dc-to-ac",
+    title: "DC to AC Inverter Calculator",
+    description: "Calculate AC output from DC input with inverter efficiency and waveform",
+    category: "Converter Tools",
+    path: "/calculators/dc-to-ac",
+    icon: "ArrowUp"
+  },
+  {
+    id: "joules-to-watts",
+    title: "Joules to Watts Calculator",
+    description: "Convert between energy (Joules) and power (Watts) over time",
+    category: "Converter Tools",
+    path: "/calculators/joules-to-watts",
+    icon: "Zap"
+  },
+  {
+    id: "watts-amps",
+    title: "Watts to Amps / Amps to Watts Calculator",
+    description: "Bidirectional converter between watts and amps using voltage",
+    category: "Converter Tools",
+    path: "/calculators/watts-amps",
+    icon: "ArrowRightLeft"
+  },
+  {
+    id: "va-to-watts",
+    title: "VA to Watts Calculator",
+    description: "Convert apparent power (VA) to real power (Watts) using power factor",
+    category: "Converter Tools",
+    path: "/calculators/va-to-watts",
+    icon: "Power"
   }
 ];
