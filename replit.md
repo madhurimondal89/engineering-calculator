@@ -3,7 +3,7 @@
 ## Overview
 This project is a professional web application providing a comprehensive hub of specialized engineering and science calculators. Built with React, TypeScript, Express, and Tailwind CSS, the application aims to be a go-to resource for engineers, students, and enthusiasts, offering accurate calculations and educational content. The business vision is to capture a significant market share in online technical calculators by providing a superior user experience and a vast array of tools.
 
-**Current Status**: 86 calculators across 12 categories (Electrical, AC Circuits, Electronics, Wire & Cable, Power System, Motor, Battery & Energy, Renewable Energy, PCB, Mechanical, Civil, General Science)
+**Current Status**: 93 calculators across 13 categories (Electrical, AC Circuits, Electronics, Wire & Cable, Power System, Motor, Battery & Energy, Renewable Energy, PCB, RF, Converter Tools, Mechanical, Civil)
 
 ## User Preferences
 - Uses Inter font for UI, JetBrains Mono for numerical displays
@@ -56,7 +56,32 @@ Implemented improved three-tier navigation structure for better UX and SEO:
 - All calculators remain accessible through improved navigation flow
 - E2E tested: Home → Category → Calculator navigation verified
 
-### Recent Additions (Batch 9 - PCB Calculators)
+### Recent Additions (Batch 11 - Converter Tools Calculators)
+**Completed**: November 20, 2025
+
+Added 7 comprehensive conversion calculators for electrical and energy unit conversions:
+1. **Voltage Converter** - Convert between V, mV, kV, MV with bidirectional conversion
+2. **Frequency Converter** - Convert Hz, kHz, MHz, GHz with period and wavelength calculations
+3. **AC to DC Conversion** - Calculate DC output from AC input with rectifier efficiency (Half-Wave, Full-Wave, Full Bridge)
+4. **DC to AC Inverter** - Calculate AC output from DC input with waveform types (Pure Sine, Modified Sine, Square Wave)
+5. **Joules to Watts** - Bidirectional energy/power conversion with time period
+6. **Watts to Amps / Amps to Watts** - Power-current conversion for single/three-phase systems with power factor
+7. **VA to Watts** - Convert apparent power to real power with power triangle analysis (real, reactive, apparent power)
+
+**Technical Implementation**:
+- All calculators use React Hook Form + Zod validation with z.coerce.number()
+- Bidirectional conversions: Voltage, Frequency, Joules/Watts, Watts/Amps
+- Power factor validation: 0-1 range with inline error messages for invalid inputs
+- Complex calculations: Rectifier efficiency (different types), inverter waveform handling, power triangle (Pythagorean theorem)
+- Educational content: ~5000 lines covering conversion fundamentals, AC/DC theory, power factor concepts, energy vs power
+- E2E tested with Playwright - all 7 calculators verified with accurate outputs:
+  - Voltage: 1000 mV = 1 V ✓
+  - Frequency: 2.4 GHz = 2400 MHz ✓
+  - Watts to Amps: 2300W ÷ (230V × 0.9 PF) = 11.111 A ✓
+  - VA to Watts: 1000 VA × 0.8 PF = 800W, 600 VAR ✓
+- Data-testid attributes on all interactive elements
+
+### Previous Additions (Batch 9 - PCB Calculators)
 **Completed**: November 20, 2025
 
 Added 8 comprehensive PCB design calculators for professional PCB layout and manufacturing:
