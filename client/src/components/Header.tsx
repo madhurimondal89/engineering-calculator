@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Calculator, ArrowLeft } from "lucide-react";
+import { Calculator, ArrowLeft, Home } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
 
@@ -34,7 +34,19 @@ export function Header() {
             </Link>
           </div>
           
-          <ThemeToggle />
+          <div className="flex items-center gap-1">
+            <Link href="/" data-testid="link-home">
+              <Button 
+                variant="ghost" 
+                size="sm"
+                className="gap-2"
+              >
+                <Home className="h-4 w-4" />
+                <span className="hidden sm:inline">Home</span>
+              </Button>
+            </Link>
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </header>

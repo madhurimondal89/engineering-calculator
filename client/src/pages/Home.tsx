@@ -151,35 +151,37 @@ export default function Home() {
             {categories.map((category) => {
               const Icon = category.icon;
               return (
-                <Link key={category.name} href={`/category/${category.slug}`}>
-                  <a data-testid={`link-category-${category.slug}`}>
-                    <Card className="h-full hover-elevate active-elevate-2 transition-all cursor-pointer">
-                      <CardHeader>
-                        <div className="flex items-start justify-between mb-2">
-                          <Icon className="w-8 h-8 text-primary" data-testid={`icon-${category.slug}`} />
-                          <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                            <span data-testid={`text-count-${category.slug}`}>{category.count}</span>
-                            <Calculator className="w-4 h-4" />
-                          </div>
+                <Link 
+                  key={category.name} 
+                  href={`/category/${category.slug}`}
+                  data-testid={`link-category-${category.slug}`}
+                >
+                  <Card className="h-full hover-elevate active-elevate-2 transition-all cursor-pointer">
+                    <CardHeader>
+                      <div className="flex items-start justify-between mb-2">
+                        <Icon className="w-8 h-8 text-primary" data-testid={`icon-${category.slug}`} />
+                        <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                          <span data-testid={`text-count-${category.slug}`}>{category.count}</span>
+                          <Calculator className="w-4 h-4" />
                         </div>
-                        <CardTitle className="text-xl" data-testid={`text-title-${category.slug}`}>
-                          {category.name}
-                        </CardTitle>
-                        <CardDescription data-testid={`text-description-${category.slug}`}>
-                          {category.description}
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-sm text-muted-foreground mb-4" data-testid={`text-seo-${category.slug}`}>
-                          {category.seo}
-                        </p>
-                        <div className="flex items-center text-primary font-medium text-sm">
-                          <span>View Calculators</span>
-                          <ChevronRight className="w-4 h-4 ml-1" />
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </a>
+                      </div>
+                      <CardTitle className="text-xl" data-testid={`text-title-${category.slug}`}>
+                        {category.name}
+                      </CardTitle>
+                      <CardDescription data-testid={`text-description-${category.slug}`}>
+                        {category.description}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground mb-4" data-testid={`text-seo-${category.slug}`}>
+                        {category.seo}
+                      </p>
+                      <div className="flex items-center text-primary font-medium text-sm">
+                        <span>View Calculators</span>
+                        <ChevronRight className="w-4 h-4 ml-1" />
+                      </div>
+                    </CardContent>
+                  </Card>
                 </Link>
               );
             })}
@@ -187,36 +189,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer SEO Content */}
-      <section className="py-16 bg-muted/30 border-t">
+      {/* Footer */}
+      <footer className="py-8 bg-muted/30 border-t">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <div className="prose prose-sm max-w-none dark:prose-invert">
-            <h2 className="text-2xl font-semibold mb-4">Professional Engineering Calculators</h2>
-            <p className="text-muted-foreground mb-6">
-              Our comprehensive calculator hub provides {calculators.length} free, professional-grade calculators covering electrical engineering, 
-              electronics, power systems, renewable energy, mechanical engineering, civil engineering, and general science. 
-              Each calculator includes detailed formulas, step-by-step guides, and educational content to help you understand 
-              the calculations and apply them correctly.
-            </p>
-            
-            <h3 className="text-xl font-semibold mb-3">Why Choose Our Calculators?</h3>
-            <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
-              <li>Accurate calculations based on engineering standards and formulas</li>
-              <li>Comprehensive educational content with each calculator</li>
-              <li>User-friendly interface with real-time validation</li>
-              <li>Mobile-responsive design for calculations on the go</li>
-              <li>Completely free with no registration required</li>
-              <li>Dark mode support for comfortable viewing</li>
-            </ul>
-
-            <p className="text-muted-foreground">
-              Whether you're an electrical engineer designing power systems, a student learning circuit analysis, 
-              a solar installer sizing arrays, or a hobbyist building electronics projects, our calculator hub 
-              has the tools you need. All calculators are regularly updated and tested for accuracy.
+          <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
+              <a 
+                href="https://www.calculatorfree.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover-elevate active-elevate-2 px-3 py-1 rounded-md"
+                data-testid="link-footer-home"
+              >
+                Home
+              </a>
+              <span className="text-muted-foreground">·</span>
+              <Link 
+                href="/"
+                className="text-muted-foreground hover-elevate active-elevate-2 px-3 py-1 rounded-md"
+                data-testid="link-footer-calculators"
+              >
+                Calculators
+              </Link>
+            </div>
+            <p className="text-sm text-muted-foreground text-center" data-testid="text-copyright">
+              © {new Date().getFullYear()} CalcHub. All rights reserved.
             </p>
           </div>
         </div>
-      </section>
+      </footer>
     </div>
   );
 }
