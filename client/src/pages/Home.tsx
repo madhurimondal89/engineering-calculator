@@ -2,7 +2,7 @@ import { type CalculatorCategory, calculators } from "@shared/schema";
 import { Header } from "@/components/Header";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "wouter";
-import { ChevronRight, Calculator, Zap, Settings, Plug, Battery, Sun, Wrench, Building, Beaker, Cpu, Radio, ArrowRightLeft } from "lucide-react";
+import { ChevronRight, Calculator, Zap, Settings, Plug, Battery, Sun, Wrench, Building, Beaker, Cpu, Radio, ArrowRightLeft, CheckCircle2, Sparkles, Gauge, Award } from "lucide-react";
 
 interface CategoryInfo {
   name: CalculatorCategory;
@@ -164,6 +164,50 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Features Section */}
+      <section className="py-12 md:py-16 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-3">
+                <CheckCircle2 className="w-6 h-6" />
+              </div>
+              <h3 className="font-semibold mb-2">100% Free</h3>
+              <p className="text-sm text-muted-foreground">
+                All calculators are completely free to use with no hidden charges or subscriptions
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-3">
+                <Gauge className="w-6 h-6" />
+              </div>
+              <h3 className="font-semibold mb-2">Instant Results</h3>
+              <p className="text-sm text-muted-foreground">
+                Get accurate calculations instantly with real-time results as you type
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-3">
+                <Award className="w-6 h-6" />
+              </div>
+              <h3 className="font-semibold mb-2">Professional Grade</h3>
+              <p className="text-sm text-muted-foreground">
+                Industry-standard formulas and calculations trusted by engineers worldwide
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-3">
+                <Sparkles className="w-6 h-6" />
+              </div>
+              <h3 className="font-semibold mb-2">Easy to Use</h3>
+              <p className="text-sm text-muted-foreground">
+                Intuitive interface with clear instructions and educational content for each tool
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Category Grid */}
       <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
@@ -209,6 +253,136 @@ export default function Home() {
                 </Link>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Our Calculators Section */}
+      <section className="py-16 md:py-20 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Your Complete Engineering & Science Calculation Solution
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              From electrical circuit analysis to renewable energy design, our comprehensive calculator hub provides accurate, 
+              instant results for students, engineers, and professionals across all technical disciplines.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Zap className="w-5 h-5 text-primary" />
+                  Electrical & Power Systems
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-3">
+                  Master electrical engineering with calculators for Ohm's Law, power calculations, AC/DC circuit analysis, 
+                  three-phase systems, transformers, motors, and power factor correction. Perfect for designing circuits, 
+                  analyzing power systems, and solving complex electrical problems.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary">Voltage & Current</span>
+                  <span className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary">AC Circuits</span>
+                  <span className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary">Power Systems</span>
+                  <span className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary">Motors</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Cpu className="w-5 h-5 text-primary" />
+                  Electronics & PCB Design
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-3">
+                  Design professional electronic circuits and PCBs with tools for LED resistors, voltage regulators, 
+                  op-amps, 555 timers, trace width calculations, impedance matching, and thermal management. 
+                  Essential for hobbyists and professional circuit designers.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary">Component Design</span>
+                  <span className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary">PCB Layout</span>
+                  <span className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary">RF Design</span>
+                  <span className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary">Impedance</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Sun className="w-5 h-5 text-primary" />
+                  Renewable Energy & Battery Systems
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-3">
+                  Plan and optimize renewable energy installations with calculators for solar panel sizing, 
+                  wind turbine power output, battery capacity, energy storage systems, and investment payback analysis. 
+                  Calculate ROI and design efficient solar, wind, and battery backup systems.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary">Solar Power</span>
+                  <span className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary">Wind Energy</span>
+                  <span className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary">Battery Life</span>
+                  <span className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary">Energy Storage</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <ArrowRightLeft className="w-5 h-5 text-primary" />
+                  Unit Conversions & Tools
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-3">
+                  Convert between electrical units effortlessly with tools for voltage conversions, frequency conversions, 
+                  AC to DC conversion, DC to AC inverter calculations, power conversions (Watts, Amps, VA), 
+                  and energy conversions (Joules to Watts). Includes power factor analysis.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary">Voltage Units</span>
+                  <span className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary">Frequency</span>
+                  <span className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary">Power Factor</span>
+                  <span className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary">Energy</span>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="bg-card border rounded-lg p-6 md:p-8">
+            <h3 className="text-xl md:text-2xl font-semibold mb-4 text-center">
+              Perfect for Engineers, Students & Professionals
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+              <div>
+                <div className="text-3xl font-bold text-primary mb-2">{calculators.length}+</div>
+                <p className="text-muted-foreground">Professional Calculators</p>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-primary mb-2">{categories.length}</div>
+                <p className="text-muted-foreground">Engineering Categories</p>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-primary mb-2">100%</div>
+                <p className="text-muted-foreground">Free & Accurate</p>
+              </div>
+            </div>
+            <p className="text-center text-muted-foreground mt-6 max-w-2xl mx-auto">
+              Whether you're a practicing engineer designing power systems, a student learning circuit theory, 
+              or a hobbyist building electronics projects, our calculators provide the accuracy and reliability 
+              you need. All tools include detailed formulas, educational content, and real-time validation.
+            </p>
           </div>
         </div>
       </section>
